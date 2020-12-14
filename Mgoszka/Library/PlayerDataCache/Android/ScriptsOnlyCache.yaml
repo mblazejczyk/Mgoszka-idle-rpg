@@ -3,8 +3,10 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - ActiveFalse_timer
     - AnimationController
+    - DownloadUpdate
     - EqSystem
     - Fight
+    - MapSizeSystem
     - MissionSystem
     - NPC_spawner
     - OnTriggerAction
@@ -22,6 +24,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -148,19 +151,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14028}
     - Class: 114
-      Script: {instanceID: 14448}
+      Script: {instanceID: 14434}
     - Class: 114
-      Script: {instanceID: 14512}
+      Script: {instanceID: 14450}
     - Class: 114
-      Script: {instanceID: 14704}
+      Script: {instanceID: 14514}
     - Class: 114
-      Script: {instanceID: 14724}
+      Script: {instanceID: 14706}
     - Class: 114
-      Script: {instanceID: 14966}
+      Script: {instanceID: 14726}
     - Class: 114
-      Script: {instanceID: 15018}
+      Script: {instanceID: 14968}
     - Class: 114
-      Script: {instanceID: 15092}
+      Script: {instanceID: 15020}
+    - Class: 114
+      Script: {instanceID: 15094}
+    - Class: 114
+      Script: {instanceID: 108100}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -416,7 +423,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 2bc0472b2b9de09949ac04f893929ab3
+      Hash: 42fc7d4d80afee783b478f3c21b0b9db
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Fight
@@ -512,7 +519,7 @@ ScriptsOnlyBuild:
     className: OnTriggerAction
   - hash:
       serializedVersion: 2
-      Hash: d9c1fc5dc6b51b20796e1a17ce291574
+      Hash: 8121cc82c980404cef0225e0b6d53d63
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SettingsSystem
@@ -554,7 +561,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: a5ad6fa294eb231fbb01b7ff100e78c1
+      Hash: a2e99160b43864b73b25a03286186df0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimeCountingSystem
@@ -668,6 +675,12 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
+      Hash: 4219124b31aa473f9d509abbece902b7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MapSizeSystem
+  - hash:
+      serializedVersion: 2
       Hash: ae83e830e7a90c0aff918c4c2e520825
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -698,7 +711,7 @@ ScriptsOnlyBuild:
     className: ActiveFalse_timer
   - hash:
       serializedVersion: 2
-      Hash: 702e3ec80a213cb99ef81c0ab7e7ca8c
+      Hash: 9411776ba587fe65a8d6427216369144
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EqSystem
@@ -816,7 +829,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DownloadUpdate
   platform: 13
   scenePathNames:
   - Assets/Scenes/2.unity
-  playerPath: C:/Users/nibek/Desktop/mgoszka 0.3.2a.aab
+  playerPath: C:/Users/nibek/Desktop/mgoszka 0.4a.aab

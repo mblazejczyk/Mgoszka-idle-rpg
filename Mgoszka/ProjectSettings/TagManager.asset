@@ -37,6 +37,7 @@ TagManager:
   - sep
   - skorpion
   - trujacypajak
+  - deparn
   layers:
   - Default
   - TransparentFX

@@ -153,32 +153,34 @@ MonoBehaviour:
   DodgeChance: 0
   HP: 0
   CritChance: 0
-  AdMin: 2
-  AdMax: 3
-  MdMin: 10
-  MdMax: 15
-  ArmorMin: 0
-  ArmorMax: 0
-  MagicBarierMin: 6
-  MagicBarierMax: 10
-  DodgeChanceMin: 10
-  DodgeChanceMax: 12
-  HpMin: 18
-  HpMax: 44
-  minCritChance: 1
-  maxCritChance: 2
-  xpRewardMax: 60
-  xpRewardMin: 66
-  coinRewardMax: 18
-  coinRewardMin: 20
+  AdMin: 17
+  AdMax: 19
+  MdMin: 17
+  MdMax: 19
+  ArmorMin: 5
+  ArmorMax: 8
+  MagicBarierMin: 7
+  MagicBarierMax: 9
+  DodgeChanceMin: 30
+  DodgeChanceMax: 38
+  HpMin: 70
+  HpMax: 72
+  minCritChance: 5
+  maxCritChance: 7
+  xpRewardMax: 108
+  xpRewardMin: 115
+  coinRewardMax: 60
+  coinRewardMin: 64
   itemsDrop:
-  - {fileID: 8225407113688261958, guid: 655958a10ed5e224eafc515b517ac6bb, type: 3}
-  - {fileID: 8225407113688261958, guid: ef67397488caf8a4193b62e31904a6bf, type: 3}
-  - {fileID: 8225407113688261958, guid: e79d4b3596d14e04388dc1c7286cc248, type: 3}
+  - {fileID: 8225407113688261958, guid: fe3fb45e303836543b5da1bba0abacdf, type: 3}
+  - {fileID: 8225407113688261958, guid: f498a91e95550744c925700607283142, type: 3}
+  - {fileID: 8225407113688261958, guid: 18ec3c8af32ef894dacad0fd8d25bd61, type: 3}
+  - {fileID: 8225407113688261958, guid: 3add1aa53b665b14597ba28137589601, type: 3}
   itemDromRate:
-  - 5
-  - 5
   - 2
+  - 2
+  - 1
+  - 1
   droppedItems:
   - {fileID: 0}
   - {fileID: 0}

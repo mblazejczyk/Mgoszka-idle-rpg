@@ -100,9 +100,9 @@ MonoBehaviour:
   add_energy: 0
   add_total_energy: 0
   add_ad: 0
-  add_md: 0
-  add_armor: 5
-  add_barier: 0
+  add_md: 7
+  add_armor: 0
+  add_barier: 7
   add_speed: 0
   add_dodge: 0
   add_charyzma: 0

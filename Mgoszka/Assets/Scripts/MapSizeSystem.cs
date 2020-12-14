@@ -38,6 +38,20 @@ public class MapSizeSystem : MonoBehaviour
     }
     public void RefreshMapData()
     {
+
+
+        if (GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().areItemsKnown == 1)
+        {
+            for (int i = 0; i < knownItems.Length; i++)
+            {
+                knownItems[i] = 1;
+            }
+            for (int i = 0; i < knownPlaces.Length; i++)
+            {
+                knownPlaces[i] = 1;
+            }
+        }
+
         for (int i = 0; i < knownPlaces.Length; i++)
         {
             if(knownPlaces[i] == 1)
@@ -262,9 +276,77 @@ public class MapSizeSystem : MonoBehaviour
 
 
 
-        ItemsFromEny[2].text = "";
+        ItemsFromEny[4].text = "";
 
         foreach (GameObject gobj in GameObject.FindGameObjectWithTag("ryba").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[4].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[4].text += "<color=white>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("trujacazaba").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[4].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[4].text += "</color><color=black>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("delfin").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[4].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[4].text += "</color><color=white>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("mewa").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[4].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[4].text += "</color><color=black>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("rekin").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[4].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[4].text += "</color>";
+
+
+
+
+
+
+        ItemsFromEny[2].text = "";
+
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("trujacyslimak").GetComponent<enymieStats>().itemsDrop)
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
@@ -276,7 +358,7 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[2].text += "<color=white>";
-        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("trujacazaba").GetComponent<enymieStats>().itemsDrop)
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("sarna").GetComponent<enymieStats>().itemsDrop)
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
@@ -288,7 +370,7 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[2].text += "</color><color=black>";
-        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("delfin").GetComponent<enymieStats>().itemsDrop)
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("mrowkojad").GetComponent<enymieStats>().itemsDrop)
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
@@ -300,7 +382,7 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[2].text += "</color><color=white>";
-        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("mewa").GetComponent<enymieStats>().itemsDrop)
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("zolw").GetComponent<enymieStats>().itemsDrop)
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
@@ -312,7 +394,7 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[2].text += "</color><color=black>";
-        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("rekin").GetComponent<enymieStats>().itemsDrop)
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("waz").GetComponent<enymieStats>().itemsDrop)
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
@@ -324,6 +406,91 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[2].text += "</color>";
+
+
+
+
+
+
+        ItemsFromEny[3].text = "";
+
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("skorpion").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[3].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[3].text += "<color=white>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("trujacypajak").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[3].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[3].text += "</color><color=black>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("grzechotnik").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[3].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[3].text += "</color><color=white>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("gepard").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[3].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[3].text += "</color><color=black>";
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("sep").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[3].text += "-???" + "\n";
+            }
+        }
+        ItemsFromEny[3].text += "</color>";
+
+
+
+        ItemsFromEny[5].text = "";
+
+        foreach (GameObject gobj in GameObject.FindGameObjectWithTag("deparn").GetComponent<enymieStats>().itemsDrop)
+        {
+            if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
+            {
+                ItemsFromEny[5].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+            }
+            else
+            {
+                ItemsFromEny[5].text += "-???" + "\n";
+            }
+        }
+        
     }
 
 

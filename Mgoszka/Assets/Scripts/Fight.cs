@@ -28,6 +28,7 @@ public class Fight : MonoBehaviour
     public GameObject FightUi;
     public Vector3 previousLoc;
     public GameObject enymieKilled;
+    public Image EnyHealthBar;
     [Header("UI info")]
     public Text enyHPText;
     public Text enyADText;
@@ -52,7 +53,7 @@ public class Fight : MonoBehaviour
     public GameObject[] blockAnimationEny;
     public GameObject[] blockAnimationPlayer;
     public AudioClip blockSound;
-
+    private float StartingMaxEnyHp;
     private void Update()
     {
         if(playerHit == true)
@@ -123,7 +124,8 @@ public class Fight : MonoBehaviour
         FightUi.SetActive(true);
         GameObject.FindGameObjectWithTag("controller").GetComponent<UiController>().Ekwipunek.GetComponent<EqSystem>().isLimitedEq = true;
         UpdateUi();
-
+        StartingMaxEnyHp = enyHP;
+        EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         if (Random.value > 0.5) //Dix start
         {
             
@@ -207,7 +209,7 @@ public class Fight : MonoBehaviour
         }
 
         playerHit = true;
-
+        EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         foreach(GameObject p in playerHitAni)
         {
             p.SetActive(false);
@@ -285,6 +287,7 @@ public class Fight : MonoBehaviour
             StartCoroutine(waitForAttack(2));
         }
         enyHit = true;
+        EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         foreach (GameObject p in enyHitAni)
         {
             p.SetActive(false);

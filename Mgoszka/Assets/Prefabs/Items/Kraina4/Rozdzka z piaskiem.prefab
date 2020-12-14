@@ -100,8 +100,8 @@ MonoBehaviour:
   add_energy: 0
   add_total_energy: 0
   add_ad: 0
-  add_md: 0
-  add_armor: 5
+  add_md: 18
+  add_armor: 0
   add_barier: 0
   add_speed: 0
   add_dodge: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   add_escameChance: 0
   xpBoostPercent: 0
   xpBoostTimeInSec: 0
-  CritChanse: 0
+  CritChanse: 20
   isCommented: 0
   commentStr: 
   RareId: 0

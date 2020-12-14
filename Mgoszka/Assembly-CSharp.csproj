@@ -75,6 +75,7 @@
     <Compile Include="Assets\QPathFinder\Script\GraphData.cs" />
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerToPosition.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToPoint.cs" />
+    <Compile Include="Assets\Scripts\MapSizeSystem.cs" />
     <Compile Include="Assets\QPathFinder\Script\PathFinder.cs" />
     <Compile Include="Assets\QPathFinder\Script\Utils.cs" />
     <Compile Include="Assets\Scripts\ActiveFalse_timer.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
-    <Compile Include="Assets\Scripts\MapSizeSystem.cs" />
+    <Compile Include="Assets\Scripts\DownloadUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

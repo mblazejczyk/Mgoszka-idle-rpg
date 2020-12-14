@@ -106,7 +106,7 @@ MonoBehaviour:
   add_speed: 0
   add_dodge: 0
   add_charyzma: 0
-  add_escameChance: 0
+  add_escameChance: 15
   xpBoostPercent: 0
   xpBoostTimeInSec: 0
   CritChanse: 0
