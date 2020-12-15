@@ -590,7 +590,7 @@ public class SettingsSystem : MonoBehaviour
             knownItems += MapSystem.GetComponent<MapSizeSystem>().knownItems[i].ToString() + "#";
         }
         knownItems = knownItems.Substring(0, knownItems.Length - 1);
-        Debug.Log(knownItems);
+        
         savingPoint += "@" + knownPlaces + "@" + knownItems;
 
         string final;
@@ -1232,7 +1232,6 @@ public class SettingsSystem : MonoBehaviour
                 }
 
                 string[] KnownItems3 = saveDec3[65].Split('#');
-                Debug.Log(saveDec3[64]);
                 for (int i = 0; i < KnownItems3.Length; i++)
                 {
                     //MapSystem.GetComponent<MapSizeSystem>().knownItems[i] = int.Parse(KnownItems3[i]);

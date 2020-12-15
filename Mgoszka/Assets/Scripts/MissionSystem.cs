@@ -37,6 +37,9 @@ public class MissionSystem : MonoBehaviour
     public Text rewardText;
     public GameObject DMissionProgressPanel;
 
+    [Space(20)]
+    public Button BossPlaceButton;
+    public GameObject Brama;
     public void CancelMission()
     {
         isOnMission = false;
@@ -646,6 +649,24 @@ public class MissionSystem : MonoBehaviour
                 b.interactable = false;
             }
         }
+
+
+        if(missionsProgress[10] == 94)
+        {
+            Brama.SetActive(false);
+            BossPlaceButton.interactable = true;
+        }else if(missionsProgress[10] == 95)
+        {
+            Brama.SetActive(false);
+            BossPlaceButton.interactable = false;
+        }
+        else
+        {
+            Brama.SetActive(true);
+            BossPlaceButton.interactable = false;
+        }
+
+
     }
 
     public void ShowMissionProgress()
@@ -978,7 +999,7 @@ public class MissionSystem : MonoBehaviour
 
         int[] maxMissionId = { 6, 13, 23, 33, 43, 53, 63, 73, 83, 93, 94 };
 
-        if(MissionId == maxMissionId[person])
+        if(MissionId >= maxMissionId[person])
         {
             thanking[person].SetActive(true);
         }

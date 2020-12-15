@@ -51,6 +51,8 @@ public class enymieStats : MonoBehaviour
     public int dailyProgressId = 0;
     [Space(10)]
     public int FightPlaceId = 0;
+    [Space(30)]
+    public GameObject[] toShowAfterBoss;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +111,7 @@ public class enymieStats : MonoBehaviour
                 {
                     GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + droppedItems[i].GetComponent<itemParameters>().Name + "\n";
                     GameObject.FindGameObjectWithTag("controller").GetComponent<UiController>().Ekwipunek.GetComponent<EqSystem>().AddItem(droppedItems[i].GetComponent<itemParameters>().Id);
+                    Listing++;
                 }
             }
 
@@ -129,6 +132,15 @@ public class enymieStats : MonoBehaviour
         GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + "Zdobyty EXP: " + xpDropped + "\n";
         Listing++;
         GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + "Zdobyte złoto: " + coinsDropped;
+
+        if(enyId == 50)
+        {
+            foreach(GameObject gobjb in toShowAfterBoss)
+            {
+                gobjb.SetActive(true);
+            }
+            GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().missionsProgress[10] = 95;
+        }
 
         Destroy(this.gameObject);
     }

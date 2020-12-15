@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda528c9eca9b124595fc1e427964375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enyId: 11
+  enyId: 50
   AD: 0
   MD: 0
   Armor: 0
