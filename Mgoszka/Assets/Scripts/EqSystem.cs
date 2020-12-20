@@ -394,6 +394,10 @@ public class EqSystem : MonoBehaviour
                             gameObject.SetActive(false);
                             break;
                         }
+                        if(ob.GetComponent<itemParameters>().Id == 79)
+                        {
+                            break;
+                        }
                         if(ob.GetComponent<itemParameters>().isEquickable == false)
                         {
                             eqIds[i] = "";
@@ -410,10 +414,21 @@ public class EqSystem : MonoBehaviour
                             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
                             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
                             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
 
                             if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
                             {
-                                GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().AddXpBoost(ob.GetComponent<itemParameters>().xpBoostTimeInSec, ob.GetComponent<itemParameters>().xpBoostPercent);
+                                if(ob.GetComponent<itemParameters>().xpBoostTimeInSec != 0)
+                                {
+                                    GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().AddXpBoost(ob.GetComponent<itemParameters>().xpBoostTimeInSec, ob.GetComponent<itemParameters>().xpBoostPercent + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost);
+                                }
+                                else
+                                {
+                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += ob.GetComponent<itemParameters>().xpBoostPercent;
+                                }
+
+
+                                
                             }
                             UpdateItems();
                             break;
@@ -439,6 +454,8 @@ public class EqSystem : MonoBehaviour
                                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma -= ob.GetComponent<itemParameters>().add_charyzma;
                                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
                                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
+                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune -= ob.GetComponent<itemParameters>().runeId;
+                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost -= ob.GetComponent<itemParameters>().xpBoostPercent;
                             }
                             else
                             {
@@ -459,13 +476,21 @@ public class EqSystem : MonoBehaviour
                                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
                                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
                                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
+                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
 
 
 
 
                                     if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
                                     {
-                                        GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().AddXpBoost(ob.GetComponent<itemParameters>().xpBoostTimeInSec, ob.GetComponent<itemParameters>().xpBoostPercent);
+                                        if (ob.GetComponent<itemParameters>().xpBoostTimeInSec != 0)
+                                        {
+                                            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().AddXpBoost(ob.GetComponent<itemParameters>().xpBoostTimeInSec, ob.GetComponent<itemParameters>().xpBoostPercent + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost);
+                                        }
+                                        else
+                                        {
+                                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += ob.GetComponent<itemParameters>().xpBoostPercent;
+                                        }
                                     }
                                     UpdateItems();
                                 }

@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\MovingPlayer.cs" />
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollower.cs" />
     <Compile Include="Assets\Scripts\Fight.cs" />
+    <Compile Include="Assets\Scripts\DownloadUpdate.cs" />
     <Compile Include="Assets\Scripts\MissionSystem.cs" />
     <Compile Include="Assets\Scripts\OnTriggerAction.cs" />
     <Compile Include="Assets\Scripts\SettingsSystem.cs" />
@@ -83,7 +84,7 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
-    <Compile Include="Assets\Scripts\DownloadUpdate.cs" />
+    <Compile Include="Assets\Scripts\Runes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

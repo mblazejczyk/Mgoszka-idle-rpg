@@ -33,6 +33,8 @@ public class itemParameters : MonoBehaviour
     public bool isCommented = false;
     public string commentStr;
     [Space(10)]
+    public int runeId = 0;
+    [Space(10)]
     [Tooltip("0 - common, 1 - Fine, 2 - rare, 3 - epic, 4 - legendary, 5 - ultimate, 6 - mythic")]
     public int RareId = 0;
 

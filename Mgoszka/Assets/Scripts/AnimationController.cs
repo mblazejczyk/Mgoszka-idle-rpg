@@ -14,6 +14,7 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(opozniacz());
     }
 

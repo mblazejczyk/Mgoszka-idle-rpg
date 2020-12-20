@@ -87,6 +87,7 @@ public class OnTriggerAction : MonoBehaviour
                         enymieBattle.GetComponent<Fight>().enyBarier = this.gameObject.GetComponent<enymieStats>().MagicBarier;
                         enymieBattle.GetComponent<Fight>().enyDodge = this.gameObject.GetComponent<enymieStats>().DodgeChance;
                         enymieBattle.GetComponent<Fight>().enyCritChance = this.gameObject.GetComponent<enymieStats>().CritChance;
+                        enymieBattle.GetComponent<Fight>().EnyId = this.gameObject.GetComponent<enymieStats>().enyId;
 
                         enymieBattle.GetComponent<Fight>().dixAD = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD;
                         enymieBattle.GetComponent<Fight>().dixArmor = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor;
@@ -96,6 +97,7 @@ public class OnTriggerAction : MonoBehaviour
                         enymieBattle.GetComponent<Fight>().dixHP = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP;
                         enymieBattle.GetComponent<Fight>().dixMD = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD;
                         enymieBattle.GetComponent<Fight>().dixCritChance = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance;
+                        enymieBattle.GetComponent<Fight>().RuneUsed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune;
 
                         enymieBattle.GetComponent<Fight>().enymieKilled = this.gameObject;
 

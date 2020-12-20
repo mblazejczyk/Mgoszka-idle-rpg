@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     public float predkosc;
     public float critChance;
     public float xpBoost;
+    public int activeRune = 0;
 
     [Header("UI")]
     public Image HPbar;
@@ -89,9 +90,10 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (FirstSkill != 0)
         {
-            upgradeProgress[FirstSkill - 1].fillAmount = 1;
+        upgradeProgress[FirstSkill - 1].fillAmount = 1;
         }
 
         playerLevelMini.text = Level.ToString();
@@ -216,11 +218,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void Dead()
+    public void Dead(bool isTimeShorter)
     {
         SFXsource.clip = DeathSound;
         SFXsource.Play();
-        GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().Killed(10800);
+        if(isTimeShorter == true)
+        {
+            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().Killed(5400);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().Killed(10800);
+        }
     }
 
     public void Upgrade(int UpgradeId)

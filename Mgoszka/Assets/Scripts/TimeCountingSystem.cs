@@ -186,19 +186,25 @@ public class TimeCountingSystem : MonoBehaviour
 
     public void AddXpBoost(int TimeInSec, float xpBoost)
     {
-        Xp_boost_info_obj.SetActive(true);
-        DP_xpBoost = DateTime.Now;
-        DK_xpBoost = DP_xpBoost.AddSeconds(TimeInSec);
-        
 
-        if(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost == currentXpBoost)
+        if (isDoneXp == false && DateTime.Now < DK_xpBoost)
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost -= currentXpBoost;
+            Xp_boost_info_obj.SetActive(true);
+            DP_xpBoost = DateTime.Now;
+            DK_xpBoost = DP_xpBoost.AddSeconds(TimeInSec);
+            currentXpBoost = xpBoost;
+            isDoneXp = false;
+        }
+        else
+        {
+            Xp_boost_info_obj.SetActive(true);
+            DP_xpBoost = DateTime.Now;
+            DK_xpBoost = DP_xpBoost.AddSeconds(TimeInSec);
+            currentXpBoost = xpBoost;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += currentXpBoost;
+            isDoneXp = false;
         }
 
-        currentXpBoost = xpBoost;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += currentXpBoost;
-        isDoneXp = false;
     }
 
 

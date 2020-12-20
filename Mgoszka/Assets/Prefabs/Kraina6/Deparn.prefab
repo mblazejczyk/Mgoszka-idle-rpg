@@ -175,7 +175,9 @@ MonoBehaviour:
   - {fileID: 8225407113688261958, guid: 0d0fd6a452c6e464d8848fe49d67dd29, type: 3}
   - {fileID: 8225407113688261958, guid: ee298ef3de2e23348a52d35d628f9cfc, type: 3}
   - {fileID: 8225407113688261958, guid: 26d7002b5f2fe4a408f3fb6ee9d3d241, type: 3}
+  - {fileID: 8225407113688261958, guid: 6863fa081d024db4cbc8a137da800d95, type: 3}
   itemDromRate:
+  - 100
   - 100
   - 100
   - 100
@@ -234,3 +236,4 @@ MonoBehaviour:
   progressId: 34
   dailyProgressId: 13
   FightPlaceId: 4
+  toShowAfterBoss: []

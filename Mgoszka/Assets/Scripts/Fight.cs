@@ -24,6 +24,10 @@ public class Fight : MonoBehaviour
     public float dixEscape;
     public float dixCritChance;
     public float enyCritChance;
+
+    public bool isRuneActive = false;
+    public bool isRuneUsed = false;
+    public int RuneUsed;
     [Header("Game info")]
     public GameObject FightUi;
     public Vector3 previousLoc;
@@ -41,6 +45,7 @@ public class Fight : MonoBehaviour
     public Text damageHistory;
     public Button AttackBtn;
     public Button EscapeBtn;
+    public Button RuneBtn;
     public bool isInFight = false;
     [Header("animations")]
     public GameObject[] enyHitAni;
@@ -53,6 +58,11 @@ public class Fight : MonoBehaviour
     public GameObject[] blockAnimationEny;
     public GameObject[] blockAnimationPlayer;
     public AudioClip blockSound;
+    public int EnyId;
+    [Space(10)]
+    public GameObject TeleportPanel;
+    public int placeToTp;
+    public GameObject[] placesForEachLand;
     private float StartingMaxEnyHp;
     private void Update()
     {
@@ -132,6 +142,7 @@ public class Fight : MonoBehaviour
             Debug.Log("Dix starts");
             AttackBtn.interactable = false;
             EscapeBtn.interactable = false;
+            RuneBtn.interactable = false;
             StartCoroutine(waitForAttack(2));
         }
         else //Enymie start
@@ -139,6 +150,7 @@ public class Fight : MonoBehaviour
             Debug.Log("Enymie starts");
             AttackBtn.interactable = false;
             EscapeBtn.interactable = false;
+            RuneBtn.interactable = false;
             StartCoroutine(waitForAttack(1));
         }
         GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position = enyPlacesById[FightPlaceId].position;
@@ -156,23 +168,85 @@ public class Fight : MonoBehaviour
         enyDodgeText.text = "Dodge chance: " + enyDodge + "%";
     }
 
+    public void UseRune()
+    {
+        AttackBtn.interactable = false;
+        EscapeBtn.interactable = false;
+        RuneBtn.interactable = false;
+        dixHP = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP;
+
+        if(RuneUsed >= 2 && RuneUsed <= 6)
+        {
+            isRuneActive = true;
+            StartCoroutine(waitForAttack(1));
+        }else if(RuneUsed == 1)
+        {
+            TeleportPanel.SetActive(true);
+        }
+
+        
+    }
+
+    public void Teleport(Dropdown place)
+    {
+        isRuneActive = true;
+        TeleportPanel.SetActive(false);
+        placeToTp = place.value;
+        StartCoroutine(waitForAttack(1));
+    }
+
     public void Attack()
     {
         AttackBtn.interactable = false;
         EscapeBtn.interactable = false;
+        RuneBtn.interactable = false;
         dixHP = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP;
         if (Random.value > enyDodge / 100) //not dodged
         {
-            enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor));
-            
+            if (Random.value < 5 / 100 && RuneUsed == 3 && isRuneActive == true && isRuneUsed == false && EnyId != 50)
+            {
+                isRuneUsed = true;
+                EndFight(true, false);
+
+            }
+            else if (RuneUsed == 3 && isRuneActive == true)
+            {
+                isRuneUsed = true;
+            }
+
+
             if (Random.value > dixCritChance / 100) //not crited
             {
-                damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                if(isRuneActive == true && RuneUsed == 4 && isRuneUsed == false)
+                {
+                    isRuneUsed = true;
+                    enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier * 0.5f)) - Mathf.Max(0, (dixAD - enyArmor * 0.5f));
+                    damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                }
+                else
+                {
+                    enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor));
+                    damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                }
+
+                
             }
             else//crited
             {
-                enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor));
-                damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier))*2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor))*2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+
+                if (isRuneActive == true && RuneUsed == 4 && isRuneUsed == false)
+                {
+                    isRuneUsed = true;
+                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier * 0.5f)) - Mathf.Max(0, (dixAD - enyArmor * 0.5f))) * 2;
+                    damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                }
+                else
+                {
+                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor))) * 2;
+                    damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                }
+
+                
             }
             enyHP = Mathf.Round(enyHP * 100) / 100;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
@@ -180,14 +254,34 @@ public class Fight : MonoBehaviour
             SFXsource.Play();
             if (dixHP <= 0)
             {
-                EndFight(false);
+
+                if (RuneUsed == 5 && isRuneActive == true && isRuneUsed == false) //uzycie runy
+                {
+                    if (Random.value < 50f / 100) //skracanie czasu smierci
+                    {
+                        EndFight(false, true);
+                    }
+                    else //ucieczka
+                    {
+                        dixEscape = 100;
+                        dixHP = 20;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = 20;
+                        Escape();
+                    }
+                }
+                else //nie posiada runy lub nie uzywa
+                {
+                    EndFight(false, false);
+                }
+
             }
             if (enyHP <= 0)
             {
-                EndFight(true);
+                EndFight(true, false);
             }
             else
             {
+
                 Debug.Log("enymie got hit > waiting for attack");
                 StartCoroutine(waitForAttack(1));
             }
@@ -221,6 +315,7 @@ public class Fight : MonoBehaviour
     {
         AttackBtn.interactable = false;
         EscapeBtn.interactable = false;
+        RuneBtn.interactable = false;
         if (Random.value < dixEscape / 100) //escaped
         {
             rewardList.text = "";
@@ -256,18 +351,66 @@ public class Fight : MonoBehaviour
             dixHP = Mathf.Round(dixHP * 100) / 100;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
             SFXsource.clip = hitSounds[Random.Range(0, hitSounds.Length)];
+
+            switch (RuneUsed)
+            {
+                case 1:
+                    break;
+                case 2:
+                    if (isRuneUsed == false && isRuneActive == true)
+                    {
+                        isRuneUsed = true;
+                        dixHP = dixHP + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 2;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
+                        Debug.Log("Healed: " + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 2);
+                    }
+                    break;
+                case 6:
+                    if (isRuneActive == true)
+                    {
+
+                        dixHP = dixHP + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 0.2f;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
+                        Debug.Log("Healed: " + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 0.2f);
+                    }
+                    break;
+            }
+
             SFXsource.Play();
             if (enyHP <= 0)
             {
-                EndFight(true);
+                EndFight(true, false);
             }
             
             if (dixHP <= 0)
             {
-                EndFight(false);
+
+                if(RuneUsed == 5 && isRuneActive == true && isRuneUsed == false) //uzycie runy
+                {
+                    if (Random.value < 50f / 100) //skracanie czasu smierci
+                    {
+                        EndFight(false, true);
+                    }
+                    else //ucieczka
+                    {
+                        dixEscape = 100;
+                        dixHP = 20;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = 20;
+                        Escape();
+                    }
+                }
+                else //nie posiada runy lub nie uzywa
+                {
+                    EndFight(false ,false);
+                }
+
             }
             else
             {
+                if (RuneUsed == 5 && isRuneActive == true)
+                {
+                    isRuneUsed = true;
+                }
                 Debug.Log("dix got hit > waiting for attack");
                 StartCoroutine(waitForAttack(2));
             }
@@ -286,6 +429,9 @@ public class Fight : MonoBehaviour
             damageHistory.text = "Dix uniknął ataku" + "\n" + "\n" + damageHistory.text;
             StartCoroutine(waitForAttack(2));
         }
+
+        
+
         enyHit = true;
         EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         foreach (GameObject p in enyHitAni)
@@ -297,22 +443,32 @@ public class Fight : MonoBehaviour
     }
 
 
-    void EndFight(bool alive)
+    void EndFight(bool alive, bool isTimeShorter)
     {
         GameObject.FindGameObjectWithTag("controller").GetComponent<UiController>().Ekwipunek.GetComponent<EqSystem>().isLimitedEq = false;
         isInFight = false;
+        
+        isRuneUsed = false;
         if (alive == true)
         {
             rewardList.text = "";
             GameObject.FindGameObjectWithTag("Player").transform.position = previousLoc;
             enymieKilled.GetComponent<enymieStats>().Reward();
+
+            if (RuneUsed == 1 && isRuneActive == true)
+            {
+                GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().MoveToWorld(placeToTp);
+                GameObject.FindGameObjectWithTag("Player").transform.position = placesForEachLand[placeToTp].transform.position;
+            }
+            isRuneActive = false;
             rewards.SetActive(true);
             FightUi.SetActive(false);
 
         }
         else
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dead();
+            isRuneActive = false;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dead(isTimeShorter);
         }
         
     }
@@ -332,6 +488,16 @@ public class Fight : MonoBehaviour
                 Debug.Log("Waiting for decision");
                 AttackBtn.interactable = true;
                 EscapeBtn.interactable = true;
+
+                if(isRuneActive == false)
+                {
+                    RuneBtn.interactable = true;
+                }
+                else
+                {
+                    RuneBtn.interactable = false;
+                }
+
                 break;
         }
 
