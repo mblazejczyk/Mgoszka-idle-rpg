@@ -93,7 +93,7 @@ MonoBehaviour:
   Id: 72
   Name: "Naszyjnik pozostania \u017Cywym"
   isEquickable: 1
-  eqPlace: 0
+  eqPlace: 6
   isLimited: 1
   add_total_HP: 300
   add_HP: 0
@@ -112,4 +112,5 @@ MonoBehaviour:
   CritChanse: 0
   isCommented: 1
   commentStr: '"We see you and we need you. You know that, right?" ~Tyler Joseph'
+  runeId: 0
   RareId: 5

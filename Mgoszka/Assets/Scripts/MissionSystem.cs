@@ -40,6 +40,13 @@ public class MissionSystem : MonoBehaviour
     [Space(20)]
     public Button BossPlaceButton;
     public GameObject Brama;
+    public Button stickBuyButton;
+
+    [Space(10)]
+    public GameObject eqSys;
+
+    [Space(10)]
+    public GameObject MapScript;
     public void CancelMission()
     {
         isOnMission = false;
@@ -665,7 +672,14 @@ public class MissionSystem : MonoBehaviour
             Brama.SetActive(true);
             BossPlaceButton.interactable = false;
         }
-
+        if(currentMissionId == 8)
+        {
+            stickBuyButton.interactable = true;
+        }
+        else
+        {
+            stickBuyButton.interactable = false;
+        }
 
     }
 
@@ -1021,6 +1035,7 @@ public class MissionSystem : MonoBehaviour
             progress[i] = 0;
         }
         currentMissionId = MissionId;
+        eqSys.GetComponent<EqSystem>().MissionChecker();
         isOnMission = true;
     }
 
@@ -1092,7 +1107,53 @@ public class MissionSystem : MonoBehaviour
 
     public void StartDayMission()
     {
-        TodaysMissionId = Random.Range(0, missionNameToDo.Length);
+        int[] k0 = {0, 1 };
+        int[] k1 = { 2, 3, 4, 5, 6 };
+        int[] k2 = { 7, 8, 9, 10, 16 };
+        int[] k3 = { 22, 23, 24, 25, 26 };
+        int[] k4 = { 17, 18, 19, 20, 21 };
+        int[] k5 = { 11, 12, 13, 14, 15 };
+
+        int[] missionsAvailable = { 1, 0, 0, 0, 0, 0 };
+
+        for (int i = 0; i < MapScript.GetComponent<MapSizeSystem>().knownPlaces.Length - 1; i++)
+        {
+            missionsAvailable[i + 1] = MapScript.GetComponent<MapSizeSystem>().knownPlaces[i];
+        }
+
+        int landIdMIssion = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            landIdMIssion = Random.Range(0, 6);
+
+            if (missionsAvailable[landIdMIssion] == 1)
+            {
+                break;
+            }
+        }
+
+        switch (landIdMIssion)
+        {
+            case 0:
+                TodaysMissionId = k0[Random.Range(0, 2)];
+                break;
+            case 1:
+                TodaysMissionId = k1[Random.Range(0, 6)];
+                break;
+            case 2:
+                TodaysMissionId = k2[Random.Range(0, 6)];
+                break;
+            case 3:
+                TodaysMissionId = k3[Random.Range(0, 6)];
+                break;
+            case 4:
+                TodaysMissionId = k4[Random.Range(0, 6)];
+                break;
+            case 5:
+                TodaysMissionId = k5[Random.Range(0, 6)];
+                break;
+        }
+
         for (int i = 0; i < missionDayliProgress.Length; i++)
         {
             missionDayliProgress[i] = 0;

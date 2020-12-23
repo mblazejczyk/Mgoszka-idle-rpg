@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using Unity.Notifications.Android;
 
 public class TimeCountingSystem : MonoBehaviour
 {
@@ -154,6 +155,24 @@ public class TimeCountingSystem : MonoBehaviour
         inTravel.SetActive(true);
         isDone = false;
         mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
+
+        var channel = new AndroidNotificationChannel()
+        {
+            Id = "travel_id",
+            Name = "Travel",
+            Importance = Importance.High,
+            Description = "Notifications for traveling",
+        };
+        AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+        var notification = new AndroidNotification();
+        notification.Title = "Jestes na miejscu";
+        notification.Text = "Dotarles do docelowej lokalizacji";
+        notification.LargeIcon = "mgoszka_large_icon";
+        notification.SmallIcon = "mgoszka_small_icon";
+        notification.FireTime = DK_podroz;
+
+        AndroidNotificationCenter.SendNotification(notification, "travel_id");
     }
 
     public void Killed(int TimeInSec)
@@ -162,6 +181,24 @@ public class TimeCountingSystem : MonoBehaviour
         DK_dead = DP_dead.AddSeconds(TimeInSec);
         DeadPanel.SetActive(true);
         isAlive = false;
+
+        var channel = new AndroidNotificationChannel()
+        {
+            Id = "death_id",
+            Name = "Death",
+            Importance = Importance.High,
+            Description = "Notifications for resurecting",
+        };
+        AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+        var notification = new AndroidNotification();
+        notification.Title = "Znow stoisz na nogach!";
+        notification.Text = "Skonczyl sie twoj czas odrodzenia. Mozesz wrocic do gry!";
+        notification.LargeIcon = "mgoszka_large_icon";
+        notification.SmallIcon = "mgoszka_small_icon";
+        notification.FireTime = DK_dead;
+
+        AndroidNotificationCenter.SendNotification(notification, "death_id");
     }
 
     public void MoveToWorld(int WorldID)
@@ -218,6 +255,23 @@ public class TimeCountingSystem : MonoBehaviour
         DP_energyRest = DateTime.Now;
         DK_energyRest = DP_energyRest.AddSeconds(1800);
 
+        var channel = new AndroidNotificationChannel()
+        {
+            Id = "energy_id",
+            Name = "Energy",
+            Importance = Importance.High,
+            Description = "Notifications for energy",
+        };
+        AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+        var notification = new AndroidNotification();
+        notification.Title = "Znow masz sile";
+        notification.Text = "Twoja energia sie odnowila!";
+        notification.LargeIcon = "mgoszka_large_icon";
+        notification.SmallIcon = "mgoszka_small_icon";
+        notification.FireTime = DK_energyRest;
+
+        AndroidNotificationCenter.SendNotification(notification, "energy_id");
 
         isEnergyRestDone = false;
     }

@@ -93,7 +93,7 @@ MonoBehaviour:
   Id: 69
   Name: Miecz z kolcami
   isEquickable: 1
-  eqPlace: 0
+  eqPlace: 4
   isLimited: 1
   add_total_HP: 0
   add_HP: 0
@@ -112,4 +112,5 @@ MonoBehaviour:
   CritChanse: 0
   isCommented: 0
   commentStr: 
+  runeId: 0
   RareId: 0

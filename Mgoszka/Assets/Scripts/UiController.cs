@@ -9,7 +9,66 @@ public class UiController : MonoBehaviour
     public GameObject Podroz;
     public GameObject Online;
     public GameObject Ustawienia;
+    public GameObject[] otherPanels;
+    public GameObject sureYouWannaQuit;
+    [Space(10)]
+    public GameObject NotificationsPanel;
 
+    private void Start()
+    {
+        if(PlayerPrefs.GetInt("notificationsPanel") != 1)
+        {
+            NotificationsPanel.SetActive(true);
+        }
+        else
+        {
+            NotificationsPanel.SetActive(false);
+        }
+    }
+
+    public void NotificationsUnderstandable()
+    {
+        PlayerPrefs.SetInt("notificationsPanel", 1);
+        NotificationsPanel.SetActive(false);
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            bool deactivated = false;
+            for (int i = 0; i < otherPanels.Length; i++)
+            {
+                if(otherPanels[i].activeSelf == true)
+                {
+                    deactivated = false;
+                    break;
+                }
+                else
+                {
+                    deactivated = true;
+                }
+            }
+            
+
+            if (deactivated == true)
+            {
+                sureYouWannaQuit.SetActive(true);
+            }
+            else
+            {
+                foreach (GameObject obj in otherPanels)
+                {
+                    obj.SetActive(false);
+                }
+
+                Profil.SetActive(false);
+                Ekwipunek.SetActive(false);
+                Podroz.SetActive(false);
+                Online.SetActive(false);
+                Ustawienia.SetActive(false);
+            }
+        }
+    }
     public void OpenClose(int loc)
     {
         

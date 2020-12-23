@@ -133,6 +133,7 @@ public class OnTriggerAction : MonoBehaviour
                 case 3:
                     actionButton.GetComponent<Animator>().ResetTrigger("up");
                     shop.SetActive(true);
+                    shop.GetComponent<ShopSystem>().GetEqInfo();
                     if (started == false)
                     {
                         GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[7]++;

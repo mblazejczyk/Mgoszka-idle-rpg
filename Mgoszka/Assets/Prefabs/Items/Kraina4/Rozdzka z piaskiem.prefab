@@ -93,7 +93,7 @@ MonoBehaviour:
   Id: 75
   Name: "R\xF3\u017Cd\u017Cka z piaskiem"
   isEquickable: 1
-  eqPlace: 0
+  eqPlace: 4
   isLimited: 1
   add_total_HP: 0
   add_HP: 0
@@ -112,4 +112,5 @@ MonoBehaviour:
   CritChanse: 20
   isCommented: 0
   commentStr: 
+  runeId: 0
   RareId: 0

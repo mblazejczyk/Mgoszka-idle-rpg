@@ -52,6 +52,8 @@ public class Fight : MonoBehaviour
     public GameObject[] playerHitAni;
     private bool playerHit = false;
     private bool enyHit = false;
+    public ParticleSystem[] enyCrit;
+    public ParticleSystem[] playerCrit;
     [Space(15)]
     public AudioClip[] hitSounds;
     public AudioSource SFXsource;
@@ -75,6 +77,10 @@ public class Fight : MonoBehaviour
         {
             StartCoroutine(EnyHitAnim());
             enyHit = false;
+        }
+        if(RuneUsed == 0)
+        {
+            RuneBtn.interactable = false;
         }
     }
     IEnumerator PlayerHitAnim()
@@ -233,16 +239,22 @@ public class Fight : MonoBehaviour
             }
             else//crited
             {
+                foreach(ParticleSystem ps in enyCrit)
+                {
+                    ps.Play();
+                }
 
                 if (isRuneActive == true && RuneUsed == 4 && isRuneUsed == false)
                 {
                     isRuneUsed = true;
-                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier * 0.5f)) - Mathf.Max(0, (dixAD - enyArmor * 0.5f))) * 2;
+                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier * 0.5f))) * 2;
+                    enyHP = enyHP - (Mathf.Max(0, (dixAD - enyArmor * 0.5f))) * 2;
                     damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
                 }
                 else
                 {
-                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor))) * 2;
+                    enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier))) * 2;
+                    enyHP = enyHP - (Mathf.Max(0, (dixAD - enyArmor))) * 2;
                     damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
                 }
 
@@ -345,6 +357,10 @@ public class Fight : MonoBehaviour
             }
             else //crited
             {
+                foreach(ParticleSystem ps in playerCrit)
+                {
+                    ps.Play();
+                }
                 dixHP = dixHP - Mathf.Max(0, (enyMD - dixBarier)) - Mathf.Max(0, (enyAD - dixArmor));
                 damageHistory.text = "Dix uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (enyMD - dixBarier))*2 + " magicznych obrażeń, i: " + Mathf.Max(0, (enyAD - dixArmor))*2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
             }

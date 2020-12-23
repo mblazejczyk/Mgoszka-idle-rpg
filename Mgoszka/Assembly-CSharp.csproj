@@ -84,7 +84,6 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
-    <Compile Include="Assets\Scripts\Runes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -692,6 +691,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Notifications.iOS">
+      <HintPath>Library\ScriptAssemblies\Unity.Notifications.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Notifications.Android">
+      <HintPath>Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

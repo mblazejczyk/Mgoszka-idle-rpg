@@ -336,6 +336,11 @@ public class SettingsSystem : MonoBehaviour
             areItemsKnown = 1;
         }
 
+        if (inF.text.Contains("set_custom_save"))
+        {
+            customLoadingPanel.SetActive(true);
+            CustomLoad();
+        }
 
         inF.text = "";
     }
@@ -1474,5 +1479,26 @@ public class SettingsSystem : MonoBehaviour
         yield return new WaitForSeconds(1);
         TotalTimePlayed++;
         StartCoroutine(timeCounter());
+    }
+
+    public void CustomSave(InputField InputF)
+    {
+        string savingPoint = InputF.text;
+
+        PlayerPrefs.SetString("mainSave", savingPoint);
+        Debug.Log("Saved");
+        PlayerPrefs.SetInt("saveLocated", 1);
+
+        SavingText.SetActive(false);
+        GameSavedText.SetActive(true);
+    }
+
+    public GameObject customLoadingPanel;
+    public InputField customSaving;
+    public void CustomLoad()
+    {
+        string cs = PlayerPrefs.GetString("mainSave");
+        Debug.Log(cs);
+        customSaving.text = cs;
     }
 }

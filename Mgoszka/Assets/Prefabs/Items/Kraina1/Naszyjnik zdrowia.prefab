@@ -88,13 +88,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73708e0aefcd15b4ba8f38bf1fcd40d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProgressId: 0
+  isGivingProgress: 0
   Id: 7
   Name: Naszyjnik zdrowia
   isEquickable: 1
   eqPlace: 6
   isLimited: 1
   add_total_HP: 50
-  add_HP: 50
+  add_HP: 0
   add_energy: 0
   add_total_energy: 0
   add_ad: 0
@@ -108,3 +110,7 @@ MonoBehaviour:
   xpBoostPercent: 0
   xpBoostTimeInSec: 0
   CritChanse: 0
+  isCommented: 0
+  commentStr: 
+  runeId: 0
+  RareId: 0

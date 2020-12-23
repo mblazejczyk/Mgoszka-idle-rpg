@@ -44,6 +44,18 @@ public class EqSystem : MonoBehaviour
     public Color MythicColor;
     [Space(10)]
     public GameObject mapScirpt;
+    [Space(10)]
+    public bool isMoving = false;
+    public GameObject WhileMovingPanel;
+    public Button MoveButton;
+
+    private void Start()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            AddItem(17);
+        }
+    }
     public void UpdateItems()
     {
         for (int j = 0; j < rareStarObject.Length; j++)
@@ -120,6 +132,28 @@ public class EqSystem : MonoBehaviour
         Debug.Log("Item list updated");
     }
 
+    public void MissionChecker()
+    {
+        for (int i = 0; i < eqIds.Length; i++)
+        {
+            string temp = eqIds[i];
+            if(temp != "")
+            {
+                string[] s = temp.Split('|');
+                Debug.Log(temp);
+                foreach (GameObject obj in items)
+                {
+                    if (obj.GetComponent<itemParameters>().Id == int.Parse(s[1]) && obj.GetComponent<itemParameters>().isGivingProgress == true)
+                    {
+                        GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[obj.GetComponent<itemParameters>().ProgressId]++;
+                    }
+                }
+            }
+            
+
+        }
+    }
+
     public void AddItem(int itemId)
     {
         for (int i = 7; i < 48; i++)
@@ -158,129 +192,158 @@ public class EqSystem : MonoBehaviour
         }
     }
 
+    public bool IsEqFull()
+    {
+        for (int i = 7; i < 48; i++)
+        {
+
+            if (i <= 46)
+            {
+                if (eqItems[i].sprite == emptyImg)
+                {
+                    break;
+                }
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void ShowDetails(int place)
     {
-        for (int i = 0; i < eqIds.Length; i++)
+        if (isMoving == true)
         {
-            outputId = eqIds[i].Split('|');
-
-            if (outputId[0] == place.ToString())
+            MoveItem(place);
+        }
+        else
+        {
+            for (int i = 0; i < eqIds.Length; i++)
             {
-                details.SetActive(true);
-                if(int.Parse(outputId[0]) <= 6 && outputId[0] != "")
-                {
-                    useBtnText.text = "zdejmij";
-                }
-                else
-                {
-                    useBtnText.text = "użyj";
-                }
+                outputId = eqIds[i].Split('|');
 
-                foreach (GameObject ob in items)
+                if (outputId[0] == place.ToString())
                 {
-                    if (ob.GetComponent<itemParameters>().Id.ToString() == outputId[1])
+                    details.SetActive(true);
+
+                    foreach (GameObject ob in items)
                     {
-                        detailImage.sprite = ob.GetComponent<Image>().sprite;
-                        detailItemName.text = ob.GetComponent<itemParameters>().Name;
-                        detailItem.text = "";
-                        int c = 1;
-                        if (ob.GetComponent<itemParameters>().add_HP != 0)
+                        if (ob.GetComponent<itemParameters>().Id.ToString() == outputId[1])
                         {
-                            detailItem.text += c + ". " + "Dodatkowe życie: " + ob.GetComponent<itemParameters>().add_HP + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_total_HP != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa pojemność życia: " + ob.GetComponent<itemParameters>().add_total_HP + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_energy != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa energia: " + ob.GetComponent<itemParameters>().add_energy + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_total_energy != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa poejmność energii: " + ob.GetComponent<itemParameters>().add_total_energy + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_ad != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowe obrażenia fizyczne: " + ob.GetComponent<itemParameters>().add_ad + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_md != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowe obrażenia magiczne: " + ob.GetComponent<itemParameters>().add_md + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_armor != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowy pancerz: " + ob.GetComponent<itemParameters>().add_armor + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_barier != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa bariera: " + ob.GetComponent<itemParameters>().add_barier + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_speed != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa prędkość: " + ob.GetComponent<itemParameters>().add_speed + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_dodge != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowy dodge: " + ob.GetComponent<itemParameters>().add_dodge + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_charyzma != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa charyzma: " + ob.GetComponent<itemParameters>().add_charyzma + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().add_escameChance != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa sznasa ucieczki: " + ob.GetComponent<itemParameters>().add_escameChance + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().CritChanse != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowa sznasa atak krytyczny: " + ob.GetComponent<itemParameters>().CritChanse + "\n";
-                            c++;
-                        }
-                        if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
-                        {
-                            detailItem.text += c + ". " + "Dodatkowy % XP: " + ob.GetComponent<itemParameters>().xpBoostPercent + " na: " + ob.GetComponent<itemParameters>().xpBoostTimeInSec + "s";
-                        }
-                        if(ob.GetComponent<itemParameters>().isCommented == true)
-                        {
-                            detailItem.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr +"</color></i>";
-                        }
-
-
-                        if (isLimitedEq == true && ob.GetComponent<itemParameters>().isLimited == true)
-                        {
-                            foreach(GameObject obj in ButtonsToLimit)
+                            detailImage.sprite = ob.GetComponent<Image>().sprite;
+                            detailItemName.text = ob.GetComponent<itemParameters>().Name;
+                            detailItem.text = "";
+                            int c = 1;
+                            if (ob.GetComponent<itemParameters>().add_HP != 0)
                             {
-                                obj.GetComponent<Button>().interactable = false;
+                                detailItem.text += c + ". " + "Dodatkowe życie: " + ob.GetComponent<itemParameters>().add_HP + "\n";
+                                c++;
                             }
-                        }
-                        else
-                        {
-                            foreach (GameObject obj in ButtonsToLimit)
+                            if (ob.GetComponent<itemParameters>().add_total_HP != 0)
                             {
-                                obj.GetComponent<Button>().interactable = true;
+                                detailItem.text += c + ". " + "Dodatkowa pojemność życia: " + ob.GetComponent<itemParameters>().add_total_HP + "\n";
+                                c++;
                             }
-                        }
+                            if (ob.GetComponent<itemParameters>().add_energy != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa energia: " + ob.GetComponent<itemParameters>().add_energy + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_total_energy != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa poejmność energii: " + ob.GetComponent<itemParameters>().add_total_energy + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_ad != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowe obrażenia fizyczne: " + ob.GetComponent<itemParameters>().add_ad + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_md != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowe obrażenia magiczne: " + ob.GetComponent<itemParameters>().add_md + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_armor != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowy pancerz: " + ob.GetComponent<itemParameters>().add_armor + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_barier != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa bariera: " + ob.GetComponent<itemParameters>().add_barier + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_speed != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa prędkość: " + ob.GetComponent<itemParameters>().add_speed + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_dodge != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowy dodge: " + ob.GetComponent<itemParameters>().add_dodge + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_charyzma != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa charyzma: " + ob.GetComponent<itemParameters>().add_charyzma + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().add_escameChance != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa sznasa ucieczki: " + ob.GetComponent<itemParameters>().add_escameChance + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().CritChanse != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowa sznasa atak krytyczny: " + ob.GetComponent<itemParameters>().CritChanse + "\n";
+                                c++;
+                            }
+                            if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
+                            {
+                                detailItem.text += c + ". " + "Dodatkowy % XP: " + ob.GetComponent<itemParameters>().xpBoostPercent + " na: " + ob.GetComponent<itemParameters>().xpBoostTimeInSec + "s";
+                            }
+                            if (ob.GetComponent<itemParameters>().isCommented == true)
+                            {
+                                detailItem.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr + "</color></i>";
+                            }
 
+
+                            if (isLimitedEq == true && ob.GetComponent<itemParameters>().isLimited == true)
+                            {
+                                foreach (GameObject obj in ButtonsToLimit)
+                                {
+                                    obj.GetComponent<Button>().interactable = false;
+                                }
+                            }
+                            else
+                            {
+                                foreach (GameObject obj in ButtonsToLimit)
+                                {
+                                    obj.GetComponent<Button>().interactable = true;
+                                }
+                            }
+
+                        }
                     }
+
+                    if (int.Parse(outputId[0]) <= 6 && outputId[0] != "")
+                    {
+                        MoveButton.interactable = false;
+                        useBtnText.text = "zdejmij";
+                    }
+                    else
+                    {
+                        MoveButton.interactable = true;
+                        useBtnText.text = "użyj";
+                    }
+
+                    positionDetail = outputId[0];
+                    outputId = null;
                 }
-
-
-
-                positionDetail = outputId[0];
-                outputId = null;
             }
         }
     }
@@ -335,41 +398,49 @@ public class EqSystem : MonoBehaviour
         UpdateItems();
     }
 
-
-
-
-    public void MoveItem(InputField newPlace)
+    public void MoveItem(int newPlace)
     {
-        int conv = int.Parse(newPlace.text);
-        conv += 6;
 
-        for (int i = 0; i < eqIds.Length; i++)
+        if (isMoving == false)
         {
-            string f;
-            string[] g;
-            g = eqIds[i].Split('|');
-            
+            isMoving = true;
+            WhileMovingPanel.SetActive(true);
+            details.SetActive(false);
+        }
+        else
+        {
+            int conv = newPlace;
+            //conv += 6;
 
-            if (g[0] == positionDetail)
+            for (int i = 0; i < eqIds.Length; i++)
             {
-                for (int x = 0; x < eqIds.Length; x++)
+                string f;
+                string[] g;
+                g = eqIds[i].Split('|');
+
+
+                if (g[0] == positionDetail)
                 {
-                    string[] v;
-                    v = eqIds[x].Split('|');
-                    if (v[0] == conv.ToString())
+                    for (int x = 0; x < eqIds.Length; x++)
                     {
-                        eqIds[x] = positionDetail + "|" + v[1];
+                        string[] v;
+                        v = eqIds[x].Split('|');
+                        if (v[0] == conv.ToString())
+                        {
+                            eqIds[x] = positionDetail + "|" + v[1];
+                        }
                     }
+                    f = conv + "|" + g[1];
+                    eqIds[i] = f;
+                    isMoving = false;
+                    WhileMovingPanel.SetActive(false);
+                    break;
                 }
-                f = conv + "|" + g[1];
-                eqIds[i] = f;
-                break;
             }
         }
         UpdateItems();
 
     }
-
 
     public void UseItem()
     {
