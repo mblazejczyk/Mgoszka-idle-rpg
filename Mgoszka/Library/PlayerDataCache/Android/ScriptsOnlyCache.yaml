@@ -24,7 +24,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -103,77 +102,77 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 614}
+      Script: {instanceID: 628}
     - Class: 114
-      Script: {instanceID: 11748}
+      Script: {instanceID: 11762}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12070}
     - Class: 114
-      Script: {instanceID: 12060}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 12118}
     - Class: 114
-      Script: {instanceID: 12114}
+      Script: {instanceID: 12128}
     - Class: 114
-      Script: {instanceID: 12156}
+      Script: {instanceID: 12170}
     - Class: 114
-      Script: {instanceID: 12302}
+      Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 12360}
+      Script: {instanceID: 12378}
     - Class: 114
-      Script: {instanceID: 12618}
+      Script: {instanceID: 12640}
     - Class: 114
-      Script: {instanceID: 12654}
+      Script: {instanceID: 12676}
     - Class: 114
-      Script: {instanceID: 12836}
+      Script: {instanceID: 12860}
     - Class: 114
-      Script: {instanceID: 12858}
+      Script: {instanceID: 12882}
     - Class: 114
-      Script: {instanceID: 13132}
+      Script: {instanceID: 13160}
     - Class: 114
-      Script: {instanceID: 13222}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13398}
+      Script: {instanceID: 13432}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13448}
     - Class: 114
-      Script: {instanceID: 13454}
+      Script: {instanceID: 13492}
     - Class: 114
-      Script: {instanceID: 13618}
+      Script: {instanceID: 13656}
     - Class: 114
-      Script: {instanceID: 13828}
+      Script: {instanceID: 13866}
     - Class: 114
-      Script: {instanceID: 13882}
+      Script: {instanceID: 13920}
     - Class: 114
-      Script: {instanceID: 13922}
+      Script: {instanceID: 13960}
     - Class: 114
-      Script: {instanceID: 13940}
+      Script: {instanceID: 13978}
     - Class: 114
-      Script: {instanceID: 13946}
+      Script: {instanceID: 13984}
     - Class: 114
-      Script: {instanceID: 13994}
+      Script: {instanceID: 14034}
     - Class: 114
-      Script: {instanceID: 14030}
+      Script: {instanceID: 14072}
     - Class: 114
-      Script: {instanceID: 14436}
+      Script: {instanceID: 14482}
     - Class: 114
-      Script: {instanceID: 14452}
+      Script: {instanceID: 14498}
     - Class: 114
-      Script: {instanceID: 14516}
+      Script: {instanceID: 14562}
     - Class: 114
-      Script: {instanceID: 14708}
+      Script: {instanceID: 14754}
     - Class: 114
-      Script: {instanceID: 14728}
-    - Class: 114
-      Script: {instanceID: 14970}
+      Script: {instanceID: 14774}
     - Class: 114
       Script: {instanceID: 15022}
     - Class: 114
-      Script: {instanceID: 15062}
+      Script: {instanceID: 15074}
     - Class: 114
-      Script: {instanceID: 15096}
+      Script: {instanceID: 15114}
     - Class: 114
-      Script: {instanceID: 15118}
+      Script: {instanceID: 15150}
+    - Class: 114
+      Script: {instanceID: 15172}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -409,6 +408,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RectMask2D
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Unity.Notifications.Android.dll
+    namespaceName: Unity.Notifications.Android
+    className: AndroidReceivedNotificationMainThreadDispatcher
   - hash:
       serializedVersion: 2
       Hash: 6980e81ddc615a861309d2d659cc3760
@@ -841,13 +846,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Unity.Notifications.Android.dll
-    namespaceName: Unity.Notifications.Android
-    className: AndroidReceivedNotificationMainThreadDispatcher
   platform: 13
   scenePathNames:
   - Assets/Scenes/2.unity
-  playerPath: C:/Users/nibek/Desktop/mgoszka 0.6a.aab
+  playerPath: C:/Users/nibek/Desktop/mgoszka 0.6a_hf.aab

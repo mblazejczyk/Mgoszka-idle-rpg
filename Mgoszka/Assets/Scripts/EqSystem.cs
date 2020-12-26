@@ -49,13 +49,7 @@ public class EqSystem : MonoBehaviour
     public GameObject WhileMovingPanel;
     public Button MoveButton;
 
-    private void Start()
-    {
-        for (int i = 0; i < 50; i++)
-        {
-            AddItem(17);
-        }
-    }
+    
     public void UpdateItems()
     {
         for (int j = 0; j < rareStarObject.Length; j++)
