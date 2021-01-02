@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class enymieStats : MonoBehaviour
 {
@@ -53,7 +51,7 @@ public class enymieStats : MonoBehaviour
     public int FightPlaceId = 0;
     [Space(30)]
     public GameObject[] toShowAfterBoss;
-    // Start is called before the first frame update
+
     void Start()
     {
         AD = Random.Range(AdMin, AdMax);
@@ -73,15 +71,8 @@ public class enymieStats : MonoBehaviour
         CritChance = Mathf.Round(CritChance * 100) / 100;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Reward()
     {
-        
         if(isGivingProgress == true)
         {
             GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[progressId]++;
@@ -141,7 +132,7 @@ public class enymieStats : MonoBehaviour
             }
             GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().missionsProgress[10] = 95;
         }
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         Destroy(this.gameObject);
     }
 }

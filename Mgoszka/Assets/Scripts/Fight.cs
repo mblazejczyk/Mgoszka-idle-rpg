@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -85,49 +84,53 @@ public class Fight : MonoBehaviour
     }
     IEnumerator PlayerHitAnim()
     {
+        GameObject tempPlayerObj = GameObject.FindGameObjectWithTag("Player");
+
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempPlayerObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
     }
     IEnumerator EnyHitAnim()
     {
+        GameObject tempEnyBtObj = GameObject.FindGameObjectWithTag("enymieBattle");
+
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position -= new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
         yield return new WaitForSeconds(0.01f);
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
+        tempEnyBtObj.GetComponent<Transform>().position += new Vector3(0, 0.1f, 0);
     }
     public void StartFight()
     {
@@ -144,8 +147,6 @@ public class Fight : MonoBehaviour
         EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         if (Random.value > 0.5) //Dix start
         {
-            
-            Debug.Log("Dix starts");
             AttackBtn.interactable = false;
             EscapeBtn.interactable = false;
             RuneBtn.interactable = false;
@@ -153,7 +154,6 @@ public class Fight : MonoBehaviour
         }
         else //Enymie start
         {
-            Debug.Log("Enymie starts");
             AttackBtn.interactable = false;
             EscapeBtn.interactable = false;
             RuneBtn.interactable = false;
@@ -189,8 +189,6 @@ public class Fight : MonoBehaviour
         {
             TeleportPanel.SetActive(true);
         }
-
-        
     }
 
     public void Teleport(Dropdown place)
@@ -220,7 +218,6 @@ public class Fight : MonoBehaviour
                 isRuneUsed = true;
             }
 
-
             if (Random.value > dixCritChance / 100) //not crited
             {
                 if(isRuneActive == true && RuneUsed == 4 && isRuneUsed == false)
@@ -234,8 +231,6 @@ public class Fight : MonoBehaviour
                     enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor));
                     damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
                 }
-
-                
             }
             else//crited
             {
@@ -266,7 +261,6 @@ public class Fight : MonoBehaviour
             SFXsource.Play();
             if (dixHP <= 0)
             {
-
                 if (RuneUsed == 5 && isRuneActive == true && isRuneUsed == false) //uzycie runy
                 {
                     if (Random.value < 50f / 100) //skracanie czasu smierci
@@ -293,16 +287,12 @@ public class Fight : MonoBehaviour
             }
             else
             {
-
                 Debug.Log("enymie got hit > waiting for attack");
                 StartCoroutine(waitForAttack(1));
             }
-            
         }
         else //dodged
         {
-            Debug.Log("Dodged > waiting for attack");
-
             foreach(GameObject gobj in blockAnimationEny)
             {
                 gobj.SetActive(false);
@@ -334,7 +324,7 @@ public class Fight : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").transform.position = previousLoc;
             FightUi.SetActive(false);
             isInFight = false;
-            Debug.Log("Escaped!");
+            GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         }
         else //escape failed
         {
@@ -419,7 +409,6 @@ public class Fight : MonoBehaviour
                 {
                     EndFight(false ,false);
                 }
-
             }
             else
             {
@@ -427,14 +416,12 @@ public class Fight : MonoBehaviour
                 {
                     isRuneUsed = true;
                 }
-                Debug.Log("dix got hit > waiting for attack");
                 StartCoroutine(waitForAttack(2));
             }
             
         }
         else //dodged
         {
-            Debug.Log("Dodged > waiting for attack");
             foreach (GameObject gobj in blockAnimationPlayer)
             {
                 gobj.SetActive(false);
@@ -446,8 +433,6 @@ public class Fight : MonoBehaviour
             StartCoroutine(waitForAttack(2));
         }
 
-        
-
         enyHit = true;
         EnyHealthBar.fillAmount = enyHP / StartingMaxEnyHp;
         foreach (GameObject p in enyHitAni)
@@ -455,7 +440,6 @@ public class Fight : MonoBehaviour
             p.SetActive(false);
             p.SetActive(true);
         }
-
     }
 
 
@@ -479,14 +463,14 @@ public class Fight : MonoBehaviour
             isRuneActive = false;
             rewards.SetActive(true);
             FightUi.SetActive(false);
-
+            GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         }
         else
         {
             isRuneActive = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dead(isTimeShorter);
+            GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         }
-        
     }
 
     IEnumerator waitForAttack(int whatToDo)
@@ -497,11 +481,9 @@ public class Fight : MonoBehaviour
         switch (whatToDo)
         {
             case 1:
-                Debug.Log("Enymie turn!");
                 EnyTurn();
                 break;
             case 2:
-                Debug.Log("Waiting for decision");
                 AttackBtn.interactable = true;
                 EscapeBtn.interactable = true;
 
@@ -513,9 +495,7 @@ public class Fight : MonoBehaviour
                 {
                     RuneBtn.interactable = false;
                 }
-
                 break;
         }
-
     }
 }

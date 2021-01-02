@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
 using Unity.Notifications.Android;
 
 public class TimeCountingSystem : MonoBehaviour
-{
-    
+{ 
     public DateTime DP_podroz;
     public DateTime DK_podroz;
     public Transform dest;
@@ -44,14 +41,12 @@ public class TimeCountingSystem : MonoBehaviour
     [Space(10)]
     public GameObject mapSystem;
 
-    // Start is called before the first frame update
     void Start()
     {
         UpdateWorldInfo();
         mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateEnergyRestText();
@@ -69,7 +64,6 @@ public class TimeCountingSystem : MonoBehaviour
         }
 
         int hPassed = (int)(DateTime.Now - lastMissionGenerated).TotalHours;
-        
         if(hPassed >= 24)
         {
             lastMissionGenerated = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
@@ -83,7 +77,6 @@ public class TimeCountingSystem : MonoBehaviour
 
         if (isDone == false && DateTime.Now > DK_podroz)
         {
-            
             inTravel.SetActive(false);
             isDone = true;
             mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
@@ -140,13 +133,13 @@ public class TimeCountingSystem : MonoBehaviour
         {
             DeadPanel.SetActive(true);
         }
-        
     }
 
     public void MissionClimed()
     {
         lastMissionClimed = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
     }
+
     public void Travel(GameObject place, int TimeInSec)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = place.transform.position;
@@ -155,7 +148,7 @@ public class TimeCountingSystem : MonoBehaviour
         inTravel.SetActive(true);
         isDone = false;
         mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         var channel = new AndroidNotificationChannel()
         {
             Id = "travel_id",
@@ -164,7 +157,6 @@ public class TimeCountingSystem : MonoBehaviour
             Description = "Notifications for traveling",
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
-
         var notification = new AndroidNotification();
         notification.Title = "Jestes na miejscu";
         notification.Text = "Dotarles do docelowej lokalizacji";
@@ -181,7 +173,7 @@ public class TimeCountingSystem : MonoBehaviour
         DK_dead = DP_dead.AddSeconds(TimeInSec);
         DeadPanel.SetActive(true);
         isAlive = false;
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         var channel = new AndroidNotificationChannel()
         {
             Id = "death_id",
@@ -190,7 +182,6 @@ public class TimeCountingSystem : MonoBehaviour
             Description = "Notifications for resurecting",
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
-
         var notification = new AndroidNotification();
         notification.Title = "Znow stoisz na nogach!";
         notification.Text = "Skonczyl sie twoj czas odrodzenia. Mozesz wrocic do gry!";
@@ -205,6 +196,7 @@ public class TimeCountingSystem : MonoBehaviour
     {
         CurrentWorld = WorldID;
         UpdateWorldInfo();
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public void UpdateWorldInfo()
@@ -215,15 +207,12 @@ public class TimeCountingSystem : MonoBehaviour
             {
                 TravelPanels[i].SetActive(false);
             }
-            
         }
         TravelPanels[CurrentWorld].SetActive(true);
     }
 
-
     public void AddXpBoost(int TimeInSec, float xpBoost)
     {
-
         if (isDoneXp == false && DateTime.Now < DK_xpBoost)
         {
             Xp_boost_info_obj.SetActive(true);
@@ -241,9 +230,8 @@ public class TimeCountingSystem : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += currentXpBoost;
             isDoneXp = false;
         }
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
-
 
     public void RestoreEnergy()
     {
@@ -254,7 +242,7 @@ public class TimeCountingSystem : MonoBehaviour
         EnergyRestGOInfo.SetActive(true);
         DP_energyRest = DateTime.Now;
         DK_energyRest = DP_energyRest.AddSeconds(1800);
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         var channel = new AndroidNotificationChannel()
         {
             Id = "energy_id",
@@ -263,7 +251,6 @@ public class TimeCountingSystem : MonoBehaviour
             Description = "Notifications for energy",
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
-
         var notification = new AndroidNotification();
         notification.Title = "Znow masz sile";
         notification.Text = "Twoja energia sie odnowila!";
@@ -282,7 +269,6 @@ public class TimeCountingSystem : MonoBehaviour
         timeLeft.text = "Pozostalo: ";
         TimeSpan result = TimeSpan.FromSeconds(a);
         timeLeft.text += result.ToString("hh':'mm':'ss");
-        
     }
 
     void UpdateXpText()
@@ -307,9 +293,73 @@ public class TimeCountingSystem : MonoBehaviour
         timeToRessurect.text = "Pozostalo: ";
         TimeSpan result = TimeSpan.FromSeconds(a);
         timeToRessurect.text += result.ToString("hh':'mm':'ss");
-
-        
     }
 
-    
+    public void ResetAllNotifications(bool isEnergyToCancel)
+    {
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
+
+        if(DateTime.Now < DK_energyRest && isEnergyToCancel == false)
+        {
+            var channel = new AndroidNotificationChannel()
+            {
+                Id = "energy_id",
+                Name = "Energy",
+                Importance = Importance.High,
+                Description = "Notifications for energy",
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+            var notification = new AndroidNotification();
+            notification.Title = "Znow masz sile";
+            notification.Text = "Twoja energia sie odnowila!";
+            notification.LargeIcon = "mgoszka_large_icon";
+            notification.SmallIcon = "mgoszka_small_icon";
+            notification.FireTime = DK_energyRest;
+
+            AndroidNotificationCenter.SendNotification(notification, "energy_id");
+        }
+        
+        if(DateTime.Now < DK_dead)
+        {
+            var channel = new AndroidNotificationChannel()
+            {
+                Id = "death_id",
+                Name = "Death",
+                Importance = Importance.High,
+                Description = "Notifications for resurecting",
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+            var notification = new AndroidNotification();
+            notification.Title = "Znow stoisz na nogach!";
+            notification.Text = "Skonczyl sie twoj czas odrodzenia. Mozesz wrocic do gry!";
+            notification.LargeIcon = "mgoszka_large_icon";
+            notification.SmallIcon = "mgoszka_small_icon";
+            notification.FireTime = DK_dead;
+
+            AndroidNotificationCenter.SendNotification(notification, "death_id");
+        }
+
+        if(DateTime.Now < DK_podroz)
+        {
+            var channel = new AndroidNotificationChannel()
+            {
+                Id = "travel_id",
+                Name = "Travel",
+                Importance = Importance.High,
+                Description = "Notifications for traveling",
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+            var notification = new AndroidNotification();
+            notification.Title = "Jestes na miejscu";
+            notification.Text = "Dotarles do docelowej lokalizacji";
+            notification.LargeIcon = "mgoszka_large_icon";
+            notification.SmallIcon = "mgoszka_small_icon";
+            notification.FireTime = DK_podroz;
+
+            AndroidNotificationCenter.SendNotification(notification, "travel_id");
+        }
+    }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour
@@ -42,7 +40,6 @@ public class ShopSystem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         for (int i = 0; i < priceToId.Length; i++)
@@ -55,25 +52,19 @@ public class ShopSystem : MonoBehaviour
 
     public void BuyItem()
     {
-        Debug.Log("Kupowanie 1");
         if(priceToId[ChoosenId] <= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().coins)
         {
-            Debug.Log("Kupowanie 2");
             for (int i = 0; i < whatIsMissionRelated.Length; i++)
             {
-                Debug.Log("Kupowanie 2,5");
                 if (whatIsMissionRelated[i] == ChoosenId)
                 {
-                    Debug.Log("Kupowanie -3");
                     GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[itemId[ChoosenId]]++;
                 }
                 else
                 {
-                    Debug.Log("Kupowanie 3");
                     eq.GetComponent<EqSystem>().AddItem(itemId[ChoosenId]);
                 }
             }
-
             SFXsound.clip = audioClips[Random.Range(0, audioClips.Length)];
             SFXsound.Play();
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().coins -= priceToId[ChoosenId];
@@ -165,9 +156,6 @@ public class ShopSystem : MonoBehaviour
                 {
                     itemParameters.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr + "</color></i>";
                 }
-
-
-
             }
         }
     }

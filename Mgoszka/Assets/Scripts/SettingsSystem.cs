@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Notifications.Android;
 
 public class SettingsSystem : MonoBehaviour
 {
@@ -31,22 +30,20 @@ public class SettingsSystem : MonoBehaviour
     public GameObject MapSystem;
     [Space(50)]
     public int areItemsKnown = 0;
-    
-    void Start()
-    {
-        
-    }
+
     void Update()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(fightHis.GetComponent<RectTransform>());
         if (areTimersRemoved == true)
         {
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().isAlive = true;
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().isDone = true;
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().inTravel.SetActive(false);
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().DeadPanel.SetActive(false);
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().DK_dead = DateTime.Now;
-            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().DK_podroz = DateTime.Now;
+            GameObject tempObj = GameObject.FindGameObjectWithTag("controller");
+
+            tempObj.GetComponent<TimeCountingSystem>().isAlive = true;
+            tempObj.GetComponent<TimeCountingSystem>().isDone = true;
+            tempObj.GetComponent<TimeCountingSystem>().inTravel.SetActive(false);
+            tempObj.GetComponent<TimeCountingSystem>().DeadPanel.SetActive(false);
+            tempObj.GetComponent<TimeCountingSystem>().DK_dead = DateTime.Now;
+            tempObj.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.Now;
         }
 
         timeInGameText.text = "Czas w grze: ";
@@ -55,6 +52,9 @@ public class SettingsSystem : MonoBehaviour
     }
     void Awake()
     {
+        AndroidNotificationCenter.CancelAllDisplayedNotifications();
+        GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().ResetAllNotifications(false);
+
         if(PlayerPrefs.GetInt("gobjAttentions") == 1)
         {
             foreach(GameObject gob in guidesAttentions)
@@ -93,13 +93,13 @@ public class SettingsSystem : MonoBehaviour
     {
         if(sound == 0)
         {
-            AudioListener.volume = 0;
+            AudioListener.volume = 1;
             sound = 1;
             soundText.text = "Dźwięk: wł.";
         }
         else
         {
-            AudioListener.volume = 1;
+            AudioListener.volume = 0;
             sound = 0;
             soundText.text = "Dźwięk: wył.";
         }
@@ -141,7 +141,6 @@ public class SettingsSystem : MonoBehaviour
         string[] names;
         names = QualitySettings.names;
 
-        
         if(qLevel >= 5)
         {
             qLevel = 0;
@@ -165,6 +164,17 @@ public class SettingsSystem : MonoBehaviour
     public void RepoerBug()
     {
         Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeOjpvUHLwII2c9G1A7t3iI4w02H4fKRbmUR8GBDC5oe-HC7Q/viewform?usp=sf_link");
+    }
+
+    public void JoinTranslation()
+    {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLScDJZJsBymAC44Pdu_S5XA5kEraicIMl_s1SxmyW6CL9YsNUQ/viewform?usp=sf_link");
+    }
+
+    public void RemoveSave()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.Quit();
     }
 
     public void UseCupon(InputField inF)
@@ -378,15 +388,15 @@ public class SettingsSystem : MonoBehaviour
                 break;
         }
         sound = PlayerPrefs.GetInt("soundSet");
-        if (sound == 0)
+        if (sound == 1)
         {
-            AudioListener.volume = 0; 
-            soundText.text = "Dźwięk: wył.";
+            AudioListener.volume = 1; 
+            soundText.text = "Dźwięk: wł.";
         }
         else
         {
-            AudioListener.volume = 1;
-            soundText.text = "Dźwięk: wł.";
+            AudioListener.volume = 0;
+            soundText.text = "Dźwięk: wył.";
         }
         ChangeQuality();
     }
@@ -617,650 +627,9 @@ public class SettingsSystem : MonoBehaviour
         
         switch (decod[1])
         {
-
-            case "0.1a":
-                string[] saveDec;
-                saveDec = decod[0].Split('@');
-                GameObject g = GameObject.FindGameObjectWithTag("Player");
-                g.GetComponent<PlayerStats>().HP = float.Parse(saveDec[0]);
-                g.GetComponent<PlayerStats>().maxHP = float.Parse(saveDec[1]);
-                g.GetComponent<PlayerStats>().Energy = float.Parse(saveDec[2]);
-                g.GetComponent<PlayerStats>().maxEnergy = float.Parse(saveDec[3]);
-                g.GetComponent<PlayerStats>().AD = float.Parse(saveDec[4]);
-                g.GetComponent<PlayerStats>().MD = float.Parse(saveDec[5]);
-                g.GetComponent<PlayerStats>().Armor = float.Parse(saveDec[6]);
-                g.GetComponent<PlayerStats>().MagicBarier = float.Parse(saveDec[7]);
-                g.GetComponent<PlayerStats>().Speed = float.Parse(saveDec[8]);
-                g.GetComponent<PlayerStats>().Dodge = float.Parse(saveDec[9]);
-                g.GetComponent<PlayerStats>().charyzma = int.Parse(saveDec[10]);
-                g.GetComponent<PlayerStats>().escape = float.Parse(saveDec[11]);
-                g.GetComponent<PlayerStats>().maxXP = float.Parse(saveDec[12]);
-                g.GetComponent<PlayerStats>().currentXP = float.Parse(saveDec[13]);
-                g.GetComponent<PlayerStats>().siła = float.Parse(saveDec[14]);
-                g.GetComponent<PlayerStats>().intelekt = float.Parse(saveDec[15]);
-                g.GetComponent<PlayerStats>().wytrzymalosc = float.Parse(saveDec[16]);
-                g.GetComponent<PlayerStats>().bariera = float.Parse(saveDec[17]);
-                g.GetComponent<PlayerStats>().kondycja = float.Parse(saveDec[18]);
-                g.GetComponent<PlayerStats>().spryt = float.Parse(saveDec[19]);
-                g.GetComponent<PlayerStats>().zwinnosc = float.Parse(saveDec[20]);
-                g.GetComponent<PlayerStats>().charyzmaUpgrade = float.Parse(saveDec[21]);
-                g.GetComponent<PlayerStats>().predkosc = float.Parse(saveDec[22]);
-                g.GetComponent<PlayerStats>().critChance = float.Parse(saveDec[23]);
-                g.GetComponent<PlayerStats>().xpBoost = float.Parse(saveDec[24]);
-                g.GetComponent<PlayerStats>().Level = int.Parse(saveDec[25]);
-                g.GetComponent<PlayerStats>().LevelPoints = int.Parse(saveDec[26]);
-                g.GetComponent<PlayerStats>().coins = float.Parse(saveDec[27]);
-
-                string[] crLvl = saveDec[28].Split('#');
-                for (int i = 0; i < crLvl.Length; i++)
-                {
-                    g.GetComponent<PlayerStats>().CurrentLevel[i] = int.Parse(crLvl[i]);
-                }
-
-                string[] eqInv = saveDec[29].Split('#');
-                for (int i = 0; i < eqInv.Length; i++)
-                {
-                    eq.GetComponent<EqSystem>().eqIds[i] = eqInv[i];
-                }
-
-                string[] missProgr = saveDec[30].Split('#');
-                for (int i = 0; i < missProgr.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().progress[i] = int.Parse(missProgr[i]);
-                }
-
-                string[] missProg2 = saveDec[31].Split('#');
-                for (int i = 0; i < missProg2.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().missionsProgress[i] = int.Parse(missProg2[i]);
-                }
-
-                string isOn = saveDec[32];
-                string isMiss = saveDec[33];
-                if (isOn == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = false;
-                }
-
-                if (isMiss == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec[34]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec[35]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_dead = DateTime.FromBinary(Convert.ToInt64(saveDec[36]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_dead = DateTime.FromBinary(Convert.ToInt64(saveDec[37]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec[38]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec[39]));
-
-                string isDo = saveDec[40];
-                if (isDo == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = false;
-                }
-
-                string isDoXp = saveDec[41];
-                if (isDoXp == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = false;
-                }
-                string isAli = saveDec[42];
-                if (isAli == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().currentXpBoost = float.Parse(saveDec[43]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec[44]);
-                this.gameObject.GetComponent<TimeCountingSystem>().transform.position = new Vector3(float.Parse(saveDec[45]), float.Parse(saveDec[46]), float.Parse(saveDec[47]));
-
-                eq.GetComponent<EqSystem>().UpdateItems();
-                this.gameObject.GetComponent<MissionSystem>().currentMissionId = int.Parse(saveDec[48]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec[49]);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(float.Parse(saveDec[50]), float.Parse(saveDec[51]), float.Parse(saveDec[52]));
-                TotalTimePlayed = int.Parse(saveDec[53]);
-                break;
-            case "0.1.1a":
-                string[] saveDec1;
-                saveDec1 = decod[0].Split('@');
-
-
-                GameObject g1 = GameObject.FindGameObjectWithTag("Player");
-                g1.GetComponent<PlayerStats>().HP = float.Parse(saveDec1[0]);
-                g1.GetComponent<PlayerStats>().maxHP = float.Parse(saveDec1[1]);
-                g1.GetComponent<PlayerStats>().Energy = float.Parse(saveDec1[2]);
-                g1.GetComponent<PlayerStats>().maxEnergy = float.Parse(saveDec1[3]);
-                g1.GetComponent<PlayerStats>().AD = float.Parse(saveDec1[4]);
-                g1.GetComponent<PlayerStats>().MD = float.Parse(saveDec1[5]);
-                g1.GetComponent<PlayerStats>().Armor = float.Parse(saveDec1[6]);
-                g1.GetComponent<PlayerStats>().MagicBarier = float.Parse(saveDec1[7]);
-                g1.GetComponent<PlayerStats>().Speed = float.Parse(saveDec1[8]);
-                g1.GetComponent<PlayerStats>().Dodge = float.Parse(saveDec1[9]);
-                g1.GetComponent<PlayerStats>().charyzma = int.Parse(saveDec1[10]);
-                g1.GetComponent<PlayerStats>().escape = float.Parse(saveDec1[11]);
-                g1.GetComponent<PlayerStats>().maxXP = float.Parse(saveDec1[12]);
-                g1.GetComponent<PlayerStats>().currentXP = float.Parse(saveDec1[13]);
-                g1.GetComponent<PlayerStats>().siła = float.Parse(saveDec1[14]);
-                g1.GetComponent<PlayerStats>().intelekt = float.Parse(saveDec1[15]);
-                g1.GetComponent<PlayerStats>().wytrzymalosc = float.Parse(saveDec1[16]);
-                g1.GetComponent<PlayerStats>().bariera = float.Parse(saveDec1[17]);
-                g1.GetComponent<PlayerStats>().kondycja = float.Parse(saveDec1[18]);
-                g1.GetComponent<PlayerStats>().spryt = float.Parse(saveDec1[19]);
-                g1.GetComponent<PlayerStats>().zwinnosc = float.Parse(saveDec1[20]);
-                g1.GetComponent<PlayerStats>().charyzmaUpgrade = float.Parse(saveDec1[21]);
-                g1.GetComponent<PlayerStats>().predkosc = float.Parse(saveDec1[22]);
-                g1.GetComponent<PlayerStats>().critChance = float.Parse(saveDec1[23]);
-                g1.GetComponent<PlayerStats>().xpBoost = float.Parse(saveDec1[24]);
-                g1.GetComponent<PlayerStats>().Level = int.Parse(saveDec1[25]);
-                g1.GetComponent<PlayerStats>().LevelPoints = int.Parse(saveDec1[26]);
-                g1.GetComponent<PlayerStats>().coins = float.Parse(saveDec1[27]);
-
-                string[] crLvl1 = saveDec1[28].Split('#');
-                for (int i = 0; i < crLvl1.Length; i++)
-                {
-                    g1.GetComponent<PlayerStats>().CurrentLevel[i] = int.Parse(crLvl1[i]);
-                }
-
-                string[] eqInv1 = saveDec1[29].Split('#');
-                for (int i = 0; i < eqInv1.Length; i++)
-                {
-                    eq.GetComponent<EqSystem>().eqIds[i] = eqInv1[i];
-                }
-
-                string[] missProgr1 = saveDec1[30].Split('#');
-                for (int i = 0; i < missProgr1.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().progress[i] = int.Parse(missProgr1[i]);
-                }
-
-                string[] missProg21 = saveDec1[31].Split('#');
-                for (int i = 0; i < missProg21.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().missionsProgress[i] = int.Parse(missProg21[i]);
-                }
-
-                string isOn1 = saveDec1[32];
-                string isMiss1 = saveDec1[33];
-                if (isOn1 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = false;
-                }
-
-                if (isMiss1 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec1[34]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec1[35]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_dead = DateTime.FromBinary(Convert.ToInt64(saveDec1[36]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_dead = DateTime.FromBinary(Convert.ToInt64(saveDec1[37]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec1[38]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec1[39]));
-
-                string isDo1 = saveDec1[40];
-                if (isDo1 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = false;
-                }
-
-                string isDoXp1 = saveDec1[41];
-                if (isDoXp1 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = false;
-                }
-                string isAli1 = saveDec1[42];
-                if (isAli1 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().currentXpBoost = float.Parse(saveDec1[43]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec1[44]);
-                this.gameObject.GetComponent<TimeCountingSystem>().transform.position = new Vector3(float.Parse(saveDec1[45]), float.Parse(saveDec1[46]), float.Parse(saveDec1[47]));
-                
-                eq.GetComponent<EqSystem>().UpdateItems();
-                this.gameObject.GetComponent<MissionSystem>().currentMissionId = int.Parse(saveDec1[48]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec1[49]);
-
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(float.Parse(saveDec1[50]), float.Parse(saveDec1[51]), float.Parse(saveDec1[52]));;
-                TotalTimePlayed = int.Parse(saveDec1[53]);
-                
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec1[54]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec1[55]));
-                string isEnCooldown = saveDec1[56];
-                if (isEnCooldown == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = false;
-                }
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().FirstSkill = int.Parse(saveDec1[57]);
-                break;
-            case "0.3a":
-                string[] saveDec2;
-                saveDec2 = decod[0].Split('@');
-
-
-                GameObject g2 = GameObject.FindGameObjectWithTag("Player");
-                g2.GetComponent<PlayerStats>().HP = float.Parse(saveDec2[0]);
-                g2.GetComponent<PlayerStats>().maxHP = float.Parse(saveDec2[1]);
-                g2.GetComponent<PlayerStats>().Energy = float.Parse(saveDec2[2]);
-                g2.GetComponent<PlayerStats>().maxEnergy = float.Parse(saveDec2[3]);
-                g2.GetComponent<PlayerStats>().AD = float.Parse(saveDec2[4]);
-                g2.GetComponent<PlayerStats>().MD = float.Parse(saveDec2[5]);
-                g2.GetComponent<PlayerStats>().Armor = float.Parse(saveDec2[6]);
-                g2.GetComponent<PlayerStats>().MagicBarier = float.Parse(saveDec2[7]);
-                g2.GetComponent<PlayerStats>().Speed = float.Parse(saveDec2[8]);
-                g2.GetComponent<PlayerStats>().Dodge = float.Parse(saveDec2[9]);
-                g2.GetComponent<PlayerStats>().charyzma = int.Parse(saveDec2[10]);
-                g2.GetComponent<PlayerStats>().escape = float.Parse(saveDec2[11]);
-                g2.GetComponent<PlayerStats>().maxXP = float.Parse(saveDec2[12]);
-                g2.GetComponent<PlayerStats>().currentXP = float.Parse(saveDec2[13]);
-                g2.GetComponent<PlayerStats>().siła = float.Parse(saveDec2[14]);
-                g2.GetComponent<PlayerStats>().intelekt = float.Parse(saveDec2[15]);
-                g2.GetComponent<PlayerStats>().wytrzymalosc = float.Parse(saveDec2[16]);
-                g2.GetComponent<PlayerStats>().bariera = float.Parse(saveDec2[17]);
-                g2.GetComponent<PlayerStats>().kondycja = float.Parse(saveDec2[18]);
-                g2.GetComponent<PlayerStats>().spryt = float.Parse(saveDec2[19]);
-                g2.GetComponent<PlayerStats>().zwinnosc = float.Parse(saveDec2[20]);
-                g2.GetComponent<PlayerStats>().charyzmaUpgrade = float.Parse(saveDec2[21]);
-                g2.GetComponent<PlayerStats>().predkosc = float.Parse(saveDec2[22]);
-                g2.GetComponent<PlayerStats>().critChance = float.Parse(saveDec2[23]);
-                g2.GetComponent<PlayerStats>().xpBoost = float.Parse(saveDec2[24]);
-                g2.GetComponent<PlayerStats>().Level = int.Parse(saveDec2[25]);
-                g2.GetComponent<PlayerStats>().LevelPoints = int.Parse(saveDec2[26]);
-                g2.GetComponent<PlayerStats>().coins = float.Parse(saveDec2[27]);
-
-                string[] crLvl2 = saveDec2[28].Split('#');
-                for (int i = 0; i < crLvl2.Length; i++)
-                {
-                    g2.GetComponent<PlayerStats>().CurrentLevel[i] = int.Parse(crLvl2[i]);
-                }
-
-                string[] eqInv2 = saveDec2[29].Split('#');
-                for (int i = 0; i < eqInv2.Length; i++)
-                {
-                    eq.GetComponent<EqSystem>().eqIds[i] = eqInv2[i];
-                }
-
-                string[] missProgr2 = saveDec2[30].Split('#');
-                for (int i = 0; i < missProgr2.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().progress[i] = int.Parse(missProgr2[i]);
-                }
-
-                string[] missProg22 = saveDec2[31].Split('#');
-                for (int i = 0; i < missProg22.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().missionsProgress[i] = int.Parse(missProg22[i]);
-                }
-
-                string isOn2 = saveDec2[32];
-                string isMiss2 = saveDec2[33];
-                if (isOn2 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = false;
-                }
-
-                if (isMiss2 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec2[34]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec2[35]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_dead = DateTime.FromBinary(Convert.ToInt64(saveDec2[36]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_dead = DateTime.FromBinary(Convert.ToInt64(saveDec2[37]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec2[38]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec2[39]));
-
-                string isDo2 = saveDec2[40];
-                if (isDo2 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = false;
-                }
-
-                string isDoXp2 = saveDec2[41];
-                if (isDoXp2 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = false;
-                }
-                string isAli2 = saveDec2[42];
-                if (isAli2 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().currentXpBoost = float.Parse(saveDec2[43]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec2[44]);
-                this.gameObject.GetComponent<TimeCountingSystem>().transform.position = new Vector3(float.Parse(saveDec2[45]), float.Parse(saveDec2[46]), float.Parse(saveDec2[47]));
-
-                eq.GetComponent<EqSystem>().UpdateItems();
-                this.gameObject.GetComponent<MissionSystem>().currentMissionId = int.Parse(saveDec2[48]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec2[49]);
-
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(float.Parse(saveDec2[50]), float.Parse(saveDec2[51]), float.Parse(saveDec2[52])); ;
-                TotalTimePlayed = int.Parse(saveDec2[53]);
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec2[54]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec2[55]));
-                string isEnCooldown2 = saveDec2[56];
-                if (isEnCooldown2 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = false;
-                }
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().FirstSkill = int.Parse(saveDec2[57]);
-                //------------------------------------------------------------
-                
-                GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().Streak = int.Parse(saveDec2[58]);
-                GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().TodaysMissionId = int.Parse(saveDec2[59]);
-                string isMissionClimedL = saveDec2[60];
-                if (isMissionClimedL == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionClimed = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionClimed = false;
-                }
-
-
-                string[] missProg32 = saveDec2[61].Split('#');
-                for (int i = 0; i < missProg32.Length; i++)
-                {
-                    float x;
-                    if (Single.TryParse(missProg32[i], out x))
-                    {
-                        this.gameObject.GetComponent<MissionSystem>().missionDayliProgress[i] = x;
-                    }
-                    else
-                    {
-                        this.gameObject.GetComponent<MissionSystem>().missionDayliProgress[i] = 0f;
-                    }
-                }
-                
-                this.gameObject.GetComponent<TimeCountingSystem>().lastMissionClimed = DateTime.FromBinary(Convert.ToInt64(saveDec2[62]));
-                this.gameObject.GetComponent<TimeCountingSystem>().lastMissionGenerated = DateTime.FromBinary(Convert.ToInt64(saveDec2[63]));
-
-
-                break;
-            case "0.4a":
-                string[] saveDec3;
-                saveDec3 = decod[0].Split('@');
-
-
-                GameObject g3 = GameObject.FindGameObjectWithTag("Player");
-                g3.GetComponent<PlayerStats>().HP = float.Parse(saveDec3[0]);
-                g3.GetComponent<PlayerStats>().maxHP = float.Parse(saveDec3[1]);
-                g3.GetComponent<PlayerStats>().Energy = float.Parse(saveDec3[2]);
-                g3.GetComponent<PlayerStats>().maxEnergy = float.Parse(saveDec3[3]);
-                g3.GetComponent<PlayerStats>().AD = float.Parse(saveDec3[4]);
-                g3.GetComponent<PlayerStats>().MD = float.Parse(saveDec3[5]);
-                g3.GetComponent<PlayerStats>().Armor = float.Parse(saveDec3[6]);
-                g3.GetComponent<PlayerStats>().MagicBarier = float.Parse(saveDec3[7]);
-                g3.GetComponent<PlayerStats>().Speed = float.Parse(saveDec3[8]);
-                g3.GetComponent<PlayerStats>().Dodge = float.Parse(saveDec3[9]);
-                g3.GetComponent<PlayerStats>().charyzma = int.Parse(saveDec3[10]);
-                g3.GetComponent<PlayerStats>().escape = float.Parse(saveDec3[11]);
-                g3.GetComponent<PlayerStats>().maxXP = float.Parse(saveDec3[12]);
-                g3.GetComponent<PlayerStats>().currentXP = float.Parse(saveDec3[13]);
-                g3.GetComponent<PlayerStats>().siła = float.Parse(saveDec3[14]);
-                g3.GetComponent<PlayerStats>().intelekt = float.Parse(saveDec3[15]);
-                g3.GetComponent<PlayerStats>().wytrzymalosc = float.Parse(saveDec3[16]);
-                g3.GetComponent<PlayerStats>().bariera = float.Parse(saveDec3[17]);
-                g3.GetComponent<PlayerStats>().kondycja = float.Parse(saveDec3[18]);
-                g3.GetComponent<PlayerStats>().spryt = float.Parse(saveDec3[19]);
-                g3.GetComponent<PlayerStats>().zwinnosc = float.Parse(saveDec3[20]);
-                g3.GetComponent<PlayerStats>().charyzmaUpgrade = float.Parse(saveDec3[21]);
-                g3.GetComponent<PlayerStats>().predkosc = float.Parse(saveDec3[22]);
-                g3.GetComponent<PlayerStats>().critChance = float.Parse(saveDec3[23]);
-                g3.GetComponent<PlayerStats>().xpBoost = float.Parse(saveDec3[24]);
-                g3.GetComponent<PlayerStats>().Level = int.Parse(saveDec3[25]);
-                g3.GetComponent<PlayerStats>().LevelPoints = int.Parse(saveDec3[26]);
-                g3.GetComponent<PlayerStats>().coins = float.Parse(saveDec3[27]);
-
-                string[] crLvl3 = saveDec3[28].Split('#');
-                for (int i = 0; i < crLvl3.Length; i++)
-                {
-                    g3.GetComponent<PlayerStats>().CurrentLevel[i] = int.Parse(crLvl3[i]);
-                }
-
-                string[] eqInv3 = saveDec3[29].Split('#');
-                for (int i = 0; i < eqInv3.Length; i++)
-                {
-                    eq.GetComponent<EqSystem>().eqIds[i] = eqInv3[i];
-                }
-
-                string[] missProgr3 = saveDec3[30].Split('#');
-                for (int i = 0; i < missProgr3.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().progress[i] = int.Parse(missProgr3[i]);
-                }
-
-                string[] missProg33 = saveDec3[31].Split('#');
-                for (int i = 0; i < missProg33.Length; i++)
-                {
-                    this.gameObject.GetComponent<MissionSystem>().missionsProgress[i] = int.Parse(missProg33[i]);
-                }
-
-                string isOn3 = saveDec3[32];
-                string isMiss3 = saveDec3[33];
-                if (isOn3 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isOnMission = false;
-                }
-
-                if (isMiss3 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionDone = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec3[34]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.FromBinary(Convert.ToInt64(saveDec3[35]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_dead = DateTime.FromBinary(Convert.ToInt64(saveDec3[36]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_dead = DateTime.FromBinary(Convert.ToInt64(saveDec3[37]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec3[38]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_xpBoost = DateTime.FromBinary(Convert.ToInt64(saveDec3[39]));
-
-                string isDo3 = saveDec3[40];
-                if (isDo3 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDone = false;
-                }
-
-                string isDoXp3 = saveDec3[41];
-                if (isDoXp3 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isDoneXp = false;
-                }
-                string isAli3 = saveDec3[42];
-                if (isAli3 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isAlive = false;
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().currentXpBoost = float.Parse(saveDec3[43]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec3[44]);
-                this.gameObject.GetComponent<TimeCountingSystem>().transform.position = new Vector3(float.Parse(saveDec3[45]), float.Parse(saveDec3[46]), float.Parse(saveDec3[47]));
-
-                eq.GetComponent<EqSystem>().UpdateItems();
-                this.gameObject.GetComponent<MissionSystem>().currentMissionId = int.Parse(saveDec3[48]);
-                this.gameObject.GetComponent<TimeCountingSystem>().CurrentWorld = int.Parse(saveDec3[49]);
-
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(float.Parse(saveDec3[50]), float.Parse(saveDec3[51]), float.Parse(saveDec3[52])); ;
-                TotalTimePlayed = int.Parse(saveDec3[53]);
-
-                this.gameObject.GetComponent<TimeCountingSystem>().DP_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec3[54]));
-                this.gameObject.GetComponent<TimeCountingSystem>().DK_energyRest = DateTime.FromBinary(Convert.ToInt64(saveDec3[55]));
-                string isEnCooldown3 = saveDec3[56];
-                if (isEnCooldown3 == "1")
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = false;
-                }
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().FirstSkill = int.Parse(saveDec3[57]);
-                //------------------------------------------------------------
-
-                GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().Streak = int.Parse(saveDec3[58]);
-                GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().TodaysMissionId = int.Parse(saveDec3[59]);
-                string isMissionClimedL3 = saveDec3[60];
-                if (isMissionClimedL3 == "1")
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionClimed = true;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<MissionSystem>().isMissionClimed = false;
-                }
-
-
-                string[] missProg34 = saveDec3[61].Split('#');
-                for (int i = 0; i < missProg34.Length; i++)
-                {
-                    float x;
-                    if (Single.TryParse(missProg34[i], out x))
-                    {
-                        this.gameObject.GetComponent<MissionSystem>().missionDayliProgress[i] = x;
-                    }
-                    else
-                    {
-                        this.gameObject.GetComponent<MissionSystem>().missionDayliProgress[i] = 0f;
-                    }
-                }
-
-                this.gameObject.GetComponent<TimeCountingSystem>().lastMissionClimed = DateTime.FromBinary(Convert.ToInt64(saveDec3[62]));
-                this.gameObject.GetComponent<TimeCountingSystem>().lastMissionGenerated = DateTime.FromBinary(Convert.ToInt64(saveDec3[63]));
-
-                string[] knownPlaces3 = saveDec3[64].Split('#');
-                for (int i = 0; i < knownPlaces3.Length; i++)
-                {
-                    //MapSystem.GetComponent<MapSizeSystem>().knownPlaces[i] = int.Parse(knownPlaces3[i]);
-
-                    int x;
-                    if (int.TryParse(knownPlaces3[i], out x))
-                    {
-                        MapSystem.GetComponent<MapSizeSystem>().knownPlaces[i] = x;
-                    }
-                    else
-                    {
-                        MapSystem.GetComponent<MapSizeSystem>().knownPlaces[i] = 0;
-                    }
-                }
-
-                string[] KnownItems3 = saveDec3[65].Split('#');
-                for (int i = 0; i < KnownItems3.Length; i++)
-                {
-                    //MapSystem.GetComponent<MapSizeSystem>().knownItems[i] = int.Parse(KnownItems3[i]);
-
-
-                    int x;
-                    if (int.TryParse(KnownItems3[i], out x))
-                    {
-                        MapSystem.GetComponent<MapSizeSystem>().knownItems[i] = x;
-                    }
-                    else
-                    {
-                        MapSystem.GetComponent<MapSizeSystem>().knownItems[i] = 0;
-                    }
-                }
-
-                break;
-
             case "0.5a":
                 string[] saveDec4;
                 saveDec4 = decod[0].Split('@');
-
 
                 GameObject g4 = GameObject.FindGameObjectWithTag("Player");
                 g4.GetComponent<PlayerStats>().HP = float.Parse(saveDec4[0]);
@@ -1395,8 +764,6 @@ public class SettingsSystem : MonoBehaviour
                     this.gameObject.GetComponent<TimeCountingSystem>().isEnergyRestDone = false;
                 }
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().FirstSkill = int.Parse(saveDec4[57]);
-                //------------------------------------------------------------
-
                 GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().Streak = int.Parse(saveDec4[58]);
                 GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().TodaysMissionId = int.Parse(saveDec4[59]);
                 string isMissionClimedL4 = saveDec4[60];
@@ -1408,7 +775,6 @@ public class SettingsSystem : MonoBehaviour
                 {
                     this.gameObject.GetComponent<MissionSystem>().isMissionClimed = false;
                 }
-
 
                 string[] missProg45 = saveDec4[61].Split('#');
                 for (int i = 0; i < missProg45.Length; i++)
@@ -1430,8 +796,6 @@ public class SettingsSystem : MonoBehaviour
                 string[] knownPlaces4 = saveDec4[64].Split('#');
                 for (int i = 0; i < knownPlaces4.Length; i++)
                 {
-                    //MapSystem.GetComponent<MapSizeSystem>().knownPlaces[i] = int.Parse(knownPlaces3[i]);
-
                     int x;
                     if (int.TryParse(knownPlaces4[i], out x))
                     {
@@ -1446,9 +810,6 @@ public class SettingsSystem : MonoBehaviour
                 string[] KnownItems4 = saveDec4[65].Split('#');
                 for (int i = 0; i < KnownItems4.Length; i++)
                 {
-                    //MapSystem.GetComponent<MapSizeSystem>().knownItems[i] = int.Parse(KnownItems3[i]);
-
-
                     int x;
                     if (int.TryParse(KnownItems4[i], out x))
                     {
@@ -1464,7 +825,6 @@ public class SettingsSystem : MonoBehaviour
 
                 break;
         }
-
     }
 
     IEnumerator autoSave()
@@ -1498,7 +858,6 @@ public class SettingsSystem : MonoBehaviour
     public void CustomLoad()
     {
         string cs = PlayerPrefs.GetString("mainSave");
-        Debug.Log(cs);
         customSaving.text = cs;
     }
 }

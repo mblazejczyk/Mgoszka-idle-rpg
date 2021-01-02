@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EqSystem : MonoBehaviour
@@ -49,7 +47,6 @@ public class EqSystem : MonoBehaviour
     public GameObject WhileMovingPanel;
     public Button MoveButton;
 
-    
     public void UpdateItems()
     {
         for (int j = 0; j < rareStarObject.Length; j++)
@@ -69,8 +66,6 @@ public class EqSystem : MonoBehaviour
 
         for (int i = 0; i < 47; i++)
         {
-            
-
             if (eqIds[i] != "" && eqIds != null)
             {
                 outputId = eqIds[i].Split('|');
@@ -79,7 +74,6 @@ public class EqSystem : MonoBehaviour
                 {
                     equiped[int.Parse(outputId[0])].color = new Color(1, 1, 1, 1f);
                 }
-
 
                 foreach (GameObject ob in items)
                 {
@@ -112,18 +106,9 @@ public class EqSystem : MonoBehaviour
                         }
                     }
                 }
-
-
-                
-                
                 outputId = null;
             }
-            
-            
-            
         }
-        
-        Debug.Log("Item list updated");
     }
 
     public void MissionChecker()
@@ -134,7 +119,6 @@ public class EqSystem : MonoBehaviour
             if(temp != "")
             {
                 string[] s = temp.Split('|');
-                Debug.Log(temp);
                 foreach (GameObject obj in items)
                 {
                     if (obj.GetComponent<itemParameters>().Id == int.Parse(s[1]) && obj.GetComponent<itemParameters>().isGivingProgress == true)
@@ -143,8 +127,6 @@ public class EqSystem : MonoBehaviour
                     }
                 }
             }
-            
-
         }
     }
 
@@ -184,20 +166,19 @@ public class EqSystem : MonoBehaviour
                 itemDropped.SetActive(true);
             }
         }
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public bool IsEqFull()
     {
         for (int i = 7; i < 48; i++)
         {
-
             if (i <= 46)
             {
                 if (eqItems[i].sprite == emptyImg)
                 {
                     break;
                 }
-
             }
             else
             {
@@ -305,7 +286,6 @@ public class EqSystem : MonoBehaviour
                                 detailItem.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr + "</color></i>";
                             }
 
-
                             if (isLimitedEq == true && ob.GetComponent<itemParameters>().isLimited == true)
                             {
                                 foreach (GameObject obj in ButtonsToLimit)
@@ -320,7 +300,6 @@ public class EqSystem : MonoBehaviour
                                     obj.GetComponent<Button>().interactable = true;
                                 }
                             }
-
                         }
                     }
 
@@ -344,15 +323,11 @@ public class EqSystem : MonoBehaviour
 
     public void TrashItem()
     {
-
         for (int i = 0; i < eqIds.Length; i++)
         {
-
-
             string[] str;
 
             str = eqIds[i].Split('|');
-
 
             if (str[0] == positionDetail)
             {
@@ -362,39 +337,37 @@ public class EqSystem : MonoBehaviour
                     if (ob.GetComponent<itemParameters>().Id.ToString() == str[1])
                     {
                         //znaleziono dokladny przedmiot w bazie przedmiotow
-
                         if (ob.GetComponent<itemParameters>().isEquickable == true && int.Parse(str[0]) <= 6)
                         {
-                            
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP -= ob.GetComponent<itemParameters>().add_HP;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Energy -= ob.GetComponent<itemParameters>().add_energy;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxEnergy -= ob.GetComponent<itemParameters>().add_total_energy;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD -= ob.GetComponent<itemParameters>().add_ad;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD -= ob.GetComponent<itemParameters>().add_md;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor -= ob.GetComponent<itemParameters>().add_armor;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().bariera -= ob.GetComponent<itemParameters>().add_barier;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed -= ob.GetComponent<itemParameters>().add_speed;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dodge -= ob.GetComponent<itemParameters>().add_dodge;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma -= ob.GetComponent<itemParameters>().add_charyzma;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
+                            GameObject PlayerTempObj = GameObject.FindGameObjectWithTag("Player");
+
+                            PlayerTempObj.GetComponent<PlayerStats>().maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
+                            PlayerTempObj.GetComponent<PlayerStats>().HP -= ob.GetComponent<itemParameters>().add_HP;
+                            PlayerTempObj.GetComponent<PlayerStats>().Energy -= ob.GetComponent<itemParameters>().add_energy;
+                            PlayerTempObj.GetComponent<PlayerStats>().maxEnergy -= ob.GetComponent<itemParameters>().add_total_energy;
+                            PlayerTempObj.GetComponent<PlayerStats>().AD -= ob.GetComponent<itemParameters>().add_ad;
+                            PlayerTempObj.GetComponent<PlayerStats>().MD -= ob.GetComponent<itemParameters>().add_md;
+                            PlayerTempObj.GetComponent<PlayerStats>().Armor -= ob.GetComponent<itemParameters>().add_armor;
+                            PlayerTempObj.GetComponent<PlayerStats>().bariera -= ob.GetComponent<itemParameters>().add_barier;
+                            PlayerTempObj.GetComponent<PlayerStats>().Speed -= ob.GetComponent<itemParameters>().add_speed;
+                            PlayerTempObj.GetComponent<PlayerStats>().Dodge -= ob.GetComponent<itemParameters>().add_dodge;
+                            PlayerTempObj.GetComponent<PlayerStats>().charyzma -= ob.GetComponent<itemParameters>().add_charyzma;
+                            PlayerTempObj.GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
+                            PlayerTempObj.GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
                         }
                     }
                 }
 
-
                 eqIds[i] = "";
-                Debug.Log("wyrzucono");
                 break;
             }
         }
         UpdateItems();
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public void MoveItem(int newPlace)
     {
-
         if (isMoving == false)
         {
             isMoving = true;
@@ -404,14 +377,12 @@ public class EqSystem : MonoBehaviour
         else
         {
             int conv = newPlace;
-            //conv += 6;
 
             for (int i = 0; i < eqIds.Length; i++)
             {
                 string f;
                 string[] g;
                 g = eqIds[i].Split('|');
-
 
                 if (g[0] == positionDetail)
                 {
@@ -433,7 +404,7 @@ public class EqSystem : MonoBehaviour
             }
         }
         UpdateItems();
-
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public void UseItem()
@@ -442,8 +413,6 @@ public class EqSystem : MonoBehaviour
         {
             string[] str;
             str = eqIds[i].Split('|');
-
-            
 
             if(str[0] == positionDetail)
             {
@@ -466,20 +435,23 @@ public class EqSystem : MonoBehaviour
                         if(ob.GetComponent<itemParameters>().isEquickable == false)
                         {
                             eqIds[i] = "";
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxHP += ob.GetComponent<itemParameters>().add_total_HP;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP += ob.GetComponent<itemParameters>().add_HP;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Energy += ob.GetComponent<itemParameters>().add_energy;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxEnergy += ob.GetComponent<itemParameters>().add_total_energy;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD += ob.GetComponent<itemParameters>().add_ad;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD += ob.GetComponent<itemParameters>().add_md;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor += ob.GetComponent<itemParameters>().add_armor;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().bariera += ob.GetComponent<itemParameters>().add_barier;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed += ob.GetComponent<itemParameters>().add_speed;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dodge += ob.GetComponent<itemParameters>().add_dodge;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
-                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
+
+                            GameObject tempPlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+                            tempPlayerObj.GetComponent<PlayerStats>().maxHP += ob.GetComponent<itemParameters>().add_total_HP;
+                            tempPlayerObj.GetComponent<PlayerStats>().HP += ob.GetComponent<itemParameters>().add_HP;
+                            tempPlayerObj.GetComponent<PlayerStats>().Energy += ob.GetComponent<itemParameters>().add_energy;
+                            tempPlayerObj.GetComponent<PlayerStats>().maxEnergy += ob.GetComponent<itemParameters>().add_total_energy;
+                            tempPlayerObj.GetComponent<PlayerStats>().AD += ob.GetComponent<itemParameters>().add_ad;
+                            tempPlayerObj.GetComponent<PlayerStats>().MD += ob.GetComponent<itemParameters>().add_md;
+                            tempPlayerObj.GetComponent<PlayerStats>().Armor += ob.GetComponent<itemParameters>().add_armor;
+                            tempPlayerObj.GetComponent<PlayerStats>().bariera += ob.GetComponent<itemParameters>().add_barier;
+                            tempPlayerObj.GetComponent<PlayerStats>().Speed += ob.GetComponent<itemParameters>().add_speed;
+                            tempPlayerObj.GetComponent<PlayerStats>().Dodge += ob.GetComponent<itemParameters>().add_dodge;
+                            tempPlayerObj.GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
+                            tempPlayerObj.GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
+                            tempPlayerObj.GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
+                            tempPlayerObj.GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
 
                             if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
                             {
@@ -491,9 +463,6 @@ public class EqSystem : MonoBehaviour
                                 {
                                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += ob.GetComponent<itemParameters>().xpBoostPercent;
                                 }
-
-
-                                
                             }
                             UpdateItems();
                             break;
@@ -506,21 +475,24 @@ public class EqSystem : MonoBehaviour
                                 equiped[ob.GetComponent<itemParameters>().eqPlace].color = new Color(1, 1, 1, 0.5f);
                                 eqIds[i] = "";
                                 AddItem(int.Parse(str[1]));
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP -= ob.GetComponent<itemParameters>().add_HP;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Energy -= ob.GetComponent<itemParameters>().add_energy;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxEnergy -= ob.GetComponent<itemParameters>().add_total_energy;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD -= ob.GetComponent<itemParameters>().add_ad;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD -= ob.GetComponent<itemParameters>().add_md;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor -= ob.GetComponent<itemParameters>().add_armor;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().bariera -= ob.GetComponent<itemParameters>().add_barier;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed -= ob.GetComponent<itemParameters>().add_speed;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dodge -= ob.GetComponent<itemParameters>().add_dodge;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma -= ob.GetComponent<itemParameters>().add_charyzma;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune -= ob.GetComponent<itemParameters>().runeId;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost -= ob.GetComponent<itemParameters>().xpBoostPercent;
+
+                                GameObject tempPlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+                                tempPlayerObj.GetComponent<PlayerStats>().maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
+                                tempPlayerObj.GetComponent<PlayerStats>().HP -= ob.GetComponent<itemParameters>().add_HP;
+                                tempPlayerObj.GetComponent<PlayerStats>().Energy -= ob.GetComponent<itemParameters>().add_energy;
+                                tempPlayerObj.GetComponent<PlayerStats>().maxEnergy -= ob.GetComponent<itemParameters>().add_total_energy;
+                                tempPlayerObj.GetComponent<PlayerStats>().AD -= ob.GetComponent<itemParameters>().add_ad;
+                                tempPlayerObj.GetComponent<PlayerStats>().MD -= ob.GetComponent<itemParameters>().add_md;
+                                tempPlayerObj.GetComponent<PlayerStats>().Armor -= ob.GetComponent<itemParameters>().add_armor;
+                                tempPlayerObj.GetComponent<PlayerStats>().bariera -= ob.GetComponent<itemParameters>().add_barier;
+                                tempPlayerObj.GetComponent<PlayerStats>().Speed -= ob.GetComponent<itemParameters>().add_speed;
+                                tempPlayerObj.GetComponent<PlayerStats>().Dodge -= ob.GetComponent<itemParameters>().add_dodge;
+                                tempPlayerObj.GetComponent<PlayerStats>().charyzma -= ob.GetComponent<itemParameters>().add_charyzma;
+                                tempPlayerObj.GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
+                                tempPlayerObj.GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
+                                tempPlayerObj.GetComponent<PlayerStats>().activeRune -= ob.GetComponent<itemParameters>().runeId;
+                                tempPlayerObj.GetComponent<PlayerStats>().xpBoost -= ob.GetComponent<itemParameters>().xpBoostPercent;
                             }
                             else
                             {
@@ -528,23 +500,23 @@ public class EqSystem : MonoBehaviour
                                 {
                                     eqIds[i] = ob.GetComponent<itemParameters>().eqPlace + "|" + str[1];
                                     equiped[ob.GetComponent<itemParameters>().eqPlace].color = new Color(1, 1, 1, 1);
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxHP += ob.GetComponent<itemParameters>().add_total_HP;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP += ob.GetComponent<itemParameters>().add_HP;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Energy += ob.GetComponent<itemParameters>().add_energy;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().maxEnergy += ob.GetComponent<itemParameters>().add_total_energy;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD += ob.GetComponent<itemParameters>().add_ad;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD += ob.GetComponent<itemParameters>().add_md;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor += ob.GetComponent<itemParameters>().add_armor;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().bariera += ob.GetComponent<itemParameters>().add_barier;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed += ob.GetComponent<itemParameters>().add_speed;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dodge += ob.GetComponent<itemParameters>().add_dodge;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
-                                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
 
+                                    GameObject tempPlayerObj = GameObject.FindGameObjectWithTag("Player");
 
-
+                                    tempPlayerObj.GetComponent<PlayerStats>().maxHP += ob.GetComponent<itemParameters>().add_total_HP;
+                                    tempPlayerObj.GetComponent<PlayerStats>().HP += ob.GetComponent<itemParameters>().add_HP;
+                                    tempPlayerObj.GetComponent<PlayerStats>().Energy += ob.GetComponent<itemParameters>().add_energy;
+                                    tempPlayerObj.GetComponent<PlayerStats>().maxEnergy += ob.GetComponent<itemParameters>().add_total_energy;
+                                    tempPlayerObj.GetComponent<PlayerStats>().AD += ob.GetComponent<itemParameters>().add_ad;
+                                    tempPlayerObj.GetComponent<PlayerStats>().MD += ob.GetComponent<itemParameters>().add_md;
+                                    tempPlayerObj.GetComponent<PlayerStats>().Armor += ob.GetComponent<itemParameters>().add_armor;
+                                    tempPlayerObj.GetComponent<PlayerStats>().bariera += ob.GetComponent<itemParameters>().add_barier;
+                                    tempPlayerObj.GetComponent<PlayerStats>().Speed += ob.GetComponent<itemParameters>().add_speed;
+                                    tempPlayerObj.GetComponent<PlayerStats>().Dodge += ob.GetComponent<itemParameters>().add_dodge;
+                                    tempPlayerObj.GetComponent<PlayerStats>().charyzma += ob.GetComponent<itemParameters>().add_charyzma;
+                                    tempPlayerObj.GetComponent<PlayerStats>().escape += ob.GetComponent<itemParameters>().add_escameChance;
+                                    tempPlayerObj.GetComponent<PlayerStats>().critChance += ob.GetComponent<itemParameters>().CritChanse;
+                                    tempPlayerObj.GetComponent<PlayerStats>().activeRune += ob.GetComponent<itemParameters>().runeId;
 
                                     if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
                                     {
@@ -554,7 +526,7 @@ public class EqSystem : MonoBehaviour
                                         }
                                         else
                                         {
-                                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().xpBoost += ob.GetComponent<itemParameters>().xpBoostPercent;
+                                            tempPlayerObj.GetComponent<PlayerStats>().xpBoost += ob.GetComponent<itemParameters>().xpBoostPercent;
                                         }
                                     }
                                     UpdateItems();
@@ -564,20 +536,14 @@ public class EqSystem : MonoBehaviour
                                     slotUsed.SetActive(true);
 
                                 }
-
-                                
                             }
-
                         }
                     }
                 }
-
                 break;
-            }
-
-                
-            
+            } 
         }
         UpdateItems();
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 }

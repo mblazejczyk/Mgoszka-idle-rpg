@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MissionSystem : MonoBehaviour
@@ -13,8 +11,6 @@ public class MissionSystem : MonoBehaviour
 
     public GameObject[] PersonalMissions;
     public GameObject[] MissionById;
-
-    //miejsce w tabeli to osoba, liczba to misja do rozpoczęcia
     
     public int[] missionsProgress = {1, 1 };
     public Text progressText;
@@ -22,7 +18,6 @@ public class MissionSystem : MonoBehaviour
     public Button[] claimReward;
     public GameObject[] thanking;
     public Button[] AcceptButtons;
-
 
     [Space(35)]
     [Header("Dzienne misje")]
@@ -57,9 +52,9 @@ public class MissionSystem : MonoBehaviour
         }
         currentMissionId = 99999;
         progressText.text = "";
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(isOnMission == true)
@@ -90,7 +85,6 @@ public class MissionSystem : MonoBehaviour
             }
         }
 
-        
         progress[9] = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Level;
 
         int[] killingMission = { 0, 1, 2, 3, 4, 17, 18, 19, 20, 21, 31, 32, 33, 34, 35, 37, 38, 39, 36, 49, 50, 51, 52, 53, 61 };
@@ -680,7 +674,6 @@ public class MissionSystem : MonoBehaviour
         {
             stickBuyButton.interactable = false;
         }
-
     }
 
     public void ShowMissionProgress()
@@ -1021,7 +1014,6 @@ public class MissionSystem : MonoBehaviour
         {
             MissionById[MissionId - 1].SetActive(true);
         }
-
     }
 
     public void StartMIssion(int MissionId)
@@ -1037,6 +1029,7 @@ public class MissionSystem : MonoBehaviour
         currentMissionId = MissionId;
         eqSys.GetComponent<EqSystem>().MissionChecker();
         isOnMission = true;
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public void FinishMission(int MissionId)
@@ -1044,42 +1037,34 @@ public class MissionSystem : MonoBehaviour
         if (MissionId <= 5)
         {
             missionsProgress[0]++;
-            
         }
         else if (MissionId <= 12 && MissionId >= 6)
         {
             missionsProgress[1]++;
-            
         }
         else if (MissionId <= 22 && MissionId >= 13)
         {
             missionsProgress[2]++;
-
         }
         else if (MissionId <= 32 && MissionId >= 23)
         {
             missionsProgress[3]++;
-
         }
         else if (MissionId <= 42 && MissionId >= 33)
         {
             missionsProgress[4]++;
-
         }
         else if (MissionId <= 52 && MissionId >= 43)
         {
             missionsProgress[5]++;
-
         }
         else if (MissionId <= 62 && MissionId >= 53)
         {
             missionsProgress[6]++;
-
         }
         else if (MissionId <= 72 && MissionId >= 63)
         {
             missionsProgress[7]++;
-
         }
         else if (MissionId <= 82 && MissionId >= 73)
         {
@@ -1103,6 +1088,7 @@ public class MissionSystem : MonoBehaviour
         progressText.text = "";
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().currentXP += 75;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().coins += 25;
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 
     public void StartDayMission()
@@ -1158,5 +1144,6 @@ public class MissionSystem : MonoBehaviour
         {
             missionDayliProgress[i] = 0;
         }
+        GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
     }
 }

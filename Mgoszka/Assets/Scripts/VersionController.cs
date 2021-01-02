@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -10,21 +9,15 @@ public class VersionController : MonoBehaviour
     [Space(20)]
     public GameObject newVerObj;
     public Text aboutText;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(GetVer());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator GetVer()
     {
-        UnityWebRequest www = UnityWebRequest.Get("https://drive.google.com/uc?export=download&id=1kd5vYCmiKc2w_8Aijw4wx781xtDIfTS-");
+        UnityWebRequest www = UnityWebRequest.Get("https://drive.google.com/uc?export=download&id=1CCYhjwYagJo4vgGX8ZYtcwOwH917-IEr");
         yield return www.SendWebRequest();
         if (www.isNetworkError || www.isHttpError)
         {

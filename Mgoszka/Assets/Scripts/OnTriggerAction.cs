@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,24 +39,21 @@ public class OnTriggerAction : MonoBehaviour
         actionButton.GetComponent<Animator>().SetTrigger("up");
     }
 
-    
-
     IEnumerator energyFlash()
     {
-        GameObject.FindGameObjectWithTag("miniEn").GetComponent<Image>().color = Color.red;
+        GameObject tempObj = GameObject.FindGameObjectWithTag("miniEn");
+
+        tempObj.GetComponent<Image>().color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        GameObject.FindGameObjectWithTag("miniEn").GetComponent<Image>().color = Color.black;
+        tempObj.GetComponent<Image>().color = Color.black;
         yield return new WaitForSeconds(0.2f);
-        GameObject.FindGameObjectWithTag("miniEn").GetComponent<Image>().color = Color.red;
+        tempObj.GetComponent<Image>().color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        GameObject.FindGameObjectWithTag("miniEn").GetComponent<Image>().color = Color.black;
-        
+        tempObj.GetComponent<Image>().color = Color.black;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-
         actionButton.GetComponent<Animator>().SetTrigger("up");
         actionButton.GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -76,7 +72,9 @@ public class OnTriggerAction : MonoBehaviour
                     }
                     else
                     {
-                        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Energy -= 5;
+                        GameObject tempPlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+                        tempPlayerObj.GetComponent<PlayerStats>().Energy -= 5;
                         GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().RestoreEnergy();
                         enymieBattle.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
                         enymieBattle.GetComponent<Fight>().FightPlaceId = this.gameObject.GetComponent<enymieStats>().FightPlaceId;
@@ -89,29 +87,26 @@ public class OnTriggerAction : MonoBehaviour
                         enymieBattle.GetComponent<Fight>().enyCritChance = this.gameObject.GetComponent<enymieStats>().CritChance;
                         enymieBattle.GetComponent<Fight>().EnyId = this.gameObject.GetComponent<enymieStats>().enyId;
 
-                        enymieBattle.GetComponent<Fight>().dixAD = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().AD;
-                        enymieBattle.GetComponent<Fight>().dixArmor = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Armor;
-                        enymieBattle.GetComponent<Fight>().dixBarier = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MagicBarier;
-                        enymieBattle.GetComponent<Fight>().dixDodge = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Dodge;
-                        enymieBattle.GetComponent<Fight>().dixEscape = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().escape;
-                        enymieBattle.GetComponent<Fight>().dixHP = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP;
-                        enymieBattle.GetComponent<Fight>().dixMD = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().MD;
-                        enymieBattle.GetComponent<Fight>().dixCritChance = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().critChance;
-                        enymieBattle.GetComponent<Fight>().RuneUsed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().activeRune;
+                        enymieBattle.GetComponent<Fight>().dixAD = tempPlayerObj.GetComponent<PlayerStats>().AD;
+                        enymieBattle.GetComponent<Fight>().dixArmor = tempPlayerObj.GetComponent<PlayerStats>().Armor;
+                        enymieBattle.GetComponent<Fight>().dixBarier = tempPlayerObj.GetComponent<PlayerStats>().MagicBarier;
+                        enymieBattle.GetComponent<Fight>().dixDodge = tempPlayerObj.GetComponent<PlayerStats>().Dodge;
+                        enymieBattle.GetComponent<Fight>().dixEscape = tempPlayerObj.GetComponent<PlayerStats>().escape;
+                        enymieBattle.GetComponent<Fight>().dixHP = tempPlayerObj.GetComponent<PlayerStats>().HP;
+                        enymieBattle.GetComponent<Fight>().dixMD = tempPlayerObj.GetComponent<PlayerStats>().MD;
+                        enymieBattle.GetComponent<Fight>().dixCritChance = tempPlayerObj.GetComponent<PlayerStats>().critChance;
+                        enymieBattle.GetComponent<Fight>().RuneUsed = tempPlayerObj.GetComponent<PlayerStats>().activeRune;
 
                         enymieBattle.GetComponent<Fight>().enymieKilled = this.gameObject;
 
-                        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position != fightPos.transform.position)
+                        if (tempPlayerObj.GetComponent<Transform>().position != fightPos.transform.position)
                         {
-                            enymieBattle.GetComponent<Fight>().previousLoc = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position;
+                            enymieBattle.GetComponent<Fight>().previousLoc = tempPlayerObj.GetComponent<Transform>().position;
                         }
-
-
 
                         enymieBattle.GetComponent<Fight>().StartFight();
                         
                         started = true;
-                        Debug.Log("All dont - fight started!");
                         actionButton.GetComponent<Button>().onClick.RemoveAllListeners();
                     }
                     
@@ -123,7 +118,6 @@ public class OnTriggerAction : MonoBehaviour
                     break;
                 case 2:
                     actionButton.GetComponent<Animator>().ResetTrigger("up");
-                    
                     float tim = (TimeInSec * ((100 - GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed) / 100));
                     Debug.Log(tim);
                     Debug.Log(TimeInSec);
@@ -144,8 +138,6 @@ public class OnTriggerAction : MonoBehaviour
                     actionButton.GetComponent<Animator>().ResetTrigger("up");
                     if (started == false)
                     {
-
-
                         GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[whitchProgress]++;
                         if (isToDestroy == true)
                         {
@@ -169,6 +161,5 @@ public class OnTriggerAction : MonoBehaviour
         actionButton.GetComponent<Animator>().ResetTrigger("up");
         actionButton.GetComponent<Button>().onClick.RemoveAllListeners();
         actionButton.GetComponent<Animator>().SetTrigger("down");
-
     }
 }

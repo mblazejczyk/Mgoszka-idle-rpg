@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -81,19 +79,14 @@ public class PlayerStats : MonoBehaviour
     public AudioClip DeathSound;
     public AudioClip LevelUpSound;
     public AudioSource SFXsource;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public bool isEnergyReseted = true;
+
     void Update()
     {
-
         if (FirstSkill != 0)
         {
-        upgradeProgress[FirstSkill - 1].fillAmount = 1;
+            upgradeProgress[FirstSkill - 1].fillAmount = 1;
         }
 
         playerLevelMini.text = Level.ToString();
@@ -111,27 +104,34 @@ public class PlayerStats : MonoBehaviour
         HPbar.fillAmount = (HP / maxHP);
         miniHPbar.fillAmount = (HP / maxHP);
         expBar.fillAmount = (currentXP / maxXP);
-        expPoints.text = currentXP + "/" + maxXP;
+        expPoints.text = "<color=white>" + currentXP + "</color>" + "/" + maxXP;
 
         if(currentXP >= maxXP)
         {
             SFXsource.clip = LevelUpSound;
             SFXsource.Play();
-            currentXP = 0;
+            currentXP -= maxXP;
             Level++;
             LevelPoints++;
             maxXP *= 1.2f;
             HP = maxHP;
             Energy += 50;
+
             foreach(GameObject ob in LevelUpObjects)
             {
                 ob.SetActive(true);
             }
         }
         
-        if(Energy >= maxEnergy)
+        if(Energy >= maxEnergy && isEnergyReseted == false)
         {
             Energy = maxEnergy;
+            GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().ResetAllNotifications(true);
+            isEnergyReseted = true;
+        }
+        else if(Energy < maxEnergy)
+        {
+            isEnergyReseted = false;
         }
 
         if(FirstSkill != 0)
@@ -146,7 +146,6 @@ public class PlayerStats : MonoBehaviour
                 {
                     UpgradeBtns[i].interactable = false;
                 }
-                
             }
         }
         else
@@ -161,7 +160,6 @@ public class PlayerStats : MonoBehaviour
                 {
                     UpgradeBtns[i].interactable = false;
                 }
-                
             }
         }
 
@@ -177,8 +175,6 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        
-
         if(critChance >= 40)
         {
             critChance = 40;
@@ -190,6 +186,8 @@ public class PlayerStats : MonoBehaviour
         HP = Mathf.Round(HP * 100) / 100;
         Energy = Mathf.Round(Energy * 100) / 100;
         coins = Mathf.Round(coins * 100) / 100;
+        currentXP = Mathf.Round(currentXP * 100) / 100;
+        maxXP = Mathf.Round(maxXP * 100) / 100;
         GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[9] = Level;
 
         playerStatsDetail[0].text = AD.ToString();
@@ -208,7 +206,6 @@ public class PlayerStats : MonoBehaviour
         bariera = Mathf.Round(bariera * 100) / 100;
         Speed = Mathf.Round(Speed * 100) / 100;
         Dodge = Mathf.Round(Dodge * 100) / 100;
-        //charyzma = Mathf.Round(charyzma * 100) / 100;
         escape = Mathf.Round(escape * 100) / 100;
         critChance = Mathf.Round(critChance * 100) / 100;
 
@@ -239,16 +236,12 @@ public class PlayerStats : MonoBehaviour
         {
             if (eq.GetComponent<EqSystem>().eqIds[i] != "")
             {
-
-
-
                 string[] str = eq.GetComponent<EqSystem>().eqIds[i].Split('|');
 
                 if (int.Parse(str[0]) <= 6)
                 {
                     foreach (GameObject ob in eq.GetComponent<EqSystem>().items)
                     {
-
                         if (ob.GetComponent<itemParameters>().Id.ToString() == str[1])
                         {
                             maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
@@ -273,7 +266,6 @@ public class PlayerStats : MonoBehaviour
                 Debug.Log("isNull");
             }
         }
-        Debug.Log(HP);
         if(FirstSkill == 0)
         {
             FirstSkill = UpgradeId + 1;

@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MapSizeSystem : MonoBehaviour
 {
-
     public int currentSize = 1;
     public GameObject PlusButton;
     public GameObject MinusButton;
@@ -38,8 +35,6 @@ public class MapSizeSystem : MonoBehaviour
     }
     public void RefreshMapData()
     {
-
-
         if (GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().areItemsKnown == 1)
         {
             for (int i = 0; i < knownItems.Length; i++)
@@ -140,8 +135,6 @@ public class MapSizeSystem : MonoBehaviour
                 break;
         }
 
-
-
         ItemsFromEny[0].text = "";
 
         foreach(GameObject gobj in GameObject.FindGameObjectWithTag("dzdzownica").GetComponent<enymieStats>().itemsDrop)
@@ -204,8 +197,6 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[0].text += "</color>";
-
-
 
 
         ItemsFromEny[1].text = "";
@@ -272,10 +263,6 @@ public class MapSizeSystem : MonoBehaviour
         ItemsFromEny[1].text += "</color>";
 
 
-
-
-
-
         ItemsFromEny[4].text = "";
 
         foreach (GameObject gobj in GameObject.FindGameObjectWithTag("ryba").GetComponent<enymieStats>().itemsDrop)
@@ -338,10 +325,6 @@ public class MapSizeSystem : MonoBehaviour
             }
         }
         ItemsFromEny[4].text += "</color>";
-
-
-
-
 
 
         ItemsFromEny[2].text = "";
@@ -408,10 +391,6 @@ public class MapSizeSystem : MonoBehaviour
         ItemsFromEny[2].text += "</color>";
 
 
-
-
-
-
         ItemsFromEny[3].text = "";
 
         foreach (GameObject gobj in GameObject.FindGameObjectWithTag("skorpion").GetComponent<enymieStats>().itemsDrop)
@@ -476,7 +455,6 @@ public class MapSizeSystem : MonoBehaviour
         ItemsFromEny[3].text += "</color>";
 
 
-
         ItemsFromEny[5].text = "";
 
         foreach (GameObject gobj in GameObject.FindGameObjectWithTag("deparn").GetComponent<enymieStats>().itemsDrop)
@@ -492,7 +470,6 @@ public class MapSizeSystem : MonoBehaviour
         }
         
     }
-
 
     public void Plus()
     {

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
@@ -11,15 +10,12 @@ public class AnimationController : MonoBehaviour
     private float xAxi;
     private float yAxi;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(opozniacz());
     }
 
-    // Update is called once per frame
-    
     IEnumerator opozniacz()
     {
         float x;
@@ -30,15 +26,10 @@ public class AnimationController : MonoBehaviour
 
         yield return new WaitForSeconds(0.02f);
 
-        
-        
         x = xAxi - player.transform.position.x;
         
         y = yAxi - player.transform.position.y;
        
-
-        //Debug.Log(x + " " + y + " " + xAxi + " " + yAxi + " " + player.transform.position.x + " " + player.transform.position.y);
-
         float x2;
         float y2;
 
@@ -64,12 +55,10 @@ public class AnimationController : MonoBehaviour
         {
             if (x < 0)
             {
-                //Debug.Log("prawo");
                 playerAni.SetInteger("transition", 3);
             }
             else
             {
-                //Debug.Log("lewo");
                 playerAni.SetInteger("transition", 2);
             }
         }
@@ -77,21 +66,17 @@ public class AnimationController : MonoBehaviour
         {
             if (y < 0)
             {
-                //Debug.Log("góra");
                 playerAni.SetInteger("transition", 4);
             }
             else
             {
-                //Debug.Log("dół");
                 playerAni.SetInteger("transition", 1);
             }
         }
         else
         {
-            //Debug.Log("stoi");
             playerAni.SetInteger("transition", 0);
         }
-        //Debug.Log(x + " " + y);
         StartCoroutine(opozniacz());
     }
     
