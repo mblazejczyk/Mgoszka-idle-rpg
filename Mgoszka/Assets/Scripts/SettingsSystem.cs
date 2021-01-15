@@ -34,6 +34,7 @@ public class SettingsSystem : MonoBehaviour
     [Space(50)]
     public int areItemsKnown = 0;
     private TranslationSystem translationText;
+    public GameObject languagePicker;
     void Update()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(fightHis.GetComponent<RectTransform>());
@@ -55,6 +56,15 @@ public class SettingsSystem : MonoBehaviour
     }
     void Awake()
     {
+        if(PlayerPrefs.GetInt("languageChoosen") != 0)
+        {
+            languagePicker.SetActive(false);
+        }
+        else
+        {
+            languagePicker.SetActive(true);
+        }
+
         translationText = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
         AndroidNotificationCenter.CancelAllDisplayedNotifications();
         GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().ResetAllNotifications(false);
@@ -82,6 +92,46 @@ public class SettingsSystem : MonoBehaviour
         }
         StartCoroutine(autoSave());
         StartCoroutine(timeCounter());
+    }
+
+    public void ChooseLanguage(int ChoosenLanguageId)
+    {
+        languageId = ChoosenLanguageId;
+        gameObject.GetComponent<TranslationSystem>().UpdateLanguage(languageId);
+        switch (languageId)
+        {
+            case 1:
+                LanguageText.text = "Language: Eng";
+                break;
+            case 0:
+                LanguageText.text = "Język: Pl";
+                break;
+        }
+        PlayerPrefs.SetInt("language", languageId);
+
+        if (Framerate == -1)
+        {
+            framerateText.text = translationText.GetText(34);
+        }
+        else
+        {
+            framerateText.text = translationText.GetText(31) + Framerate;
+        }
+
+        if (sound == 1)
+        {
+            soundText.text = translationText.GetText(29);
+        }
+        else
+        {
+            soundText.text = translationText.GetText(33);
+        }
+
+        string[] names;
+        names = QualitySettings.names;
+        qLevelText.text = translationText.GetText(32) + names[qLevel];
+
+        PlayerPrefs.SetInt("languageChoosen", 1);
     }
 
     public void ChangeLanguage()

@@ -16,6 +16,7 @@ ScriptsOnlyBuild:
     - SettingsSystem
     - ShopSystem
     - TimeCountingSystem
+    - TranslationSystem
     - UiController
     - VersionController
     - enymieStats
@@ -24,6 +25,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -136,43 +138,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13446}
     - Class: 114
-      Script: {instanceID: 13490}
+      Script: {instanceID: 13462}
     - Class: 114
-      Script: {instanceID: 13654}
+      Script: {instanceID: 13492}
     - Class: 114
-      Script: {instanceID: 13864}
+      Script: {instanceID: 13656}
     - Class: 114
-      Script: {instanceID: 13918}
+      Script: {instanceID: 13866}
     - Class: 114
-      Script: {instanceID: 13958}
+      Script: {instanceID: 13920}
     - Class: 114
-      Script: {instanceID: 13976}
+      Script: {instanceID: 13960}
     - Class: 114
-      Script: {instanceID: 13982}
+      Script: {instanceID: 13978}
     - Class: 114
-      Script: {instanceID: 14032}
+      Script: {instanceID: 13984}
     - Class: 114
-      Script: {instanceID: 14070}
+      Script: {instanceID: 14034}
     - Class: 114
-      Script: {instanceID: 14480}
+      Script: {instanceID: 14072}
     - Class: 114
-      Script: {instanceID: 14496}
+      Script: {instanceID: 14482}
     - Class: 114
-      Script: {instanceID: 14560}
+      Script: {instanceID: 14498}
     - Class: 114
-      Script: {instanceID: 14752}
+      Script: {instanceID: 14562}
     - Class: 114
-      Script: {instanceID: 14772}
+      Script: {instanceID: 14754}
     - Class: 114
-      Script: {instanceID: 15020}
+      Script: {instanceID: 14774}
     - Class: 114
-      Script: {instanceID: 15072}
+      Script: {instanceID: 15022}
     - Class: 114
-      Script: {instanceID: 15112}
+      Script: {instanceID: 15074}
     - Class: 114
-      Script: {instanceID: 15148}
+      Script: {instanceID: 15114}
     - Class: 114
-      Script: {instanceID: 15170}
+      Script: {instanceID: 15150}
+    - Class: 114
+      Script: {instanceID: 15172}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -362,7 +366,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 52ca0fe4ad6d81a23e3b5fc42b34b997
+      Hash: a0549d6ac6209f6deccb2fb788875033
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShopSystem
@@ -530,10 +534,16 @@ ScriptsOnlyBuild:
     className: OnTriggerAction
   - hash:
       serializedVersion: 2
-      Hash: f573ad21bc5ff4b9d4f91d947ade18f0
+      Hash: f62c3574ed4330a434e72400aa3dcd0b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SettingsSystem
+  - hash:
+      serializedVersion: 2
+      Hash: eb36e09e42b3553dec05d613ac471cf0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TranslationSystem
   - hash:
       serializedVersion: 2
       Hash: dca6ce9ebd3c025b016dd6e79e698720
@@ -602,7 +612,7 @@ ScriptsOnlyBuild:
     className: InputField
   - hash:
       serializedVersion: 2
-      Hash: 8000f6b06d14c788d1a33bf46e57f2dd
+      Hash: e3a95bf4d63aeffb5e830a7a763a1f9a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: itemParameters
@@ -650,7 +660,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 16a7135d944bf5204ef9cced67e55f4b
+      Hash: b16445d111c02b41cb0d2881676b93ed
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: VersionController
@@ -686,7 +696,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 4219124b31aa473f9d509abbece902b7
+      Hash: 0cc6c71d3e4802b8129464e36706a074
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapSizeSystem
@@ -843,4 +853,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/2.unity
-  playerPath: C:/Users/nibek/Desktop/mgoszka 0.6.1b.aab
+  playerPath: C:/Users/nibek/Desktop/mgoszka 0.7b.aab

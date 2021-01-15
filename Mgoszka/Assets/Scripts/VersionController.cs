@@ -9,6 +9,7 @@ public class VersionController : MonoBehaviour
     [Space(20)]
     public GameObject newVerObj;
     public Text aboutText;
+    public Text aboutTextEng;
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class VersionController : MonoBehaviour
                 newVerObj.SetActive(true);
             }
             aboutText.text += "\n" + "<size=40>" + TranslationObject.GetText(23) + "<color=white>" + ThisVersion + "</color></size>";
-            
+            aboutTextEng.text += "\n" + "<size=40>" + TranslationObject.GetText(23) + "<color=white>" + ThisVersion + "</color></size>";
         }
     }
 }

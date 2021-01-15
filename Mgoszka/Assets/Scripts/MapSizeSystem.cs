@@ -57,12 +57,12 @@ public class MapSizeSystem : MonoBehaviour
                 switch (GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId)
                 {
                     case 0:
-                        EnymiesPl[i].SetActive(true);
                         EnymiesEng[i].SetActive(false);
+                        EnymiesPl[i].SetActive(true);
                         break;
                     case 1:
-                        EnymiesEng[i].SetActive(true);
                         EnymiesPl[i].SetActive(false);
+                        EnymiesEng[i].SetActive(true);
                         break;
                 }
                 EnymiesUnknown[i].SetActive(false);
