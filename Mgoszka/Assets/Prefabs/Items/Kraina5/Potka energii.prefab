@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 30
   isGivingProgress: 1
   Id: 39
-  Name: Potka energii
+  Name:
+  - Potka energii
+  - Potion of energy
   isEquickable: 0
   eqPlace: 0
   isLimited: 0
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 3

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 38
-  Name: "Potka do\u015Bwiadczenia"
+  Name:
+  - "Potka do\u015Bwiadczenia"
+  - XP potion
   isEquickable: 0
   eqPlace: 0
   isLimited: 0
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 600
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 3

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 37
-  Name: "Pier\u015Bcie\u0144 \u0142owiecki"
+  Name:
+  - "Pier\u015Bcie\u0144 \u0142owiecki"
+  - Hunters ring
   isEquickable: 1
   eqPlace: 5
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2

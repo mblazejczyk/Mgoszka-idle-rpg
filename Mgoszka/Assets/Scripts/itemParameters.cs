@@ -6,7 +6,7 @@ public class itemParameters : MonoBehaviour
     public bool isGivingProgress = false;
     [Space(10)]
     public int Id;
-    public string Name;
+    public string[] Name;
     [Space(10)]
     public bool isEquickable;
     public int eqPlace;
@@ -29,7 +29,7 @@ public class itemParameters : MonoBehaviour
     public float CritChanse;
     [Space(10)]
     public bool isCommented = false;
-    public string commentStr;
+    public string[] commentStr;
     [Space(10)]
     public int runeId = 0;
     [Space(10)]

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 54
   isGivingProgress: 1
   Id: 66
-  Name: "He\u0142m z kolcami"
+  Name:
+  - "He\u0142m z kolcami"
+  - Spiked helmet
   isEquickable: 1
   eqPlace: 0
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 0

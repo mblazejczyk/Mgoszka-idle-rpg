@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 72
-  Name: "Naszyjnik pozostania \u017Cywym"
+  Name:
+  - "Naszyjnik pozostania \u017Cywym"
+  - Stay alive necklace
   isEquickable: 1
   eqPlace: 6
   isLimited: 1
@@ -111,6 +113,8 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: '"We see you and we need you. You know that, right?" ~Tyler Joseph'
+  commentStr:
+  - '"We see you and we need you, you know that, right?" ~Tyler Joseph'
+  - '"We see you and we need you, you know that, right?" ~Tyler Joseph'
   runeId: 0
   RareId: 5

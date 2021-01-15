@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 87
-  Name: Runa leczenia
+  Name:
+  - Runa leczenia
+  - Rune of healing
   isEquickable: 1
   eqPlace: 3
   isLimited: 1
@@ -111,7 +113,9 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Po u\u017Cyciu, b\u0119dziesz leczy\u0107 si\u0119 z pewnej cz\u0119sci
-    zadawanych ci obra\u017Ce\u0144 w tej walce"
+  commentStr:
+  - "Leczy 20% otrzymanych obra\u017Ce\u0144 (chyba \u017Ce zadane ci obra\u017Cenia
+    maj\u0105 zabi\u0107)"
+  - Heals 20% of damage taken (unless the damage dealt is intended to kill you)
   runeId: 6
   RareId: 6

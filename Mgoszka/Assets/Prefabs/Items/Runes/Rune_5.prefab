@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 86
-  Name: Runa ucieczki
+  Name:
+  - Runa ucieczki
+  - Escape rune
   isEquickable: 1
   eqPlace: 3
   isLimited: 1
@@ -111,7 +113,10 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Je\u015Bli od nast\u0119pnego ataku mia\u0142by\u015B zgin\u0105\u0107,
-    zamiast tego masz 50% szansy na ucieczk\u0119 lub skr\xF3cenie czasu \u015Bmieci"
+  commentStr:
+  - "Je\u015Bli mia\u0142by\u015B umrze\u0107 od nast\u0119pnego ataku, zamiast tego
+    masz 50% szans na natychmiastow\u0105 ucieczke i 50% na skr\xF3cenie czasu \u015Bmierci"
+  - If you were about to die from the next attack, instead you have a 50% chance
+    of escaping immediately and a 50% reduction in death time
   runeId: 5
   RareId: 6

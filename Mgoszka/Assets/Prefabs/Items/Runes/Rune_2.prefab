@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 83
-  Name: Runa odrodzenia
+  Name:
+  - Runa odrodzenia
+  - rune of rebirth
   isEquickable: 1
   eqPlace: 3
   isLimited: 1
@@ -111,6 +113,8 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Uleczy dwukrotno\u015B\u0107 nast\u0119pnego ataku przeciwnika"
+  commentStr:
+  - "Ulecza dwukrotno\u015B\u0107 nast\u0119pnego uderzenia przeciwnika"
+  - Heals 200% of enemy next attack
   runeId: 2
   RareId: 6

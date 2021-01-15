@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 29
   isGivingProgress: 1
   Id: 40
-  Name: "R\u0119kawica z kolcami"
+  Name:
+  - "R\u0119kawica z kolcami"
+  - Spiked gloves
   isEquickable: 1
   eqPlace: 5
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 3

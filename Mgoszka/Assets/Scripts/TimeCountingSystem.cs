@@ -40,11 +40,13 @@ public class TimeCountingSystem : MonoBehaviour
     public GameObject rainFilter;
     [Space(10)]
     public GameObject mapSystem;
+    private TranslationSystem TranslationObject;
 
     void Start()
     {
         UpdateWorldInfo();
         mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
+        TranslationObject = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
     }
 
     void Update()
@@ -149,6 +151,8 @@ public class TimeCountingSystem : MonoBehaviour
         isDone = false;
         mapSystem.GetComponent<MapSizeSystem>().knownPlaces[CurrentWorld] = 1;
         GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
+
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
         var channel = new AndroidNotificationChannel()
         {
             Id = "travel_id",
@@ -158,8 +162,8 @@ public class TimeCountingSystem : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
         var notification = new AndroidNotification();
-        notification.Title = "Jestes na miejscu";
-        notification.Text = "Dotarles do docelowej lokalizacji";
+        notification.Title = TranslationObject.GetText(35);
+        notification.Text = TranslationObject.GetText(36);
         notification.LargeIcon = "mgoszka_large_icon";
         notification.SmallIcon = "mgoszka_small_icon";
         notification.FireTime = DK_podroz;
@@ -183,8 +187,8 @@ public class TimeCountingSystem : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
         var notification = new AndroidNotification();
-        notification.Title = "Znow stoisz na nogach!";
-        notification.Text = "Skonczyl sie twoj czas odrodzenia. Mozesz wrocic do gry!";
+        notification.Title = TranslationObject.GetText(37);
+        notification.Text = TranslationObject.GetText(38);
         notification.LargeIcon = "mgoszka_large_icon";
         notification.SmallIcon = "mgoszka_small_icon";
         notification.FireTime = DK_dead;
@@ -243,6 +247,8 @@ public class TimeCountingSystem : MonoBehaviour
         DP_energyRest = DateTime.Now;
         DK_energyRest = DP_energyRest.AddSeconds(1800);
         GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
+
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
         var channel = new AndroidNotificationChannel()
         {
             Id = "energy_id",
@@ -252,8 +258,8 @@ public class TimeCountingSystem : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
         var notification = new AndroidNotification();
-        notification.Title = "Znow masz sile";
-        notification.Text = "Twoja energia sie odnowila!";
+        notification.Title = TranslationObject.GetText(39);
+        notification.Text = TranslationObject.GetText(40);
         notification.LargeIcon = "mgoszka_large_icon";
         notification.SmallIcon = "mgoszka_small_icon";
         notification.FireTime = DK_energyRest;
@@ -266,7 +272,7 @@ public class TimeCountingSystem : MonoBehaviour
     void UpdateTravelText()
     {
         int a = (int)(DK_podroz - DateTime.Now).TotalSeconds;
-        timeLeft.text = "Pozostalo: ";
+        timeLeft.text = TranslationObject.GetText(24);
         TimeSpan result = TimeSpan.FromSeconds(a);
         timeLeft.text += result.ToString("hh':'mm':'ss");
     }
@@ -274,7 +280,7 @@ public class TimeCountingSystem : MonoBehaviour
     void UpdateXpText()
     {
         int a = (int)(DK_xpBoost - DateTime.Now).TotalSeconds;
-        XP_boost_Text.text = "Pozostalo: ";
+        XP_boost_Text.text = TranslationObject.GetText(24);
         TimeSpan result = TimeSpan.FromSeconds(a);
         XP_boost_Text.text += result.ToString("hh':'mm':'ss");
     }
@@ -290,7 +296,7 @@ public class TimeCountingSystem : MonoBehaviour
     void UpdateDeadText()
     {
         int a = (int)(DK_dead - DateTime.Now).TotalSeconds;
-        timeToRessurect.text = "Pozostalo: ";
+        timeToRessurect.text = TranslationObject.GetText(24);
         TimeSpan result = TimeSpan.FromSeconds(a);
         timeToRessurect.text += result.ToString("hh':'mm':'ss");
     }
@@ -311,8 +317,8 @@ public class TimeCountingSystem : MonoBehaviour
             AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
             var notification = new AndroidNotification();
-            notification.Title = "Znow masz sile";
-            notification.Text = "Twoja energia sie odnowila!";
+            notification.Title = TranslationObject.GetText(39);
+            notification.Text = TranslationObject.GetText(40);
             notification.LargeIcon = "mgoszka_large_icon";
             notification.SmallIcon = "mgoszka_small_icon";
             notification.FireTime = DK_energyRest;
@@ -332,8 +338,8 @@ public class TimeCountingSystem : MonoBehaviour
             AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
             var notification = new AndroidNotification();
-            notification.Title = "Znow stoisz na nogach!";
-            notification.Text = "Skonczyl sie twoj czas odrodzenia. Mozesz wrocic do gry!";
+            notification.Title = TranslationObject.GetText(37);
+            notification.Text = TranslationObject.GetText(38);
             notification.LargeIcon = "mgoszka_large_icon";
             notification.SmallIcon = "mgoszka_small_icon";
             notification.FireTime = DK_dead;
@@ -353,8 +359,8 @@ public class TimeCountingSystem : MonoBehaviour
             AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
             var notification = new AndroidNotification();
-            notification.Title = "Jestes na miejscu";
-            notification.Text = "Dotarles do docelowej lokalizacji";
+            notification.Title = TranslationObject.GetText(35);
+            notification.Text = TranslationObject.GetText(36);
             notification.LargeIcon = "mgoszka_large_icon";
             notification.SmallIcon = "mgoszka_small_icon";
             notification.FireTime = DK_podroz;

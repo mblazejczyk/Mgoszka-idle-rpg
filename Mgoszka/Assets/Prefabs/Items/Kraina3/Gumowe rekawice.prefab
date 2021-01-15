@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 44
   isGivingProgress: 1
   Id: 49
-  Name: "Gumowe r\u0119kawice"
+  Name:
+  - "Gumowe r\u0119kawice"
+  - Rubber gloves
   isEquickable: 1
   eqPlace: 5
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

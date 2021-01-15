@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 44
-  Name: "W\u0119dka"
+  Name:
+  - "W\u0119dka"
+  - Fishing rod
   isEquickable: 1
   eqPlace: 4
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 20
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2

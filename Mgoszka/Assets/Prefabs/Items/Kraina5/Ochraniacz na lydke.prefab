@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 25
   isGivingProgress: 1
   Id: 36
-  Name: "Ochrona na \u0142ydk\u0119"
+  Name:
+  - "Ochraniaczna \u0142ydk\u0119"
+  - Calf protector
   isEquickable: 1
   eqPlace: 2
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2

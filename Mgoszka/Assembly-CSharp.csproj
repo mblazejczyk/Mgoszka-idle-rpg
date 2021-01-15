@@ -83,6 +83,7 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
+    <Compile Include="Assets\Scripts\TranslationSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

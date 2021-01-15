@@ -19,7 +19,8 @@ public class MapSizeSystem : MonoBehaviour
     public GameObject[] NPCs;
     public GameObject[] NPCsUnknown;
 
-    public GameObject[] Enymies;
+    public GameObject[] EnymiesPl;
+    public GameObject[] EnymiesEng;
     public GameObject[] EnymiesUnknown;
     [Space(10)]
     public GameObject[] k1Markers;
@@ -53,14 +54,32 @@ public class MapSizeSystem : MonoBehaviour
             {
                 NPCs[i].SetActive(true);
                 NPCsUnknown[i].SetActive(false);
-                Enymies[i].SetActive(true);
+                switch (GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId)
+                {
+                    case 0:
+                        EnymiesPl[i].SetActive(true);
+                        EnymiesEng[i].SetActive(false);
+                        break;
+                    case 1:
+                        EnymiesEng[i].SetActive(true);
+                        EnymiesPl[i].SetActive(false);
+                        break;
+                }
                 EnymiesUnknown[i].SetActive(false);
             }
             else
             {
                 NPCs[i].SetActive(false);
                 NPCsUnknown[i].SetActive(true);
-                Enymies[i].SetActive(false);
+                switch (GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId)
+                {
+                    case 0:
+                        EnymiesPl[i].SetActive(false);
+                        break;
+                    case 1:
+                        EnymiesEng[i].SetActive(false);
+                        break;
+                }
                 EnymiesUnknown[i].SetActive(true);
             }
         }
@@ -141,7 +160,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if(knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -153,7 +172,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -165,7 +184,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -177,7 +196,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -189,7 +208,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[0].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -205,7 +224,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -217,7 +236,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -229,7 +248,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -241,7 +260,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -253,7 +272,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[1].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -269,7 +288,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -281,7 +300,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -293,7 +312,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -305,7 +324,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -317,7 +336,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[4].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -333,7 +352,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -345,7 +364,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -357,7 +376,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -369,7 +388,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -381,7 +400,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[2].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -397,7 +416,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -409,7 +428,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -421,7 +440,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -433,7 +452,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -445,7 +464,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[3].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {
@@ -461,7 +480,7 @@ public class MapSizeSystem : MonoBehaviour
         {
             if (knownItems[gobj.GetComponent<itemParameters>().Id] == 1)
             {
-                ItemsFromEny[5].text += "-" + gobj.GetComponent<itemParameters>().Name + "\n";
+                ItemsFromEny[5].text += "-" + gobj.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
             }
             else
             {

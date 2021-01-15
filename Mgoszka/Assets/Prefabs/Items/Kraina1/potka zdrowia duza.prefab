@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 24
   isGivingProgress: 1
   Id: 18
-  Name: Potka zdrowia duza
+  Name:
+  - "Du\u017Ca potka zdrowia"
+  - Big health potion
   isEquickable: 0
   eqPlace: 1
   isLimited: 0
@@ -110,3 +112,7 @@ MonoBehaviour:
   xpBoostPercent: 0
   xpBoostTimeInSec: 0
   CritChanse: 0
+  isCommented: 0
+  commentStr: []
+  runeId: 0
+  RareId: 0

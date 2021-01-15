@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 42
   isGivingProgress: 1
   Id: 57
-  Name: "P\u0142aszcz"
+  Name:
+  - "P\u0142aszcz"
+  - Coat
   isEquickable: 1
   eqPlace: 1
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

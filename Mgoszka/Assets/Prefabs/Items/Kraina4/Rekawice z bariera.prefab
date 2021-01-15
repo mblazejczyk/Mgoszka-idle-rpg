@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 74
-  Name: "R\u0119kawice z barier\u0105"
+  Name:
+  - "R\u0119kawice z barier\u0105"
+  - Gloves with barrier
   isEquickable: 1
   eqPlace: 5
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

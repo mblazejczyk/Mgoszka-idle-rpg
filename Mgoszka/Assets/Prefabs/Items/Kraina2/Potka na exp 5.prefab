@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 28
-  Name: Potka na exp
+  Name:
+  - Potka na XP
+  - XP potion
   isEquickable: 0
   eqPlace: 0
   isLimited: 0
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 300
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 3

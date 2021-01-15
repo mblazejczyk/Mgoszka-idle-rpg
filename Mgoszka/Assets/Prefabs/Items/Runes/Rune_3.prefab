@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 84
-  Name: Runa egzekucji
+  Name:
+  - Runa egzekucji
+  - execution rune
   isEquickable: 1
   eqPlace: 3
   isLimited: 1
@@ -111,7 +113,8 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Przy nast\u0119pnym ataku masz ma\u0142\u0105 szans\u0119 na natychmiastowe
-    zabicie przeciwnika (nie dzia\u0142a na bossa)"
+  commentStr:
+  - "Przy nast\u0119pnym ataku masz 5% szansy na natychmiastowe zabicie przeciwnika"
+  - On your next attack, you have a 5% chance to immediately kill the enemy
   runeId: 3
   RareId: 6

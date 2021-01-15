@@ -65,6 +65,8 @@ public class Fight : MonoBehaviour
     public int placeToTp;
     public GameObject[] placesForEachLand;
     private float StartingMaxEnyHp;
+    private TranslationSystem TranslationObject;
+
     private void Update()
     {
         if(playerHit == true)
@@ -134,6 +136,7 @@ public class Fight : MonoBehaviour
     }
     public void StartFight()
     {
+        TranslationObject = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
         damageHistory.text = "";
         if(isInFight == true)
         {
@@ -224,12 +227,12 @@ public class Fight : MonoBehaviour
                 {
                     isRuneUsed = true;
                     enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier * 0.5f)) - Mathf.Max(0, (dixAD - enyArmor * 0.5f));
-                    damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                    damageHistory.text = TranslationObject.GetText(14) + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) + TranslationObject.GetText(15) + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
                 }
                 else
                 {
                     enyHP = enyHP - Mathf.Max(0, (dixMD - enyBarier)) - Mathf.Max(0, (dixAD - enyArmor));
-                    damageHistory.text = "Przeciwnik uderzony za: " + Mathf.Max(0, (dixMD - enyBarier)) + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                    damageHistory.text = TranslationObject.GetText(14) + Mathf.Max(0, (dixMD - enyBarier)) + TranslationObject.GetText(15) + Mathf.Max(0, (dixAD - enyArmor)) + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
                 }
             }
             else//crited
@@ -244,13 +247,13 @@ public class Fight : MonoBehaviour
                     isRuneUsed = true;
                     enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier * 0.5f))) * 2;
                     enyHP = enyHP - (Mathf.Max(0, (dixAD - enyArmor * 0.5f))) * 2;
-                    damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                    damageHistory.text = TranslationObject.GetText(17) + Mathf.Max(0, (dixMD - enyBarier * 0.5f)) * 2 + TranslationObject.GetText(15) + Mathf.Max(0, (dixAD - enyArmor * 0.5f)) * 2 + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
                 }
                 else
                 {
                     enyHP = enyHP - (Mathf.Max(0, (dixMD - enyBarier))) * 2;
                     enyHP = enyHP - (Mathf.Max(0, (dixAD - enyArmor))) * 2;
-                    damageHistory.text = "Przeciwnik uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (dixMD - enyBarier)) * 2 + " magicznych obrażeń, i: " + Mathf.Max(0, (dixAD - enyArmor)) * 2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                    damageHistory.text = TranslationObject.GetText(17) + Mathf.Max(0, (dixMD - enyBarier)) * 2 + TranslationObject.GetText(15) + Mathf.Max(0, (dixAD - enyArmor)) * 2 + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
                 }
 
                 
@@ -287,7 +290,6 @@ public class Fight : MonoBehaviour
             }
             else
             {
-                Debug.Log("enymie got hit > waiting for attack");
                 StartCoroutine(waitForAttack(1));
             }
         }
@@ -300,7 +302,7 @@ public class Fight : MonoBehaviour
             }
             SFXsource.clip = blockSound;
             SFXsource.Play();
-            damageHistory.text = "Przeciwnik uniknął ataku" + "\n" + "\n" + damageHistory.text;
+            damageHistory.text = TranslationObject.GetText(18) + "\n" + "\n" + damageHistory.text;
             StartCoroutine(waitForAttack(1));
         }
 
@@ -328,8 +330,7 @@ public class Fight : MonoBehaviour
         }
         else //escape failed
         {
-            Debug.Log("Escape failed > waiting for attack");
-            damageHistory.text = "Dix nie uciekł" + "\n" + "\n" + damageHistory.text;
+            damageHistory.text = TranslationObject.GetText(19) + "\n" + "\n" + damageHistory.text;
             StartCoroutine(waitForAttack(1));
         }
     }
@@ -343,7 +344,7 @@ public class Fight : MonoBehaviour
 
             if (Random.value > enyCritChance / 100) //not crited
             {
-                damageHistory.text = "Dix uderzony za: " + Mathf.Max(0, (enyMD - dixBarier)) + " magicznych obrażeń, i: " + Mathf.Max(0, (enyAD - dixArmor)) + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                damageHistory.text = TranslationObject.GetText(20) + Mathf.Max(0, (enyMD - dixBarier)) + TranslationObject.GetText(15) + Mathf.Max(0, (enyAD - dixArmor)) + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
             }
             else //crited
             {
@@ -352,7 +353,7 @@ public class Fight : MonoBehaviour
                     ps.Play();
                 }
                 dixHP = dixHP - Mathf.Max(0, (enyMD - dixBarier)) - Mathf.Max(0, (enyAD - dixArmor));
-                damageHistory.text = "Dix uderzony <color=red>krytycznie</color> za: " + Mathf.Max(0, (enyMD - dixBarier))*2 + " magicznych obrażeń, i: " + Mathf.Max(0, (enyAD - dixArmor))*2 + " fizycznych" + "\n" + "\n" + damageHistory.text;
+                damageHistory.text = TranslationObject.GetText(21) + Mathf.Max(0, (enyMD - dixBarier))*2 + TranslationObject.GetText(15) + Mathf.Max(0, (enyAD - dixArmor))*2 + TranslationObject.GetText(16) + "\n" + "\n" + damageHistory.text;
             }
             dixHP = Mathf.Round(dixHP * 100) / 100;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
@@ -368,7 +369,6 @@ public class Fight : MonoBehaviour
                         isRuneUsed = true;
                         dixHP = dixHP + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 2;
                         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
-                        Debug.Log("Healed: " + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 2);
                     }
                     break;
                 case 6:
@@ -377,7 +377,6 @@ public class Fight : MonoBehaviour
 
                         dixHP = dixHP + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 0.2f;
                         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().HP = dixHP;
-                        Debug.Log("Healed: " + (Mathf.Max(0, (enyMD - dixBarier)) + Mathf.Max(0, (enyAD - dixArmor))) * 0.2f);
                     }
                     break;
             }
@@ -429,7 +428,7 @@ public class Fight : MonoBehaviour
             }
             SFXsource.clip = blockSound;
             SFXsource.Play();
-            damageHistory.text = "Dix uniknął ataku" + "\n" + "\n" + damageHistory.text;
+            damageHistory.text = TranslationObject.GetText(22) + "\n" + "\n" + damageHistory.text;
             StartCoroutine(waitForAttack(2));
         }
 

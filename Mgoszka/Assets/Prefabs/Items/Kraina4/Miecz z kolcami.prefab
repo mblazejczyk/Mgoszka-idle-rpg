@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 58
   isGivingProgress: 1
   Id: 69
-  Name: Miecz z kolcami
+  Name:
+  - Miecz z kolcami
+  - Spiked sword
   isEquickable: 1
   eqPlace: 4
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

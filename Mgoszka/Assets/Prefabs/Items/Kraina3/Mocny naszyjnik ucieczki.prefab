@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 53
-  Name: Mocny naszyjnik ucieczki
+  Name:
+  - Mocny naszyjnik ucieczki
+  - Strong escape necklace
   isEquickable: 1
   eqPlace: 6
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 3

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 82
-  Name: Runa teleportacji
+  Name:
+  - Runa teleportacji
+  - Teleportation rune
   isEquickable: 1
   eqPlace: 3
   isLimited: 1
@@ -111,7 +113,9 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Pozwala przenie\u015B\u0107 si\u0119 do dowolnej krainy po pokonaniu
-    przeciwnika"
+  commentStr:
+  - Po wybraniu celu z listy i pokonaniu przeciwnika, teleportuje w wybrane miejsce
+  - After choosing a destination and killing enemies, teleports you to the chosen
+    location
   runeId: 1
   RareId: 6

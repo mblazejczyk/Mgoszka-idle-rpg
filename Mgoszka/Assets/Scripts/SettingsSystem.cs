@@ -15,6 +15,9 @@ public class SettingsSystem : MonoBehaviour
     public int qLevel;
     public Text qLevelText;
     [Space(5)]
+    public int languageId = 0;
+    public Text LanguageText;
+    [Space(5)]
     public GameObject eq;
     [Space(5)]
     public GameObject SavingText;
@@ -30,7 +33,7 @@ public class SettingsSystem : MonoBehaviour
     public GameObject MapSystem;
     [Space(50)]
     public int areItemsKnown = 0;
-
+    private TranslationSystem translationText;
     void Update()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(fightHis.GetComponent<RectTransform>());
@@ -52,6 +55,7 @@ public class SettingsSystem : MonoBehaviour
     }
     void Awake()
     {
+        translationText = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
         AndroidNotificationCenter.CancelAllDisplayedNotifications();
         GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().ResetAllNotifications(false);
 
@@ -80,6 +84,46 @@ public class SettingsSystem : MonoBehaviour
         StartCoroutine(timeCounter());
     }
 
+    public void ChangeLanguage()
+    {
+        switch (languageId)
+        {
+            case 0: //pl > eng
+                languageId = 1;
+                gameObject.GetComponent<TranslationSystem>().UpdateLanguage(languageId);
+                LanguageText.text = "Language: Eng";
+                break;
+            case 1: //eng > pl
+                languageId = 0;
+                gameObject.GetComponent<TranslationSystem>().UpdateLanguage(languageId);
+                LanguageText.text = "Język: Pl";
+                break;
+        }
+        PlayerPrefs.SetInt("language", languageId);
+
+        if (Framerate == -1)
+        {
+            framerateText.text = translationText.GetText(34);
+        }
+        else
+        {
+            framerateText.text = translationText.GetText(31) + Framerate;
+        }
+
+        if (sound == 1)
+        {
+            soundText.text = translationText.GetText(29);
+        }
+        else
+        {
+            soundText.text = translationText.GetText(33);
+        }
+
+        string[] names;
+        names = QualitySettings.names;
+        qLevelText.text = translationText.GetText(32) + names[qLevel];
+
+    }
     public void SetGuideOpenTrue()
     {
         PlayerPrefs.SetInt("gobjAttentions", 1);
@@ -95,13 +139,13 @@ public class SettingsSystem : MonoBehaviour
         {
             AudioListener.volume = 1;
             sound = 1;
-            soundText.text = "Dźwięk: wł.";
+            soundText.text = translationText.GetText(29);
         }
         else
         {
             AudioListener.volume = 0;
             sound = 0;
-            soundText.text = "Dźwięk: wył.";
+            soundText.text = translationText.GetText(33);
         }
         SaveSettings();
     }
@@ -112,24 +156,24 @@ public class SettingsSystem : MonoBehaviour
         switch (Framerate)
         {
             case 15:
-                framerateText.text = "Limit FPS: 30";
                 Framerate = 30;
+                framerateText.text = translationText.GetText(31) + Framerate;
                 break;
             case 30:
-                framerateText.text = "Limit FPS: 60";
                 Framerate = 60;
+                framerateText.text = translationText.GetText(31) + Framerate;
                 break;
             case 60:
-                framerateText.text = "Limit FPS: 120";
                 Framerate = 120;
+                framerateText.text = translationText.GetText(31) + Framerate;
                 break;
             case 120:
-                framerateText.text = "Limit FPS: brak";
                 Framerate = -1;
+                framerateText.text = translationText.GetText(34);
                 break;
             case -1:
-                framerateText.text = "Limit FPS: 15";
                 Framerate = 15;
+                framerateText.text = translationText.GetText(31) + Framerate;
                 break;
         }
         Application.targetFrameRate = Framerate;
@@ -150,7 +194,7 @@ public class SettingsSystem : MonoBehaviour
             qLevel++;
         }
         QualitySettings.SetQualityLevel(qLevel);
-        qLevelText.text = "Jakość: " + names[qLevel];
+        qLevelText.text = translationText.GetText(32) + names[qLevel];
         SaveSettings();
     }
 
@@ -399,6 +443,18 @@ public class SettingsSystem : MonoBehaviour
             soundText.text = "Dźwięk: wył.";
         }
         ChangeQuality();
+
+        gameObject.GetComponent<TranslationSystem>().UpdateLanguage(PlayerPrefs.GetInt("language"));
+        languageId = PlayerPrefs.GetInt("language");
+        switch (languageId)
+        {
+            case 1:
+                LanguageText.text = "Language: Eng";
+                break;
+            case 0:
+                LanguageText.text = "Język: Pl";
+                break;
+        }
     }
 
     public void SaveGame()

@@ -10,6 +10,7 @@ public class ShopSystem : MonoBehaviour
     public Text[] pricesText;
     [Space(10)]
     public int[] whatIsMissionRelated;
+    public int[] whatProgressItGives;
     [Space(10)]
     public AudioSource SFXsound;
     public AudioClip[] audioClips;
@@ -58,7 +59,7 @@ public class ShopSystem : MonoBehaviour
             {
                 if (whatIsMissionRelated[i] == ChoosenId)
                 {
-                    GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[itemId[ChoosenId]]++;
+                    GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().progress[whatProgressItGives[i]]++;
                 }
                 else
                 {
@@ -68,6 +69,7 @@ public class ShopSystem : MonoBehaviour
             SFXsound.clip = audioClips[Random.Range(0, audioClips.Length)];
             SFXsound.Play();
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().coins -= priceToId[ChoosenId];
+            GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().SaveGame();
         }
     }
 
@@ -80,81 +82,83 @@ public class ShopSystem : MonoBehaviour
             if (ob.GetComponent<itemParameters>().Id == itemId[ChoosenId])
             {
                 itemImage.sprite = ob.GetComponent<Image>().sprite;
-                itemDetailName.text = ob.GetComponent<itemParameters>().Name;
+                itemDetailName.text = ob.GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId];
                 itemParameters.text = "";
                 int c = 1;
+                TranslationSystem TranslationObject = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
+
                 if (ob.GetComponent<itemParameters>().add_HP != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowe życie: " + ob.GetComponent<itemParameters>().add_HP + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(0) + ob.GetComponent<itemParameters>().add_HP + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_total_HP != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa pojemność życia: " + ob.GetComponent<itemParameters>().add_total_HP + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(1) + ob.GetComponent<itemParameters>().add_total_HP + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_energy != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa energia: " + ob.GetComponent<itemParameters>().add_energy + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(13) + ob.GetComponent<itemParameters>().add_energy + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_total_energy != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa poejmność energii: " + ob.GetComponent<itemParameters>().add_total_energy + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(2) + ob.GetComponent<itemParameters>().add_total_energy + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_ad != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowe obrażenia fizyczne: " + ob.GetComponent<itemParameters>().add_ad + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(3) + ob.GetComponent<itemParameters>().add_ad + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_md != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowe obrażenia magiczne: " + ob.GetComponent<itemParameters>().add_md + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(4) + ob.GetComponent<itemParameters>().add_md + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_armor != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowy pancerz: " + ob.GetComponent<itemParameters>().add_armor + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(5) + ob.GetComponent<itemParameters>().add_armor + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_barier != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa bariera: " + ob.GetComponent<itemParameters>().add_barier + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(6) + ob.GetComponent<itemParameters>().add_barier + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_speed != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa prędkość: " + ob.GetComponent<itemParameters>().add_speed + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(7) + ob.GetComponent<itemParameters>().add_speed + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_dodge != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowy dodge: " + ob.GetComponent<itemParameters>().add_dodge + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(8) + ob.GetComponent<itemParameters>().add_dodge + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_charyzma != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa charyzma: " + ob.GetComponent<itemParameters>().add_charyzma + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(9) + ob.GetComponent<itemParameters>().add_charyzma + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().add_escameChance != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa sznasa ucieczki: " + ob.GetComponent<itemParameters>().add_escameChance + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(10) + ob.GetComponent<itemParameters>().add_escameChance + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().CritChanse != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowa sznasa atak krytyczny: " + ob.GetComponent<itemParameters>().CritChanse + "\n";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(11) + ob.GetComponent<itemParameters>().CritChanse + "\n";
                     c++;
                 }
                 if (ob.GetComponent<itemParameters>().xpBoostPercent != 0)
                 {
-                    itemParameters.text += c + ". " + "Dodatkowy % XP: " + ob.GetComponent<itemParameters>().xpBoostPercent + " na: " + ob.GetComponent<itemParameters>().xpBoostTimeInSec + "s";
+                    itemParameters.text += c + ". " + TranslationObject.GetText(12) + ob.GetComponent<itemParameters>().xpBoostPercent + " na: " + ob.GetComponent<itemParameters>().xpBoostTimeInSec + "s";
                 }
                 if (ob.GetComponent<itemParameters>().isCommented == true)
                 {
-                    itemParameters.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr + "</color></i>";
+                    itemParameters.text += "<i><color=#d4d4d4>" + ob.GetComponent<itemParameters>().commentStr[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "</color></i>";
                 }
             }
         }

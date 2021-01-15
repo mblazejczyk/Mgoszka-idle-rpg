@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 26
-  Name: "NIebieskie sanda\u0142y"
+  Name:
+  - "Niebieskie sanda\u0142y"
+  - Blue sandals
   isEquickable: 1
   eqPlace: 2
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2

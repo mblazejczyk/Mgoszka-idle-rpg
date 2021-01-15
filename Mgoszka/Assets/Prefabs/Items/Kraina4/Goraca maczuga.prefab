@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 59
   isGivingProgress: 1
   Id: 65
-  Name: "Gor\u0105ca maczuga"
+  Name:
+  - "Gor\u0105ca maczuga"
+  - Hot club
   isEquickable: 1
   eqPlace: 4
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 5
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

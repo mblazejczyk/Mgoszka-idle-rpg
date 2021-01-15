@@ -17,6 +17,7 @@ public class VersionController : MonoBehaviour
 
     IEnumerator GetVer()
     {
+        TranslationSystem TranslationObject = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>();
         UnityWebRequest www = UnityWebRequest.Get("https://drive.google.com/uc?export=download&id=1CCYhjwYagJo4vgGX8ZYtcwOwH917-IEr");
         yield return www.SendWebRequest();
         if (www.isNetworkError || www.isHttpError)
@@ -30,7 +31,7 @@ public class VersionController : MonoBehaviour
             {
                 newVerObj.SetActive(true);
             }
-            aboutText.text += "\n" + "<size=40>" + "Ta gra ma wersje: <color=white>" + ThisVersion + "</color></size>";
+            aboutText.text += "\n" + "<size=40>" + TranslationObject.GetText(23) + "<color=white>" + ThisVersion + "</color></size>";
             
         }
     }

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 56
-  Name: Ogromna potka zdrowia
+  Name:
+  - Ogromna potka zdrowia
+  - Huge health potion
   isEquickable: 0
   eqPlace: 0
   isLimited: 0
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 3

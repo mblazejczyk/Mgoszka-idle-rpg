@@ -211,7 +211,7 @@ public class PlayerStats : MonoBehaviour
 
         for (int i = 0; i < CurrentLevel.Length; i++)
         {
-            upgradeLevel[i].text = "poziom: " + CurrentLevel[i];
+            upgradeLevel[i].text = GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>().GetText(25) + CurrentLevel[i];
         }
     }
 

@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 15
   isGivingProgress: 1
   Id: 31
-  Name: Stara niebieska koszula
+  Name:
+  - Stara niebieska koszula
+  - Old blue shirt
   isEquickable: 1
   eqPlace: 1
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2

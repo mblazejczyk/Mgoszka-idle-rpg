@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 60
   isGivingProgress: 1
   Id: 75
-  Name: "R\xF3\u017Cd\u017Cka z piaskiem"
+  Name:
+  - "R\xF3\u017Cd\u017Cka z piaskiem"
+  - Wand with sand
   isEquickable: 1
   eqPlace: 4
   isLimited: 1
@@ -111,6 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 20
   isCommented: 0
-  commentStr: 
+  commentStr: []
   runeId: 0
   RareId: 0

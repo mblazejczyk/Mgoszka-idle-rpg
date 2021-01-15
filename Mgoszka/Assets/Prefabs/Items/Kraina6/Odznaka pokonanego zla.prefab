@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 0
   isGivingProgress: 0
   Id: 79
-  Name: "Odznaka pokonanego z\u0142a"
+  Name:
+  - "Odznaka pokonanego z\u0142a"
+  - Badhe of defeated evil
   isEquickable: 0
   eqPlace: 1
   isLimited: 0
@@ -111,6 +113,8 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 1
-  commentStr: "Uda\u0142o ci si\u0119 pokona\u0107 to co najgorsze. Przed Tob\u0105
-    to co najlepsze"
+  commentStr:
+  - "Dow\xF3d wygrania ze z\u0142em"
+  - Proof of winning with evilness
+  runeId: 0
   RareId: 6

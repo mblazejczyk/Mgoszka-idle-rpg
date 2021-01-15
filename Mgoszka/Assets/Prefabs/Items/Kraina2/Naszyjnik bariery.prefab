@@ -91,7 +91,9 @@ MonoBehaviour:
   ProgressId: 13
   isGivingProgress: 1
   Id: 25
-  Name: Naszyjnik bariery
+  Name:
+  - Naszyjnik bariery
+  - Barrier Necklace
   isEquickable: 1
   eqPlace: 6
   isLimited: 1
@@ -111,5 +113,6 @@ MonoBehaviour:
   xpBoostTimeInSec: 0
   CritChanse: 0
   isCommented: 0
-  commentStr: 
+  commentStr: []
+  runeId: 0
   RareId: 2
