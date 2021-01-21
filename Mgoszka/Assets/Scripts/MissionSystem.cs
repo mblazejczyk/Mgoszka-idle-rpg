@@ -1022,6 +1022,14 @@ public class MissionSystem : MonoBehaviour
         }
     }
 
+    public void HideMissionsPanel()
+    {
+        foreach(GameObject obj in PersonalMissions)
+        {
+            obj.SetActive(false);
+        }
+    }
+
     public void StartMIssion(int MissionId)
     {
         if(isOnMission == true)

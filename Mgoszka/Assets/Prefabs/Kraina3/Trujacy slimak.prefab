@@ -133,6 +133,11 @@ MonoBehaviour:
   shop: {fileID: 0}
   whitchProgress: 0
   isToDestroy: 0
+  actionButtonImage: {fileID: 0}
+  talkSprite: {fileID: 21300000, guid: cd7d9839f67478946a4c7eba385d14b4, type: 3}
+  fightSprite: {fileID: 21300000, guid: 004e2d3bd3aba9043937c2e8fae7ac21, type: 3}
+  travelSprite: {fileID: 21300000, guid: e6197f4f72cba4f49852f8ed7e2f1d0f, type: 3}
+  otherActionSprite: {fileID: 21300000, guid: 7f829c12ac922334fb3005e8cb99b360, type: 3}
 --- !u!114 &8794121901700981080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +239,4 @@ MonoBehaviour:
   progressId: 36
   dailyProgressId: 24
   FightPlaceId: 2
+  toShowAfterBoss: []

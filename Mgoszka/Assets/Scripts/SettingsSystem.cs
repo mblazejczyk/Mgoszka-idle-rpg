@@ -50,7 +50,7 @@ public class SettingsSystem : MonoBehaviour
             tempObj.GetComponent<TimeCountingSystem>().DK_podroz = DateTime.Now;
         }
 
-        timeInGameText.text = "Czas w grze: ";
+        timeInGameText.text = gameObject.GetComponent<TranslationSystem>().GetText(28);
         TimeSpan result = TimeSpan.FromSeconds(TotalTimePlayed);
         timeInGameText.text += result.ToString("hh':'mm':'ss");
     }

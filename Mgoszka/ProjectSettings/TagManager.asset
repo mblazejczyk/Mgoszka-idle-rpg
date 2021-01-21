@@ -38,6 +38,7 @@ TagManager:
   - skorpion
   - trujacypajak
   - deparn
+  - actionChild
   layers:
   - Default
   - TransparentFX

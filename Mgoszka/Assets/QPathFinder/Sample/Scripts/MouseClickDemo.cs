@@ -35,34 +35,29 @@ namespace QPathFinder
             QPathFinder.Logger.SetDebugDrawLineDuration ( debugDrawLineDuration );
 
         }
-        void Update () 
-        {
-            if ( Input.GetMouseButtonUp(0)) 
-            {
-                //MovePlayerToMousePosition();
-            }
-        }
 
         public void MoveHere (GameObject place)
         {
-
-            
-
-            PathFinder.instance.FindShortestPathOfPoints(playerObj.transform.position, place.transform.position, PathFinder.instance.graphData.lineType,
-                    Execution.Asynchronously,
-                    thoroughPathFinding ? SearchMode.Complex : SearchMode.Simple,
-                    delegate (List<Vector3> points)
-                    {
-                        PathFollowerUtility.StopFollowing(playerObj.transform);
-                        if (useGroundSnap)
+            float distance = Vector3.Distance(playerObj.transform.position, place.transform.position);
+            Debug.Log(distance);
+            if (distance >= 0.35f)
+            {
+                PathFinder.instance.FindShortestPathOfPoints(playerObj.transform.position, place.transform.position, PathFinder.instance.graphData.lineType,
+                        Execution.Asynchronously,
+                        thoroughPathFinding ? SearchMode.Complex : SearchMode.Simple,
+                        delegate (List<Vector3> points)
                         {
-                            FollowThePathWithGroundSnap(points);
-                        }
-                        else
-                            FollowThePathNormally(points);
+                            PathFollowerUtility.StopFollowing(playerObj.transform);
+                            if (useGroundSnap)
+                            {
+                                FollowThePathWithGroundSnap(points);
+                            }
+                            else
+                                FollowThePathNormally(points);
 
-                    }
-                 );
+                        }
+                     );
+            }
         }
 
         

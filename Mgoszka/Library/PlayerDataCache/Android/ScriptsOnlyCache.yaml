@@ -17,6 +17,7 @@ ScriptsOnlyBuild:
     - ShopSystem
     - TimeCountingSystem
     - TranslationSystem
+    - TravelPreparations
     - UiController
     - VersionController
     - enymieStats
@@ -25,7 +26,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -177,6 +177,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15150}
     - Class: 114
       Script: {instanceID: 15172}
+    - Class: 114
+      Script: {instanceID: 1093714}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -528,7 +530,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: f115707b6e582854785914151adc8815
+      Hash: 8dfc7c4a0b0b86e2ffa35d8c5422813c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OnTriggerAction
@@ -850,7 +852,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 85fa7b352b72281739fb1579d0662e87
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TravelPreparations
   platform: 13
   scenePathNames:
   - Assets/Scenes/2.unity
-  playerPath: C:/Users/nibek/Desktop/mgoszka 0.7b.aab
+  playerPath: C:/Users/nibek/Desktop/mgoszka 0.7.1b.aab

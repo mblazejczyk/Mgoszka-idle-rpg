@@ -15,6 +15,7 @@ public class OnTriggerAction : MonoBehaviour
     public GameObject fightPos;
     public GameObject enymieBattle;
     [Space(15)]
+    public GameObject travelPreparation;
     public GameObject travelDest;
     public float TimeInSec;
     public int NewWorldId;
@@ -26,17 +27,47 @@ public class OnTriggerAction : MonoBehaviour
     public int whitchProgress;
     public bool isToDestroy;
     private bool started = false;
+    [Space(15)]
+    public GameObject actionButtonImage;
+    public Sprite talkSprite;
+    public Sprite fightSprite;
+    public Sprite travelSprite;
+    public Sprite otherActionSprite;
     private void Awake()
     {
         actionButton = GameObject.FindGameObjectWithTag("actionbtn");
         fightPos = GameObject.FindGameObjectWithTag("fightPos");
         enymieBattle = GameObject.FindGameObjectWithTag("enymieBattle");
+        actionButtonImage = GameObject.FindGameObjectWithTag("actionChild");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(actionButtonImage == null)
+        {
+            actionButtonImage = GameObject.FindGameObjectWithTag("actionChild");
+        }
+
         actionButton.GetComponent<Animator>().ResetTrigger("down");
         actionButton.GetComponent<Animator>().SetTrigger("up");
+        switch (whatTrigger)
+        {
+            case 1:
+                actionButtonImage.GetComponent<Image>().sprite = talkSprite;
+                break;
+            case 2:
+                actionButtonImage.GetComponent<Image>().sprite = travelSprite;
+                break;
+            case 3:
+                actionButtonImage.GetComponent<Image>().sprite = talkSprite;
+                break;
+            case 4:
+                actionButtonImage.GetComponent<Image>().sprite = otherActionSprite;
+                break;
+            case 0:
+                actionButtonImage.GetComponent<Image>().sprite = fightSprite;
+                break;
+        }
     }
 
     IEnumerator energyFlash()
@@ -119,10 +150,8 @@ public class OnTriggerAction : MonoBehaviour
                 case 2:
                     actionButton.GetComponent<Animator>().ResetTrigger("up");
                     float tim = (TimeInSec * ((100 - GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().Speed) / 100));
-                    Debug.Log(tim);
-                    Debug.Log(TimeInSec);
-                    GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().Travel(travelDest, (int)tim);
-                    GameObject.FindGameObjectWithTag("controller").GetComponent<TimeCountingSystem>().MoveToWorld(NewWorldId);
+                    travelPreparation.SetActive(true);
+                    travelPreparation.GetComponent<TravelPreparations>().PrepareTravel((int)tim, NewWorldId, travelDest);
                     break;
                 case 3:
                     actionButton.GetComponent<Animator>().ResetTrigger("up");
@@ -161,5 +190,9 @@ public class OnTriggerAction : MonoBehaviour
         actionButton.GetComponent<Animator>().ResetTrigger("up");
         actionButton.GetComponent<Button>().onClick.RemoveAllListeners();
         actionButton.GetComponent<Animator>().SetTrigger("down");
+        if(whatTrigger == 1)
+        {
+            GameObject.FindGameObjectWithTag("controller").GetComponent<MissionSystem>().HideMissionsPanel();
+        }
     }
 }

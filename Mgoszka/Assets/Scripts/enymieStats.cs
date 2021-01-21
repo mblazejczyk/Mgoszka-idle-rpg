@@ -100,7 +100,7 @@ public class enymieStats : MonoBehaviour
             {
                 if (droppedItems[i] != null && droppedItems[i].ToString() != "")
                 {
-                    GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + droppedItems[i].GetComponent<itemParameters>().Name + "\n";
+                    GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + droppedItems[i].GetComponent<itemParameters>().Name[GameObject.FindGameObjectWithTag("controller").GetComponent<SettingsSystem>().languageId] + "\n";
                     GameObject.FindGameObjectWithTag("controller").GetComponent<UiController>().Ekwipunek.GetComponent<EqSystem>().AddItem(droppedItems[i].GetComponent<itemParameters>().Id);
                     Listing++;
                 }
@@ -120,9 +120,9 @@ public class enymieStats : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().currentXP += xpDropped;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().coins += coinsDropped;
 
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + "Zdobyty EXP: " + xpDropped + "\n";
+        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>().GetText(43) + xpDropped + "\n";
         Listing++;
-        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + "Zdobyte złoto: " + coinsDropped;
+        GameObject.FindGameObjectWithTag("enymieBattle").GetComponent<Fight>().rewardList.text += Listing + ". " + GameObject.FindGameObjectWithTag("controller").GetComponent<TranslationSystem>().GetText(44) + coinsDropped;
 
         if(enyId == 50)
         {

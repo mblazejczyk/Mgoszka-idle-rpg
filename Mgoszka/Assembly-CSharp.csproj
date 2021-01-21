@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\MissionSystem.cs" />
     <Compile Include="Assets\Scripts\OnTriggerAction.cs" />
     <Compile Include="Assets\Scripts\SettingsSystem.cs" />
+    <Compile Include="Assets\Scripts\TranslationSystem.cs" />
     <Compile Include="Assets\Scripts\NPC_spawner.cs" />
     <Compile Include="Assets\Scripts\TimeCountingSystem.cs" />
     <Compile Include="Assets\Scripts\enymieStats.cs" />
@@ -83,7 +84,7 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
-    <Compile Include="Assets\Scripts\TranslationSystem.cs" />
+    <Compile Include="Assets\Scripts\TravelPreparations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
