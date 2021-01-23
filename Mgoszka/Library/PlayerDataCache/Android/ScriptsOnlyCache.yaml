@@ -158,27 +158,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14072}
     - Class: 114
-      Script: {instanceID: 14482}
+      Script: {instanceID: 14426}
     - Class: 114
-      Script: {instanceID: 14498}
+      Script: {instanceID: 14484}
     - Class: 114
-      Script: {instanceID: 14562}
+      Script: {instanceID: 14500}
     - Class: 114
-      Script: {instanceID: 14754}
+      Script: {instanceID: 14564}
     - Class: 114
-      Script: {instanceID: 14774}
+      Script: {instanceID: 14756}
     - Class: 114
-      Script: {instanceID: 15022}
+      Script: {instanceID: 14776}
     - Class: 114
-      Script: {instanceID: 15074}
+      Script: {instanceID: 15024}
     - Class: 114
-      Script: {instanceID: 15114}
+      Script: {instanceID: 15076}
     - Class: 114
-      Script: {instanceID: 15150}
+      Script: {instanceID: 15116}
     - Class: 114
-      Script: {instanceID: 15172}
+      Script: {instanceID: 15152}
     - Class: 114
-      Script: {instanceID: 1093714}
+      Script: {instanceID: 15174}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -686,6 +686,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 85fa7b352b72281739fb1579d0662e87
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TravelPreparations
+  - hash:
+      serializedVersion: 2
       Hash: b12d5c5ef14d6d40adf395cafb721fe2
     assemblyName: Assembly-CSharp.dll
     namespaceName: QPathFinder
@@ -852,12 +858,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 85fa7b352b72281739fb1579d0662e87
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TravelPreparations
   platform: 13
   scenePathNames:
   - Assets/Scenes/2.unity

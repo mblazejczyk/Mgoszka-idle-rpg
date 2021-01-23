@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\VersionController.cs" />
     <Compile Include="Assets\QPathFinder\Script\GraphData.cs" />
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerToPosition.cs" />
+    <Compile Include="Assets\Scripts\TravelPreparations.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToPoint.cs" />
     <Compile Include="Assets\Scripts\MapSizeSystem.cs" />
     <Compile Include="Assets\QPathFinder\Script\PathFinder.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\QPathFinder\Script\Followers\PathFollowerUtility.cs" />
     <Compile Include="Assets\Scripts\UiController.cs" />
     <Compile Include="Assets\QPathFinder\Sample\Scripts\MoveToNode.cs" />
-    <Compile Include="Assets\Scripts\TravelPreparations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -645,9 +645,6 @@
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Notifications.iOS">
-      <HintPath>Library\ScriptAssemblies\Unity.Notifications.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
@@ -662,9 +659,6 @@
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Notifications.Android">
-      <HintPath>Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
@@ -698,6 +692,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Notifications.iOS">
+      <HintPath>Library\ScriptAssemblies\Unity.Notifications.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Notifications.Android">
+      <HintPath>Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

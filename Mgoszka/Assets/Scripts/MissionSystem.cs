@@ -702,302 +702,306 @@ public class MissionSystem : MonoBehaviour
         switch (currentMissionId)
         {
             case 1:
-                progressText.text = translationObject.GetMissionText(0) + ": " + progress[0] + "/5";
+                progressText.text = translationObject.GetMissionText(0) + ": " + Mathf.Min(progress[0], 5) + "/5";
 
                 break;
             case 2:
-                progressText.text = translationObject.GetMissionText(2) + ": " + progress[2] + "/8";
+                progressText.text = translationObject.GetMissionText(2) + ": " + Mathf.Min(progress[2], 8) + "/8";
                 break;
             case 3:
-                progressText.text = translationObject.GetMissionText(0) + ": " + progress[0] + "/10" + "\n" + translationObject.GetMissionText(2) + ": " + progress[2] + "/10";
+                progressText.text = translationObject.GetMissionText(0) + ": " + Mathf.Min(progress[0], 10) + "/10" + "\n" + translationObject.GetMissionText(2) + ": " + Mathf.Min(progress[2], 10) + "/10";
                 break;
             case 4:
-                progressText.text = translationObject.GetMissionText(7) + ": " + progress[7] + "/1";
+                progressText.text = translationObject.GetMissionText(7) + ": " + Mathf.Min(progress[7], 1) + "/1";
                 break;
             case 5:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 6:
-                progressText.text = translationObject.GetMissionText(5) + ": " + progress[5] + "/5";
+                progressText.text = translationObject.GetMissionText(5) + ": " + Mathf.Min(progress[5], 5) + "/5";
                 break;
             case 7:
-                progressText.text = translationObject.GetMissionText(1) + ": " + progress[1] + "/10";
+                progressText.text = translationObject.GetMissionText(1) + ": " + Mathf.Min(progress[1], 10) + "/10";
                 break;
             case 8:
-                progressText.text = translationObject.GetMissionText(8) + ": " + progress[8] + "/1";
+                progressText.text = translationObject.GetMissionText(8) + ": " + Mathf.Min(progress[8], 1) + "/1";
                 break;
             case 9:
-                progressText.text = translationObject.GetMissionText(9) + ": " + progress[9] + "/5";
+                progressText.text = translationObject.GetMissionText(9) + ": " + Mathf.Min(progress[9], 5) + "/5";
                 break;
             case 10:
-                progressText.text = translationObject.GetMissionText(4) + ": " + progress[4] + "/3";
+                progressText.text = translationObject.GetMissionText(4) + ": " + Mathf.Min(progress[4], 3) + "/3";
                 break;
             case 11:
-                progressText.text = translationObject.GetMissionText(6) + ": " + progress[6] + "/1";
+                progressText.text = translationObject.GetMissionText(6) + ": " + Mathf.Min(progress[6], 1) + "/1";
                 break;
             case 12:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 13:
-                progressText.text = translationObject.GetMissionText(10) + ": " + progress[10] + "/1";
+                progressText.text = translationObject.GetMissionText(10) + ": " + Mathf.Min(progress[10], 1) + "/1";
                 break;
             case 14:
-                progressText.text = translationObject.GetMissionText(11) + ": " + progress[11] + "/1";
+                progressText.text = translationObject.GetMissionText(11) + ": " + Mathf.Min(progress[11], 1) + "/1";
                 break;
             case 15:
-                progressText.text = translationObject.GetMissionText(12) + ": " + progress[12] + "/1";
+                progressText.text = translationObject.GetMissionText(12) + ": " + Mathf.Min(progress[12], 1) + "/1";
                 break;
             case 16:
-                progressText.text = translationObject.GetMissionText(9) + ": " + progress[9] + "/15";
+                progressText.text = translationObject.GetMissionText(9) + ": " + Mathf.Min(progress[9], 15) + "/15";
                 break;
             case 17:
-                progressText.text = translationObject.GetMissionText(13) + ": " + progress[13] + "/1";
+                progressText.text = translationObject.GetMissionText(13) + ": " + Mathf.Min(progress[13], 1) + "/1";
                 break;
             case 18:
-                progressText.text = translationObject.GetMissionText(14) + ": " + progress[14] + "/1";
+                progressText.text = translationObject.GetMissionText(14) + ": " + Mathf.Min(progress[14], 1) + "/1";
                 break;
             case 19:
-                progressText.text = translationObject.GetMissionText(15) + ": " + progress[15] + "/1";
+                progressText.text = translationObject.GetMissionText(15) + ": " + Mathf.Min(progress[15], 1) + "/1";
                 break;
             case 20:
-                progressText.text = translationObject.GetMissionText(16) + ": " + progress[16] + "/100";
+                progressText.text = translationObject.GetMissionText(16) + ": " + Mathf.Min(progress[16], 100) + "/100";
                 break;
             case 21:
-                progressText.text = translationObject.GetMissionText(17) + ": " + progress[17] + "/3";
+                progressText.text = translationObject.GetMissionText(17) + ": " + Mathf.Min(progress[17], 3) + "/3";
                 break;
             case 22:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 23:
-                progressText.text = translationObject.GetMissionText(18) + ": " + progress[18] + "/10";
+                progressText.text = translationObject.GetMissionText(18) + ": " + Mathf.Min(progress[18], 10) + "/10";
                 break;
             case 24:
-                progressText.text = translationObject.GetMissionText(19) + ": " + progress[19] + "/10";
+                progressText.text = translationObject.GetMissionText(19) + ": " + Mathf.Min(progress[19], 10) + "/10";
                 break;
             case 25:
-                progressText.text = translationObject.GetMissionText(18) + ": " + progress[18] + "/15" + "\n" + 
-                    translationObject.GetMissionText(19) + ": " + progress[19] + "/15";
+                progressText.text = translationObject.GetMissionText(18) + ": " + Mathf.Min(progress[18], 15) + "/15" + "\n" + 
+                    translationObject.GetMissionText(19) + ": " + Mathf.Min(progress[19], 15) + "/15";
                 break;
             case 26:
-                progressText.text = translationObject.GetMissionText(20) + ": " + progress[20] + "/5";
+                progressText.text = translationObject.GetMissionText(20) + ": " + Mathf.Min(progress[20], 5) + "/5";
                 break;
             case 27:
-                progressText.text = translationObject.GetMissionText(20) + ": " + progress[20] + "/15" + "\n" + 
-                    translationObject.GetMissionText(18) + ": " + progress[18] + "/20" + "\n" + 
-                    translationObject.GetMissionText(19) + ": " + progress[19] + "/20";
+                progressText.text = translationObject.GetMissionText(20) + ": " + Mathf.Min(progress[20], 15) + "/15" + "\n" + 
+                    translationObject.GetMissionText(18) + ": " + Mathf.Min(progress[18], 20) + "/20" + "\n" + 
+                    translationObject.GetMissionText(19) + ": " + Mathf.Min(progress[19], 20) + "/20";
                 break;
             case 28:
-                progressText.text = translationObject.GetMissionText(4) + ": " + progress[4] + "/20";
+                progressText.text = translationObject.GetMissionText(4) + ": " + Mathf.Min(progress[4], 20) + "/20";
                 break;
             case 29:
-                progressText.text = translationObject.GetMissionText(21) + ": " + progress[21] + "/1";
+                progressText.text = translationObject.GetMissionText(21) + ": " + Mathf.Min(progress[21], 1) + "/1";
                 break;
             case 30:
-                progressText.text = translationObject.GetMissionText(17) + ": " + progress[17] + "/5";
+                progressText.text = translationObject.GetMissionText(17) + ": " + Mathf.Min(progress[17], 5) + "/5";
                 break;
             case 31:
-                progressText.text = translationObject.GetMissionText(18) + ": " + progress[18] + "/1" + "\n" + 
-                    translationObject.GetMissionText(19) + ": " + progress[19] + "/1" + "\n" + 
-                    translationObject.GetMissionText(20) + ": " + progress[20] + "/1" + "\n" + 
-                    translationObject.GetMissionText(21) + ": " + progress[21] + "/1";
+                progressText.text = translationObject.GetMissionText(18) + ": " + Mathf.Min(progress[18], 1) + "/1" + "\n" + 
+                    translationObject.GetMissionText(19) + ": " + Mathf.Min(progress[19], 1) + "/1" + "\n" + 
+                    translationObject.GetMissionText(20) + ": " + Mathf.Min(progress[20], 1) + "/1" + "\n" + 
+                    translationObject.GetMissionText(21) + ": " + Mathf.Min(progress[21], 1) + "/1";
                 break;
             case 32:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 33:
-                progressText.text = translationObject.GetMissionText(22) + ": " + progress[22] + "/1";
+                progressText.text = translationObject.GetMissionText(22) + ": " + Mathf.Min(progress[22], 1) + "/1";
                 break;
             case 34:
-                progressText.text = translationObject.GetMissionText(23) + ": " + progress[23] + "/1";
+                progressText.text = translationObject.GetMissionText(23) + ": " + Mathf.Min(progress[23], 1) + "/1";
                 break;
             case 35:
-                progressText.text = translationObject.GetMissionText(24) + ": " + progress[24] + "/5";
+                progressText.text = translationObject.GetMissionText(24) + ": " + Mathf.Min(progress[24], 5) + "/5";
                 break;
             case 36:
-                progressText.text = translationObject.GetMissionText(25) + ": " + progress[25] + "/1";
+                progressText.text = translationObject.GetMissionText(25) + ": " + Mathf.Min(progress[25], 1) + "/1";
                 break;
             case 37:
-                progressText.text = translationObject.GetMissionText(26) + ": " + progress[26] + "/1";
+                progressText.text = translationObject.GetMissionText(26) + ": " + Mathf.Min(progress[26], 1) + "/1";
                 break;
             case 38:
-                progressText.text = translationObject.GetMissionText(27) + ": " + progress[27] + "/1";
+                progressText.text = translationObject.GetMissionText(27) + ": " + Mathf.Min(progress[27], 1) + "/1";
                 break;
             case 39:
-                progressText.text = translationObject.GetMissionText(28) + ": " + progress[28] + "/1";
+                progressText.text = translationObject.GetMissionText(28) + ": " + Mathf.Min(progress[28], 1) + "/1";
                 break;
             case 40:
-                progressText.text = translationObject.GetMissionText(29) + ": " + progress[29] + "/1";
+                progressText.text = translationObject.GetMissionText(29) + ": " + Mathf.Min(progress[29], 1) + "/1";
                 break;
             case 41:
-                progressText.text = translationObject.GetMissionText(30) + ": " + progress[30] + "/1";
+                progressText.text = translationObject.GetMissionText(30) + ": " + Mathf.Min(progress[30], 1) + "/1";
                 break;
             case 42:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 43:
-                progressText.text = translationObject.GetMissionText(31) + ": " + progress[31] + "/10";
+                progressText.text = translationObject.GetMissionText(31) + ": " + Mathf.Min(progress[31], 10) + "/10";
                 break;
             case 44:
-                progressText.text = translationObject.GetMissionText(0) + ": " + progress[0] + "/25";
+                progressText.text = translationObject.GetMissionText(0) + ": " + Mathf.Min(progress[0], 25) + "/25";
                 break;
             case 45:
-                progressText.text = translationObject.GetMissionText(32) + ": " + progress[32] + "/10";
+                progressText.text = translationObject.GetMissionText(32) + ": " + Mathf.Min(progress[32], 10) + "/10";
                 break;
             case 46:
-                progressText.text = translationObject.GetMissionText(31) + ": " + progress[31] + "/50";
+                progressText.text = translationObject.GetMissionText(31) + ": " + Mathf.Min(progress[31], 50) + "/50";
                 break;
             case 47:
-                progressText.text = translationObject.GetMissionText(33) + ": " + progress[33] + "/5";
+                progressText.text = translationObject.GetMissionText(33) + ": " + Mathf.Min(progress[33], 5) + "/5";
                 break;
             case 48:
-                progressText.text = translationObject.GetMissionText(17) + ": " + progress[17] + "/10";
+                progressText.text = translationObject.GetMissionText(17) + ": " + Mathf.Min(progress[17], 10) + "/10";
                 break;
             case 49:
-                progressText.text = translationObject.GetMissionText(34) + ": " + progress[34] + "/5";
+                progressText.text = translationObject.GetMissionText(34) + ": " + Mathf.Min(progress[34], 5) + "/5";
                 break;
             case 50:
-                progressText.text = translationObject.GetMissionText(22) + ": " + progress[22] + "/1";
+                progressText.text = translationObject.GetMissionText(22) + ": " + Mathf.Min(progress[22], 1) + "/1";
                 break;
             case 51:
-                progressText.text = translationObject.GetMissionText(35) + ": " + progress[35] + "/1";
+                progressText.text = translationObject.GetMissionText(35) + ": " + Mathf.Min(progress[35], 1) + "/1";
                 break;
             case 52:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 53:
-                progressText.text = translationObject.GetMissionText(36) + ": " + progress[36] + "/7";
+                progressText.text = translationObject.GetMissionText(36) + ": " + Mathf.Min(progress[36], 7) + "/7";
                 break;
             case 54:
-                progressText.text = translationObject.GetMissionText(37) + ": " + progress[37] + "/5";
+                progressText.text = translationObject.GetMissionText(37) + ": " + Mathf.Min(progress[37], 5) + "/5";
                 break;
             case 55:
-                progressText.text = translationObject.GetMissionText(38) + ": " + progress[38] + "/10";
+                progressText.text = translationObject.GetMissionText(38) + ": " + Mathf.Min(progress[38], 10) + "/10";
                 break;
             case 56:
-                progressText.text = translationObject.GetMissionText(36) + ": " + progress[36] + "/15" + "\n" + translationObject.GetMissionText(38) + ": " + progress[38] + "/15";
+                progressText.text = translationObject.GetMissionText(36) + ": " + Mathf.Min(progress[36], 15) + "/15" + "\n" + translationObject.GetMissionText(38) + ": " + Mathf.Min(progress[38], 15) + "/15";
                 break;
             case 57:
-                progressText.text = translationObject.GetMissionText(2) + ": " + progress[2] + "/25";
+                progressText.text = translationObject.GetMissionText(2) + ": " + Mathf.Min(progress[2], 25) + "/25";
                 break;
             case 58:
-                progressText.text = translationObject.GetMissionText(35) + ": " + progress[35] + "/5";
+                progressText.text = translationObject.GetMissionText(35) + ": " + Mathf.Min(progress[35], 5) + "/5";
                 break;
             case 59:
-                progressText.text = translationObject.GetMissionText(39) + ": " + progress[39] + "/3";
+                progressText.text = translationObject.GetMissionText(39) + ": " + Mathf.Min(progress[39], 3) + "/3";
                 break;
             case 60:
-                progressText.text = translationObject.GetMissionText(36) + ": " + progress[36] + "/1" + "\n" +
-                    translationObject.GetMissionText(37) + ": " + progress[37] + "/1" + "\n" +
-                    translationObject.GetMissionText(38) + ": " + progress[38] + "/1" + "\n" +
-                    translationObject.GetMissionText(39) + ": " + progress[39] + "/1" + "\n";
+                progressText.text = translationObject.GetMissionText(36) + ": " + Mathf.Min(progress[36], 1) + "/1" + "\n" +
+                    translationObject.GetMissionText(37) + ": " + Mathf.Min(progress[37], 1) + "/1" + "\n" +
+                    translationObject.GetMissionText(38) + ": " + Mathf.Min(progress[38], 1) + "/1" + "\n" +
+                    translationObject.GetMissionText(39) + ": " + Mathf.Min(progress[39], 1) + "/1" + "\n";
                 break;
             case 61:
-                progressText.text = translationObject.GetMissionText(61) + ": " + progress[61] + "/1";
+                progressText.text = translationObject.GetMissionText(61) + ": " + Mathf.Min(progress[61], 1) + "/1";
                 break;
             case 62:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 63:
-                progressText.text = translationObject.GetMissionText(40) + ": " + progress[40] + "/1";
+                progressText.text = translationObject.GetMissionText(40) + ": " + Mathf.Min(progress[40], 1) + "/1";
                 break;
             case 64:
-                progressText.text = translationObject.GetMissionText(41) + ": " + progress[41] + "/1";
+                progressText.text = translationObject.GetMissionText(41) + ": " + Mathf.Min(progress[41], 1) + "/1";
                 break;
             case 65:
-                progressText.text = translationObject.GetMissionText(42) + ": " + progress[42] + "/1";
+                progressText.text = translationObject.GetMissionText(42) + ": " + Mathf.Min(progress[42], 1) + "/1";
                 break;
             case 66:
-                progressText.text = translationObject.GetMissionText(43) + ": " + progress[43] + "/1";
+                progressText.text = translationObject.GetMissionText(43) + ": " + Mathf.Min(progress[43], 1) + "/1";
                 break;
             case 67:
-                progressText.text = translationObject.GetMissionText(44) + ": " + progress[44] + "/1";
+                progressText.text = translationObject.GetMissionText(44) + ": " + Mathf.Min(progress[44], 1) + "/1";
                 break;
             case 68:
-                progressText.text = translationObject.GetMissionText(45) + ": " + progress[45] + "/1";
+                progressText.text = translationObject.GetMissionText(45) + ": " + Mathf.Min(progress[45], 1) + "/1";
                 break;
             case 69:
-                progressText.text = translationObject.GetMissionText(46) + ": " + progress[46] + "/1";
+                progressText.text = translationObject.GetMissionText(46) + ": " + Mathf.Min(progress[46], 1) + "/1";
                 break;
             case 70:
-                progressText.text = translationObject.GetMissionText(47) + ": " + progress[47] + "/1";
+                progressText.text = translationObject.GetMissionText(47) + ": " + Mathf.Min(progress[47], 1) + "/1";
                 break;
             case 71:
-                progressText.text = translationObject.GetMissionText(48) + ": " + progress[48] + "/1";
+                progressText.text = translationObject.GetMissionText(48) + ": " + Mathf.Min(progress[48], 1) + "/1";
                 break;
             case 72:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 73:
-                progressText.text = translationObject.GetMissionText(49) + ": " + progress[49] + "/5";
+                progressText.text = translationObject.GetMissionText(49) + ": " + Mathf.Min(progress[49], 5) + "/5";
                 break;
             case 74:
-                progressText.text = translationObject.GetMissionText(49) + ": " + progress[49] + "/15";
+                progressText.text = translationObject.GetMissionText(49) + ": " + Mathf.Min(progress[49], 15) + "/15";
                 break;
             case 75:
-                progressText.text = translationObject.GetMissionText(50) + ": " + progress[50] + "/3";
+                progressText.text = translationObject.GetMissionText(50) + ": " + Mathf.Min(progress[50], 3) + "/3";
                 break;
             case 76:
-                progressText.text = translationObject.GetMissionText(9) + ": " + progress[9] + "/15";
+                progressText.text = translationObject.GetMissionText(9) + ": " + Mathf.Min(progress[9], 15) + "/15";
                 break;
             case 77:
-                progressText.text = translationObject.GetMissionText(51) + ": " + progress[51] + "/8";
+                progressText.text = translationObject.GetMissionText(51) + ": " + Mathf.Min(progress[51], 8) + "/8";
                 break;
             case 78:
-                progressText.text = translationObject.GetMissionText(52) + ": " + progress[52] + "/2";
+                progressText.text = translationObject.GetMissionText(52) + ": " + Mathf.Min(progress[52], 2) + "/2";
                 break;
             case 79:
-                progressText.text = translationObject.GetMissionText(51) + ": " + progress[51] + "/10" + "\n" +
-                    translationObject.GetMissionText(50) + ": " + progress[50] + "/10";
+                progressText.text = translationObject.GetMissionText(51) + ": " + Mathf.Min(progress[51], 10) + "/10" + "\n" +
+                    translationObject.GetMissionText(50) + ": " + Mathf.Min(progress[50], 10) + "/10";
                 break;
             case 80:
-                progressText.text = translationObject.GetMissionText(49) + ": " + progress[49] + "/1" + "\n" +
-                    translationObject.GetMissionText(50) + ": " + progress[50] + "/1" + "\n" +
-                    translationObject.GetMissionText(51) + ": " + progress[51] + "/1";
+                progressText.text = translationObject.GetMissionText(49) + ": " + Mathf.Min(progress[49], 1) + "/1" + "\n" +
+                    translationObject.GetMissionText(50) + ": " + Mathf.Min(progress[50], 1) + "/1" + "\n" +
+                    translationObject.GetMissionText(51) + ": " + Mathf.Min(progress[51], 1) + "/1";
                 break;
             case 81:
-                progressText.text = translationObject.GetMissionText(53) + ": " + progress[53] + "/1";
+                progressText.text = translationObject.GetMissionText(53) + ": " + Mathf.Min(progress[53], 1) + "/1";
                 break;
             case 82:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 83:
-                progressText.text = translationObject.GetMissionText(54) + ": " + progress[54] + "/1";
+                progressText.text = translationObject.GetMissionText(54) + ": " + Mathf.Min(progress[54], 1) + "/1";
                 break;
             case 84:
-                progressText.text = translationObject.GetMissionText(55) + ": " + progress[55] + "/1";
+                progressText.text = translationObject.GetMissionText(55) + ": " + Mathf.Min(progress[55], 1) + "/1";
                 break;
             case 85:
-                progressText.text = translationObject.GetMissionText(56) + ": " + progress[56] + "/1";
+                progressText.text = translationObject.GetMissionText(56) + ": " + Mathf.Min(progress[56], 1) + "/1";
                 break;
             case 86:
-                progressText.text = translationObject.GetMissionText(57) + ": " + progress[57] + "/1";
+                progressText.text = translationObject.GetMissionText(57) + ": " + Mathf.Min(progress[57], 1) + "/1";
                 break;
             case 87:
-                progressText.text = translationObject.GetMissionText(58) + ": " + progress[58] + "/1";
+                progressText.text = translationObject.GetMissionText(58) + ": " + Mathf.Min(progress[58], 1) + "/1";
                 break;
             case 88:
-                progressText.text = translationObject.GetMissionText(59) + ": " + progress[59] + "/1";
+                progressText.text = translationObject.GetMissionText(59) + ": " + Mathf.Min(progress[59], 1) + "/1";
                 break;
             case 89:
-                progressText.text = translationObject.GetMissionText(60) + ": " + progress[60] + "/1";
+                progressText.text = translationObject.GetMissionText(60) + ": " + Mathf.Min(progress[60], 1) + "/1";
                 break;
             case 90:
-                progressText.text = translationObject.GetMissionText(24) + ": " + progress[24] + "/8";
+                progressText.text = translationObject.GetMissionText(24) + ": " + Mathf.Min(progress[24], 8) + "/8";
                 break;
             case 91:
-                progressText.text = translationObject.GetMissionText(9) + ": " + progress[9] + "/30";
+                progressText.text = translationObject.GetMissionText(9) + ": " + Mathf.Min(progress[9], 30) + "/30";
                 break;
             case 92:
                 progressText.text = translationObject.GetText(41);
                 break;
             case 93:
-                progressText.text = translationObject.GetMissionText(62) + ": " + progress[62] + "/25";
+                progressText.text = translationObject.GetMissionText(62) + ": " + Mathf.Min(progress[62], 25) + "/25";
                 break;
         }
 
         progress[62] = 0;
 
-        DProgressText.text = translationObject.GetDaMissionText(TodaysMissionId) + ": " + missionDayliProgress[TodaysMissionId] + "/" + missionGoal[TodaysMissionId];
+        
+
+
+
+        DProgressText.text = translationObject.GetDaMissionText(TodaysMissionId) + ": " + Mathf.Min(missionDayliProgress[TodaysMissionId], missionGoal[TodaysMissionId]) + "/" + missionGoal[TodaysMissionId];
         
         float rewardToText = 50 * Streak;
 
