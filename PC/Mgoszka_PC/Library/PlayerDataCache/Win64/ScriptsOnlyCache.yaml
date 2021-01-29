@@ -856,4 +856,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/2.unity
-  playerPath: C:/Users/nibek/Desktop/Mgoszka PC build/64bit/Mgoszka.exe
+  playerPath: C:/Users/nibek/Desktop/Mgoszka 64bit/Mgoszka.exe
