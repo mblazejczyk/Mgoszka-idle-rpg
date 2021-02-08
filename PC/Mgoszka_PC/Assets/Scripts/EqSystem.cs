@@ -346,11 +346,10 @@ public class EqSystem : MonoBehaviour
                 {
                     if (ob.GetComponent<itemParameters>().Id.ToString() == str[1])
                     {
+                        GameObject PlayerTempObj = GameObject.FindGameObjectWithTag("Player");
                         //znaleziono dokladny przedmiot w bazie przedmiotow
                         if (ob.GetComponent<itemParameters>().isEquickable == true && int.Parse(str[0]) <= 6)
                         {
-                            GameObject PlayerTempObj = GameObject.FindGameObjectWithTag("Player");
-
                             PlayerTempObj.GetComponent<PlayerStats>().maxHP -= ob.GetComponent<itemParameters>().add_total_HP;
                             PlayerTempObj.GetComponent<PlayerStats>().HP -= ob.GetComponent<itemParameters>().add_HP;
                             PlayerTempObj.GetComponent<PlayerStats>().Energy -= ob.GetComponent<itemParameters>().add_energy;
@@ -365,6 +364,15 @@ public class EqSystem : MonoBehaviour
                             PlayerTempObj.GetComponent<PlayerStats>().escape -= ob.GetComponent<itemParameters>().add_escameChance;
                             PlayerTempObj.GetComponent<PlayerStats>().critChance -= ob.GetComponent<itemParameters>().CritChanse;
                         }
+                        float coinWorth = ob.GetComponent<itemParameters>().add_total_HP * 0.3f + ob.GetComponent<itemParameters>().add_HP * 0.3f +
+                                                ob.GetComponent<itemParameters>().add_energy + ob.GetComponent<itemParameters>().add_total_energy +
+                                                ob.GetComponent<itemParameters>().add_ad + ob.GetComponent<itemParameters>().add_md +
+                                                ob.GetComponent<itemParameters>().add_armor + ob.GetComponent<itemParameters>().add_barier +
+                                                ob.GetComponent<itemParameters>().add_speed + ob.GetComponent<itemParameters>().add_dodge * 5 +
+                                                ob.GetComponent<itemParameters>().add_charyzma + ob.GetComponent<itemParameters>().add_escameChance * 5 +
+                                                ob.GetComponent<itemParameters>().CritChanse * 5;
+
+                        PlayerTempObj.GetComponent<PlayerStats>().coins += coinWorth;
                     }
                 }
 
